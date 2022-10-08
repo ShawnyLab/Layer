@@ -68,6 +68,7 @@ extension FrameUploadModel {
             .child("users")
             .child(CurrentUserModel.shared.uid)
             .child("frames")
+            .child(frameModel.uid)
         setValueOnDatabase(ref: userRef, frameModel: frameModel)
 
         

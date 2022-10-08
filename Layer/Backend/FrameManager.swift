@@ -15,7 +15,7 @@ protocol FrameManagerType {
     func fetchMore() -> Completable
     func fetchById(id: String) -> Single<FrameModel>
     func create() -> Completable
-    func delete() -> Completable
+    func delete(uid: String) -> Completable
     func update() -> Completable
     
     
@@ -80,9 +80,23 @@ final class FrameManager: CommonBackendType, FrameManagerType {
         }
     }
     
-    func delete() -> Completable {
+    func delete(uid: String) -> Completable {
         return Completable.create() { [unowned self] completable in
-            
+            if let idx = frameRelay.value.firstIndex(where: {$0.uid == uid}) {
+                var newList = frameRelay.value
+                newList.remove(at: idx)
+                frameRelay.accept(newList)
+                
+                ref.child("frame").child(uid).removeValue()
+                ref.child("users").child(CurrentUserModel.shared.uid).child("frames").child(uid).removeValue()
+                
+                CurrentUserModel.shared.frames[uid] = nil
+                let idx = CurrentUserModel.shared.frameModels.firstIndex(where: {$0.uid == uid})!
+                CurrentUserModel.shared.frameModels.remove(at: idx)
+                completable(.completed)
+            } else {
+                completable(.error(DataFetchingError.noData))
+            }
             
             return Disposables.create()
         }

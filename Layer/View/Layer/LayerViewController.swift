@@ -46,8 +46,18 @@ class LayerViewController: UIViewController {
                         //MARK: - Todo 프레임 수정 Action
                     }
 
-                    let delete = UIAction(title: "프레임 삭제", attributes: .destructive) { _ in
+                    let delete = UIAction(title: "프레임 삭제", attributes: .destructive) { [unowned self] _ in
                         //MARK: - Todo 프레임 삭제 Action
+                        indicator.isHidden = false
+                        indicator.startAnimating()
+                        FrameManager.shared.delete(uid: frameModel.uid)
+                            .subscribe { [unowned self] in
+                                indicator.isHidden = true
+                                indicator.stopAnimating()
+                                
+//                                viewModel.reload()
+                            }
+                            .disposed(by: rx.disposeBag)
                     }
                     
                     cell.optionBtn.menu = UIMenu(children: [edit, changeLayer, delete])

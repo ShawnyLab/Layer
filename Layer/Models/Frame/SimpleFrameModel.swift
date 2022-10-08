@@ -7,7 +7,7 @@
 
 import Firebase
 
-final class SimpleFrameModel {
+final class SimpleFrameModel: Equatable {
     let title: String
     let imageUrl: String?
     let dueDate: String?
@@ -16,6 +16,10 @@ final class SimpleFrameModel {
     let createdAt: String
     var isOpened: Bool = false
     var layer: Int = 0
+    
+    static func ==(lhs: SimpleFrameModel, rhs: SimpleFrameModel) -> Bool {
+        return lhs.uid == rhs.uid
+    }
     
     init(title: String, imageUrl: String?, dueDate: String?, content: String?, uid: String, createdAt: String, isOpened: Bool, layer: Int) {
         self.title = title

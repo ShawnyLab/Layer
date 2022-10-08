@@ -7,7 +7,7 @@
 
 import FirebaseDatabase
 
-struct FrameModel: Codable {
+struct FrameModel: Codable, Equatable {
     let title: String
     let imageUrl: String?
     let dueDate: String?
@@ -17,6 +17,10 @@ struct FrameModel: Codable {
     let writerId: String
     var isOpened: Bool
     var layer: Int
+    
+    static func ==(lhs: FrameModel, rhs: FrameModel) -> Bool {
+        return lhs.uid == rhs.uid
+    }
     
     private enum CodingKeys: String, CodingKey {
         case imageUrl, dueDate, content, uid, createdAt, title, writerId, isOpened, layer
