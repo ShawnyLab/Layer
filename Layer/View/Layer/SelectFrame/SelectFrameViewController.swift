@@ -67,6 +67,8 @@ extension SelectFrameViewController: PHPickerViewControllerDelegate {
                 DispatchQueue.main.async {
                     guard let selectedImage = image as? UIImage else { return }
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "addtextframeVC") as! AddTextFrameViewController
+                    self.frameUploadModel = FrameUploadModel()
+                    vc.frameUploadModel = self.frameUploadModel
                     vc.image = selectedImage
                     self.navigationController?.pushViewController(vc, animated: true)
                 }

@@ -6,6 +6,7 @@
 //
 
 import FirebaseDatabase
+import FirebaseStorage
 
 final class FrameUploadModel {
     var title: String!
@@ -14,6 +15,7 @@ final class FrameUploadModel {
     var isTemp: Bool = false
     var isOpened: Bool = false
     var layer: Int = 0
+    var image: UIImage? = nil
 }
 
 extension FrameUploadModel {
@@ -25,7 +27,7 @@ extension FrameUploadModel {
             dueDate = Date().after(day: 1)
         }
         
-        let key = Database.database().reference().child("frame").childByAutoId().key!
+        let key = Database.database().reference(fromURL: "https://layer-8e3e6-default-rtdb.asia-southeast1.firebasedatabase.app").child("frame").childByAutoId().key!
         return FrameModel(title: self.title, content: self.content, uid: key, createdAt: date.dateTime, writerId: CurrentUserModel.shared.uid, imageUrl: self.imageUrl, dueDate: dueDate, isOpened: self.isOpened, layer: self.layer)
     }
     
@@ -33,27 +35,95 @@ extension FrameUploadModel {
         return SimpleFrameModel(title: self.title, imageUrl: self.imageUrl, dueDate: dueDate, content: self.content, uid: uid, createdAt: createdAt, isOpened: self.isOpened, layer: self.layer)
     }
     
-    private func setValueOnDatabase(ref: DatabaseReference, frameModel: FrameModel) {
+    private func addTextFrameOnDatabase(ref: DatabaseReference, frameModel: FrameModel, completion: @escaping () -> Void) {
         ref.setValue(["title": frameModel.title, "createdAt": frameModel.createdAt, "writerId": frameModel.writerId, "isOpened": frameModel.isOpened, "layer": frameModel.layer])
         if let content = frameModel.content {
             ref.child("content").setValue(content)
         }
-        if let imageUrl = frameModel.imageUrl {
-            ref.child("imageUrl").setValue(imageUrl)
-        }
         if let dueDate = frameModel.dueDate {
             ref.child("dueDate").setValue(dueDate)
         }
+        
+        completion()
     }
     
-    func upload() {
+    private func uploadImageOnStorage(uid: String, completion: @escaping () -> Void) {
+        let storageRef = Storage.storage().reference().child("frameImages").child(uid).child("image.jpeg")
+        let data = image!.jpegData(compressionQuality: 0.9)
+        if let data = data {
+            storageRef
+                .putData(data) { metadata, error in
+                    guard let metadata = metadata else {
+                        // Uh-oh, an error occurred!
+                        print(error)
+                        return
+                    }
+                    // Metadata contains file metadata such as size, content-type.
+                    let size = metadata.size
+                    // You can also access to download URL after upload.
+                    storageRef.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            // Uh-oh, an error occurred!
+                            print(error)
+                            return
+                        }
+                        
+                        self.imageUrl = downloadURL.absoluteString
+                        completion()
+                    }
+                }
+            
+        }
+    }
+    
+    private func addImageFrameOnDatabase(ref: DatabaseReference, frameModel: FrameModel, completion: @escaping () -> Void) {
+        uploadImageOnStorage(uid: frameModel.uid) { [unowned self] in
+            ref.setValue(["title": frameModel.title, "createdAt": frameModel.createdAt, "writerId": frameModel.writerId, "isOpened": frameModel.isOpened, "layer": frameModel.layer])
+            
+            if let dueDate = frameModel.dueDate {
+                ref.child("dueDate").setValue(dueDate)
+            }
+            
+            if let imageUrl = imageUrl {
+                ref.child("imageUrl").setValue(imageUrl)
+            }
+            
+            completion()
+        }
+    }
+    
+    func upload(completion: @escaping () -> Void) {
         let frameModel = modelize()
         let ref = Database.database(url: "https://layer-8e3e6-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("frame").child(frameModel.uid)
         
         // Upload in "frame"
-        setValueOnDatabase(ref: ref, frameModel: frameModel)
+        if image == nil {
+            addTextFrameOnDatabase(ref: ref, frameModel: frameModel) {
+                self.addModel(frameModel) {
+                    completion()
+                }
+            }
+        } else {
+            addImageFrameOnDatabase(ref: ref, frameModel: frameModel) {
+                self.addModel(frameModel) {
+                    completion()
+                }
+            }
+        }
+        
+
+
+
+    }
+    
+    private func addModel(_ frameModel: FrameModel, completion: @escaping() -> Void) {
+        var frameModel = frameModel
         
         // Add in frameList
+        if imageUrl != nil {
+            frameModel.setImageUrl(imageUrl: self.imageUrl!)
+        }
+        
         var frameList = FrameManager.shared.frameRelay.value
         frameList.insert(frameModel, at: 0)
         FrameManager.shared.frameRelay.accept(frameList)
@@ -69,8 +139,18 @@ extension FrameUploadModel {
             .child(CurrentUserModel.shared.uid)
             .child("frames")
             .child(frameModel.uid)
-        setValueOnDatabase(ref: userRef, frameModel: frameModel)
-
+        
+        if image == nil {
+            addTextFrameOnDatabase(ref: userRef, frameModel: frameModel) {
+                print("text Frame upload done")
+                completion()
+            }
+        } else {
+            addImageFrameOnDatabase(ref: userRef, frameModel: frameModel) {
+                print("image Frame upload done")
+                completion()
+            }
+        }
         
 
     }

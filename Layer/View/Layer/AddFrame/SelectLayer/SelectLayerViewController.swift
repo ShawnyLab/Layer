@@ -32,6 +32,7 @@ class SelectLayerViewController: AddFrameType {
     @IBOutlet weak var layerGrayButton: UIButton!
     @IBOutlet weak var layerBlackButton: UIButton!
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var uploadButton: UIButton!
     
     private let whiteOn = BehaviorRelay(value: true)
@@ -45,6 +46,8 @@ class SelectLayerViewController: AddFrameType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        indicator.isHidden = true
         
         tempView.layer.cornerRadius = 13
         tempView.layer.borderColor = UIColor.black.cgColor
@@ -150,11 +153,16 @@ class SelectLayerViewController: AddFrameType {
         uploadButton
             .rx.tap
             .bind { [unowned self] Void in
+                indicator.isHidden = false
+                indicator.startAnimating()
+                
                 frameUploadModel.isOpened = profileSwitch.isOn
                 frameUploadModel.isTemp = tempSwitch.isOn
                 frameUploadModel.layer = totalLayer
-                frameUploadModel.upload()
-                navigationController?.popToRootViewController(animated: true)
+                frameUploadModel.upload() { [unowned self] in
+                    indicator.isHidden = true
+                    navigationController?.popToRootViewController(animated: true)
+                }
             }
             .disposed(by: rx.disposeBag)
 

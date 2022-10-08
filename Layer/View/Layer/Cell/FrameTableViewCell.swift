@@ -30,6 +30,7 @@ class FrameTableViewCell: UITableViewCell {
         profileImageView.layer.cornerRadius = 12.5
         
         if let imageUrl = frameModel.imageUrl {
+            contentImageView.isHidden = false
             contentImageView.setImage(url: imageUrl)
         } else {
             contentImageView.isHidden = true

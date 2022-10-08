@@ -91,12 +91,22 @@ class AddTextFrameViewController: AddFrameType {
         
         nextButton.rx.tap
             .bind { [unowned self] Void in
-                frameUploadModel.title = titleTextField.text!
-                frameUploadModel.content = messageTextView.text!                
+                if image == nil {
+                    frameUploadModel.title = titleTextField.text!
+                    frameUploadModel.content = messageTextView.text!
+                    
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "selectlayerVC") as! SelectLayerViewController
+                    vc.frameUploadModel = frameUploadModel
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    frameUploadModel.image = self.image
+                    frameUploadModel.title = titleTextField.text!
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "selectlayerVC") as! SelectLayerViewController
+                    vc.frameUploadModel = frameUploadModel
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 
-                let vc = storyboard?.instantiateViewController(withIdentifier: "selectlayerVC") as! SelectLayerViewController
-                vc.frameUploadModel = frameUploadModel
-                self.navigationController?.pushViewController(vc, animated: true)
+
             }
             .disposed(by: rx.disposeBag)
     }

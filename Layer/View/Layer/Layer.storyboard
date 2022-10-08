@@ -573,6 +573,9 @@
                                     <constraint firstAttribute="trailing" secondItem="fdx-ke-05H" secondAttribute="trailing" constant="1" id="iwJ-yG-gMD"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OAT-Gw-onr">
+                                <rect key="frame" x="197" y="445" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3J1-Wh-XSH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -588,6 +591,7 @@
                             <constraint firstItem="IEs-uU-9RQ" firstAttribute="leading" secondItem="3J1-Wh-XSH" secondAttribute="leading" constant="87" id="BAf-Ja-mha"/>
                             <constraint firstItem="2Cq-Qb-tdx" firstAttribute="top" secondItem="ugs-vJ-vfW" secondAttribute="bottom" constant="60" id="FAq-jD-Xfw"/>
                             <constraint firstItem="Dxx-Ia-ggx" firstAttribute="leading" secondItem="3J1-Wh-XSH" secondAttribute="leading" constant="15" id="GRA-E1-Yii"/>
+                            <constraint firstItem="OAT-Gw-onr" firstAttribute="centerY" secondItem="3J1-Wh-XSH" secondAttribute="centerY" id="HRM-Mr-ZdY"/>
                             <constraint firstItem="pzB-Qy-8PK" firstAttribute="leading" secondItem="3J1-Wh-XSH" secondAttribute="leading" constant="27" id="LQu-7D-S1d"/>
                             <constraint firstItem="ugs-vJ-vfW" firstAttribute="centerY" secondItem="Dxx-Ia-ggx" secondAttribute="centerY" id="MCz-Bg-Jb0"/>
                             <constraint firstItem="JEU-g4-WId" firstAttribute="centerX" secondItem="3J1-Wh-XSH" secondAttribute="centerX" id="Mzu-yg-d6K"/>
@@ -605,11 +609,13 @@
                             <constraint firstItem="IEs-uU-9RQ" firstAttribute="centerX" secondItem="3J1-Wh-XSH" secondAttribute="centerX" id="n2j-BU-xcq"/>
                             <constraint firstItem="70z-AD-hy2" firstAttribute="leading" secondItem="3J1-Wh-XSH" secondAttribute="leading" constant="30" id="r4r-4z-4wV"/>
                             <constraint firstItem="Sb1-dx-hHy" firstAttribute="centerX" secondItem="3J1-Wh-XSH" secondAttribute="centerX" id="yWQ-wp-T6l"/>
+                            <constraint firstItem="OAT-Gw-onr" firstAttribute="centerX" secondItem="3J1-Wh-XSH" secondAttribute="centerX" id="zNC-4d-lZe"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="blackView" destination="Sb1-dx-hHy" id="iQI-eP-cR0"/>
                         <outlet property="grayView" destination="IEs-uU-9RQ" id="kC4-rI-Hqh"/>
+                        <outlet property="indicator" destination="OAT-Gw-onr" id="gtG-q2-fMj"/>
                         <outlet property="layerBlackButton" destination="fdx-ke-05H" id="PL5-I8-Moh"/>
                         <outlet property="layerGrayButton" destination="7tu-ib-ZU1" id="Zbp-FB-TWy"/>
                         <outlet property="layerWhiteButton" destination="Svt-HH-Dju" id="8zY-tR-fS5"/>

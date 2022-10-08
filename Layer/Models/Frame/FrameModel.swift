@@ -9,7 +9,7 @@ import FirebaseDatabase
 
 struct FrameModel: Codable, Equatable {
     let title: String
-    let imageUrl: String?
+    var imageUrl: String?
     let dueDate: String?
     let content: String?
     var uid: String
@@ -65,5 +65,9 @@ struct FrameModel: Codable, Equatable {
             self.dueDate = nil
         }
         
+    }
+    
+    mutating func setImageUrl(imageUrl: String) {
+        self.imageUrl = imageUrl
     }
 }
