@@ -23,6 +23,8 @@ class AddTextFrameViewController: AddFrameType {
     private let titleCountValidSubject = BehaviorSubject<Bool>(value: true)
     private let messageCountValidSubject = BehaviorSubject<Bool>(value: true)
     
+    var image: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
