@@ -20,6 +20,9 @@ class AddTextFrameViewController: AddFrameType {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var frameTypeLabel: UILabel!
+    @IBOutlet weak var frameImageView: UIImageView!
+    
     private let titleCountValidSubject = BehaviorSubject<Bool>(value: true)
     private let messageCountValidSubject = BehaviorSubject<Bool>(value: true)
     
@@ -27,6 +30,16 @@ class AddTextFrameViewController: AddFrameType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if image != nil {
+            frameTypeLabel.text = "Image"
+            messageTextView.isHidden = true
+            messageCountLabel.isHidden = true
+            
+            frameImageView.image = image
+        } else {
+            frameImageView.isHidden = true
+        }
         
         backButton.rx.tap
             .bind { Void in
