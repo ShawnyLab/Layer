@@ -59,8 +59,8 @@ struct FrameModel: Codable, Equatable {
         self.layer = layer
         
         self.imageUrl = data["imageUrl"] as? String
-        if let dueTime = data["dueTime"] as? String {
-            self.dueDate = dueTime
+        if let dueDate = data["dueDate"] as? String {
+            self.dueDate = dueDate
         } else {
             self.dueDate = nil
         }

@@ -64,15 +64,23 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="곧 사라지는 프레임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3U0-We-pT9">
+                                                                    <rect key="frame" x="58" y="22.5" width="75" height="12"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                                                    <color key="textColor" name="LayerGray"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
+                                                                <constraint firstItem="3U0-We-pT9" firstAttribute="leading" secondItem="et0-1N-Tvj" secondAttribute="leading" id="0d5-ja-dd4"/>
                                                                 <constraint firstAttribute="trailing" secondItem="vct-P8-xna" secondAttribute="trailing" constant="23" id="2eo-J2-PB9"/>
                                                                 <constraint firstItem="KTw-M4-yiq" firstAttribute="top" secondItem="qRM-T7-ej4" secondAttribute="bottom" constant="23" id="3aP-3u-CNs"/>
                                                                 <constraint firstItem="qRM-T7-ej4" firstAttribute="leading" secondItem="rKK-os-8hk" secondAttribute="leading" constant="25" id="CFi-Xq-xth"/>
                                                                 <constraint firstItem="qRM-T7-ej4" firstAttribute="top" secondItem="rKK-os-8hk" secondAttribute="top" id="EqN-JT-ahM"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KTw-M4-yiq" secondAttribute="trailing" constant="23" id="YwW-az-f9C"/>
                                                                 <constraint firstAttribute="height" constant="80" id="ZJe-j3-MEC"/>
+                                                                <constraint firstItem="3U0-We-pT9" firstAttribute="top" secondItem="et0-1N-Tvj" secondAttribute="bottom" id="ftL-1s-0vZ"/>
                                                                 <constraint firstItem="KTw-M4-yiq" firstAttribute="leading" secondItem="rKK-os-8hk" secondAttribute="leading" constant="24" id="mKj-gq-ba3"/>
                                                                 <constraint firstItem="vct-P8-xna" firstAttribute="centerY" secondItem="et0-1N-Tvj" secondAttribute="centerY" id="qCc-dz-z78"/>
                                                                 <constraint firstItem="et0-1N-Tvj" firstAttribute="leading" secondItem="qRM-T7-ej4" secondAttribute="trailing" constant="8" id="tce-xR-wTn"/>
@@ -117,6 +125,7 @@
                                         <connections>
                                             <outlet property="contentImageView" destination="Njy-67-Khu" id="Ins-97-Ugj"/>
                                             <outlet property="contentLabel" destination="sw6-9n-qii" id="cwS-3L-fC1"/>
+                                            <outlet property="dueLabel" destination="3U0-We-pT9" id="7Jj-Gr-Usr"/>
                                             <outlet property="nameLabel" destination="et0-1N-Tvj" id="knL-sV-Pwe"/>
                                             <outlet property="optionBtn" destination="vct-P8-xna" id="cs7-fX-R2a"/>
                                             <outlet property="profileImageView" destination="qRM-T7-ej4" id="1hz-wH-AT4"/>

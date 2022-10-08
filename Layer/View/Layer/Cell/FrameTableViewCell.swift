@@ -22,6 +22,7 @@ class FrameTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var dueLabel: UILabel!
     
     let userModel = BehaviorSubject<UserModel?>(value: nil)
     let imageUrl = BehaviorRelay<String?>(value: nil)
@@ -52,6 +53,12 @@ class FrameTableViewCell: UITableViewCell {
             }
         })
         .disposed(by: rx.disposeBag)
+        
+        if frameModel.dueDate == nil {
+            dueLabel.isHidden = true
+        } else {
+            dueLabel.isHidden = false
+        }
 
     }
 }
