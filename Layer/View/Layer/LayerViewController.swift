@@ -36,20 +36,29 @@ class LayerViewController: UIViewController {
             .bind(to: tableView.rx.items(cellIdentifier: FrameTableViewCell.reuseId, cellType: FrameTableViewCell.self)) { idx, frameModel, cell in
                 cell.bind(frameModel: frameModel)
                 
+                let changeLayer = UIAction(title: "공개 범위 변경") { _ in
+                    //MARK: - Todo 공개 범위 변경 Action
+                }
+                
                 if frameModel.writerId == CurrentUserModel.shared.uid {
                     //My Frame
                     let edit = UIAction(title: "프레임 수정") { _ in
                         //MARK: - Todo 프레임 수정 Action
                     }
-                    
-                    let changeLayer = UIAction(title: "공개 범위 변경") { _ in
-                        //MARK: - Todo 공개 범위 변경 Action
-                    }
-                    
+
                     let delete = UIAction(title: "프레임 삭제", attributes: .destructive) { _ in
                         //MARK: - Todo 프레임 삭제 Action
                     }
+                    
+                    cell.optionBtn.menu = UIMenu(children: [edit, changeLayer, delete])
+                } else {
+                    let sendMessage = UIAction(title: "댓글 보내기") { _ in
+                        //MARK: - Todo 댓글 보내기 Action
+                    }
+                    cell.optionBtn.menu = UIMenu(children: [sendMessage, changeLayer])
                 }
+                cell.optionBtn.showsMenuAsPrimaryAction = true
+
             }
             .disposed(by: rx.disposeBag)
         
