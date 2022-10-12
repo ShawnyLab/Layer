@@ -17,7 +17,11 @@ class RequestViewController: UIViewController {
         
     }
     
-
+    @IBAction func viewSentRequest(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "sentrequestVC") as! SentRequestViewController
+        self.present(vc, animated: true)
+    }
+    
 }
 
 final class RequestCell: UITableViewCell {

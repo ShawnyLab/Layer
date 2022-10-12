@@ -22,7 +22,7 @@ final class MessageViewController: UIViewController {
         Observable.just(CurrentUserModel.shared.friends.filter{$0.layer > 0})
             .bind(to: friendCollectionView.rx.items(cellIdentifier: FriendCell.reuseId, cellType: FriendCell.self)) { idx, friendModel, cell in
 //                cell.profileImageView.setImage(url: friendModel.profileImageUrl)
-                cell.nameLabel.text = friendModel.name
+//                cell.nameLabel.text = friendModel.name
             }
             .disposed(by: rx.disposeBag)
             

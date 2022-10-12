@@ -588,6 +588,9 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="보냄 &gt;"/>
+                                <connections>
+                                    <action selector="viewSentRequest:" destination="89J-3j-AhT" eventType="touchUpInside" id="L0R-fc-J3Q"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vjk-Tz-HH3"/>
@@ -610,6 +613,103 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bL1-Hb-2wr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="872" y="-1263"/>
+        </scene>
+        <!--Sent Request View Controller-->
+        <scene sceneID="nzq-U8-Xk1">
+            <objects>
+                <viewController storyboardIdentifier="sentrequestVC" id="coT-4Q-o4Y" customClass="SentRequestViewController" customModule="Layer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J0l-uR-Rkm">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보낸 요청 (5)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="not-3j-47H">
+                                <rect key="frame" x="24" y="64" width="66" height="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cJY-3q-XDh">
+                                <rect key="frame" x="0.0" y="95" width="390" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sentrequestCell" rowHeight="123" id="gwQ-Jb-7I3" customClass="SentRequestCell" customModule="Layer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="123"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gwQ-Jb-7I3" id="BQu-0W-509">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="123"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PsD-JM-U8O">
+                                                    <rect key="frame" x="24" y="41.666666666666664" width="40" height="39.999999999999993"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="qbV-Wd-v0x"/>
+                                                        <constraint firstAttribute="width" constant="40" id="z0x-SU-Fqo"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내가 저장한 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKr-44-2Q9">
+                                                    <rect key="frame" x="71" y="45.666666666666664" width="86" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyy-dT-lxS">
+                                                    <rect key="frame" x="71" y="61.666666666666657" width="31" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFN-N4-qzz">
+                                                    <rect key="frame" x="268" y="45.666666666666664" width="101" height="31.999999999999993"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="101" id="3db-kT-VHt"/>
+                                                        <constraint firstAttribute="height" constant="32" id="cGI-IS-z2D"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="요청 취소">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GFN-N4-qzz" firstAttribute="centerY" secondItem="BQu-0W-509" secondAttribute="centerY" id="74o-OT-hbD"/>
+                                                <constraint firstItem="fyy-dT-lxS" firstAttribute="top" secondItem="sKr-44-2Q9" secondAttribute="bottom" id="BTd-A0-Ey4"/>
+                                                <constraint firstItem="sKr-44-2Q9" firstAttribute="leading" secondItem="PsD-JM-U8O" secondAttribute="trailing" constant="7" id="FDx-om-Abg"/>
+                                                <constraint firstItem="PsD-JM-U8O" firstAttribute="leading" secondItem="BQu-0W-509" secondAttribute="leading" constant="24" id="Oev-aW-HfW"/>
+                                                <constraint firstItem="fyy-dT-lxS" firstAttribute="leading" secondItem="PsD-JM-U8O" secondAttribute="trailing" constant="7" id="ZeO-xI-w4s"/>
+                                                <constraint firstItem="PsD-JM-U8O" firstAttribute="centerY" secondItem="BQu-0W-509" secondAttribute="centerY" id="cd3-nd-AXV"/>
+                                                <constraint firstItem="sKr-44-2Q9" firstAttribute="top" secondItem="PsD-JM-U8O" secondAttribute="top" constant="4" id="fwV-YD-cuG"/>
+                                                <constraint firstAttribute="trailing" secondItem="GFN-N4-qzz" secondAttribute="trailing" constant="21" id="mIe-R6-Qwd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cancelButton" destination="GFN-N4-qzz" id="VtU-CJ-IhE"/>
+                                            <outlet property="layerIdLabel" destination="sKr-44-2Q9" id="xNS-Rl-4sJ"/>
+                                            <outlet property="nameLabel" destination="fyy-dT-lxS" id="Dm5-jY-UKn"/>
+                                            <outlet property="profileImageView" destination="PsD-JM-U8O" id="R8q-11-ygF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WcW-Wr-byW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cJY-3q-XDh" firstAttribute="leading" secondItem="WcW-Wr-byW" secondAttribute="leading" id="A3I-UI-beq"/>
+                            <constraint firstItem="not-3j-47H" firstAttribute="top" secondItem="WcW-Wr-byW" secondAttribute="top" constant="17" id="KMc-eQ-8uY"/>
+                            <constraint firstItem="not-3j-47H" firstAttribute="leading" secondItem="WcW-Wr-byW" secondAttribute="leading" constant="24" id="OFi-U3-jhx"/>
+                            <constraint firstItem="cJY-3q-XDh" firstAttribute="top" secondItem="not-3j-47H" secondAttribute="bottom" constant="16" id="Vcq-iR-0Wb"/>
+                            <constraint firstItem="WcW-Wr-byW" firstAttribute="bottom" secondItem="cJY-3q-XDh" secondAttribute="bottom" id="dDy-9O-Duv"/>
+                            <constraint firstItem="WcW-Wr-byW" firstAttribute="trailing" secondItem="cJY-3q-XDh" secondAttribute="trailing" id="vFN-fY-Y0M"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="cJY-3q-XDh" id="zlw-4t-WXp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HKa-jL-DDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1804.6153846153845" y="-1263.2701421800948"/>
         </scene>
     </scenes>
     <resources>
