@@ -160,7 +160,6 @@ class SelectLayerViewController: AddFrameType {
                 frameUploadModel.isTemp = tempSwitch.isOn
                 frameUploadModel.layer = totalLayer
                 frameUploadModel.upload() { [unowned self] in
-                    indicator.isHidden = true
                     navigationController?.popToRootViewController(animated: true)
                 }
             }

@@ -40,4 +40,20 @@ class UserManager: CommonBackendType {
         let friendModel = FriendModel(userModel: userModel, layer: -1)
         CurrentUserModel.shared.friends.append(friendModel)
     }
+    
+    func checkNumber(number: String) -> Single<String?> {
+        return Single.create() { [unowned self] single in
+            ref.child("numbers").child(number)
+                .observeSingleEvent(of: .value) { snapshot in
+                    if let value = snapshot.value as? String {
+                        single(.success(value))
+                    } else {
+                        single(.success(nil))
+                    }
+                }
+            
+            return Disposables.create()
+        }
+
+    }
 }

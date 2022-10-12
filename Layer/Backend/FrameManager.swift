@@ -31,11 +31,11 @@ final class FrameManager: CommonBackendType, FrameManagerType {
     
     func fetchFirst() -> Completable {
         return Completable.create() { [unowned self] completable in
-            ref.child("frame").queryLimited(toFirst: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
+            ref.child("frame").queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
                 var temp = [FrameModel]()
                 for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
                     if let frameModel = FrameModel(snapshot: data) {
-                        temp.append(frameModel)
+                        temp.insert(frameModel, at: 0)
                     }
                 }
                 frameRelay.accept(temp)

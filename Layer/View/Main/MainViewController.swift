@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var circleButton: UIButton!
     @IBOutlet weak var hamburgerButton: UIButton!
     
-    @IBOutlet weak var floatingButton: UIButton!
+    @IBOutlet weak var floatingButton: FloatingButton!
     @IBOutlet weak var floatingButtonWidth: NSLayoutConstraint!
     @IBOutlet weak var floatingButtonTrailing: NSLayoutConstraint!
     @IBOutlet weak var floatingButtonBottom: NSLayoutConstraint!
@@ -38,16 +38,19 @@ class MainViewController: UIViewController {
     @IBOutlet weak var blackWidth: NSLayoutConstraint!
     @IBOutlet weak var greyWidth: NSLayoutConstraint!
     @IBOutlet weak var whiteWidth: NSLayoutConstraint!
-    
-    @IBOutlet var longPressRecognizer: UILongPressGestureRecognizer!
-    
+        
     private var isPressing = false
     private var isAnimating = false
-    private var pressTimer: Timer?
     
     
     
     let pageRelay = BehaviorRelay<Int>(value: 0)
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        isPressing = false
+        isAnimating = false
+        hideLayers()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +62,7 @@ class MainViewController: UIViewController {
         makeUI()
         bind()
         
-        floatingButton.layer.cornerRadius = 23
+        self.floatingButton.layer.cornerRadius = 30
         
         floatingButton.addGrayShadow(color: .black, opacity: 0.25)
         
@@ -90,12 +93,6 @@ class MainViewController: UIViewController {
             })
             .disposed(by: rx.disposeBag)
         
-        floatingButton.rx.controlEvent(.allEvents)
-            .subscribe(onNext: { [unowned self] event in
-                print(event)
-            })
-            .disposed(by: rx.disposeBag)
-        
         plusButton.rx.tap
             .bind { Void in
                 let vc = UIStoryboard(name: "Layer", bundle: nil)
@@ -103,6 +100,22 @@ class MainViewController: UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: rx.disposeBag)
+        
+        floatingButton.hideLayer = {
+            self.hideLayers()
+        }
+        
+        floatingButton.openLayer = {
+            self.showLayers()
+        }
+
+        circleButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                let vc = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "layermanageVC") as! LayerManageViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            .disposed(by: rx.disposeBag)
+        
     }
 
     private func makeUI() {
@@ -135,83 +148,114 @@ class MainViewController: UIViewController {
         
     }
     
-    @IBAction func longPress(_ sender: Any) {
-        isPressing = true
-        
-        print("long press")
-                
-        if pressTimer == nil {
-            pressTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { [unowned self] timer in
-                if isPressing {
-                    isPressing = false
-                } else {
-                    hideLayers()
-                }
-            })
-        }
-        
-
-        
-        if !isAnimating {
-            isAnimating = true
-            showLayers()
-        }
-        
-        
-    }
-    
     private func showLayers() {
-        
-        self.blackWidth.constant += 81
-        self.greyWidth.constant += 162
-        self.whiteWidth.constant += 244
-        self.floatingButtonWidth.constant = 0
-        self.floatingButtonTrailing.constant += 23
-        self.floatingButtonBottom.constant -= 23
-        self.whiteLayer.addGrayShadow()
-        
-        UIView.animate(withDuration: 1.0) {
-            self.view.layoutIfNeeded()
-            self.blackLayer.layer.cornerRadius = self.blackLayer.frame.width/2
-            self.greyLayer.layer.cornerRadius = self.greyLayer.frame.width/2
-            self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
-            self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
-        } completion: { _ in
+            
+        if !isAnimating {
+            self.blackWidth.constant += 96
+            self.floatingButtonWidth.constant = 0
+            self.floatingButtonTrailing.constant += 30
+            self.floatingButtonBottom.constant -= 30
+            self.whiteLayer.addGrayShadow()
+            AudioServicesPlaySystemSound(1519)
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                self.view.layoutIfNeeded()
+                self.blackLayer.layer.cornerRadius = 48
+                self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
+            })
+            
+            animateGrayLayer()
+            animateWhiteLayer()
             
         }
+        
 
+    }
+    
+    private func animateGrayLayer() {
+        self.greyWidth.constant += 192
+        UIView.animate(withDuration: 0.4, delay: 0.2, animations: {
+            self.view.layoutIfNeeded()
+            self.greyLayer.layer.cornerRadius = 96
+        })
+    }
+    
+    private func animateWhiteLayer() {
+        self.whiteWidth.constant += 300
+        UIView.animate(withDuration: 0.4, delay: 0.4, animations: {
+            self.view.layoutIfNeeded()
+            self.whiteLayer.layer.cornerRadius = 150
+        }) { _ in
+            self.isAnimating = true
+        }
     }
     
     private func hideLayers() {
-        self.blackWidth.constant = 0
-        self.greyWidth.constant = 0
         self.whiteWidth.constant = 0
-        self.floatingButtonWidth.constant = 46
+        self.floatingButtonWidth.constant = 60
+
         self.floatingButtonTrailing.constant = 30
         self.floatingButtonBottom.constant = -30
-        
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: 0.6, animations: {
             self.view.layoutIfNeeded()
-            self.blackLayer.layer.cornerRadius = self.blackLayer.frame.width/2
-            self.greyLayer.layer.cornerRadius = self.greyLayer.frame.width/2
             self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
             self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
-        } completion: { _ in
+
+        }) { _ in
             self.isAnimating = false
+
         }
         
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touch began")
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touch Ended")
+        self.greyWidth.constant = 0
+        UIView.animate(withDuration: 0.5, delay: 0.1) {
+            self.view.layoutIfNeeded()
+            self.greyLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+        }
+        
+        self.blackWidth.constant = 0
+        UIView.animate(withDuration: 0.4, delay: 0.2) {
+            self.view.layoutIfNeeded()
+            self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+        }
     }
     
     private func bind() {
         guard let pageVC = self.children.first as? MainPageViewController else { fatalError() }
         pageVC.mainVC = self
     }
+}
+
+final class FloatingButton: UIButton {
+    private var pressTimer: Timer?
+    private var isPressing = false
+    private var cnt = 0
+    
+    var openLayer: (() -> Void)!
+    var hideLayer: (() -> Void)!
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touches began")
+        
+        if pressTimer == nil {
+            pressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
+                self.cnt += 1
+                if self.cnt == 6 {
+                    self.isPressing = true
+                    print("longPress")
+                    self.openLayer()
+                    timer.invalidate()
+                    self.pressTimer = nil
+                }
+            })
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        cnt = 0
+        print("touches ended")
+        hideLayer()
+        self.pressTimer?.invalidate()
+        self.pressTimer = nil
+    }
+
 }

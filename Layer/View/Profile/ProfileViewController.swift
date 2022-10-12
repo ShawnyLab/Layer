@@ -32,6 +32,12 @@ final class ProfileViewController: UIViewController {
         
         Observable.just(CurrentUserModel.shared.frameModels)
             .bind(to: tableView.rx.items(cellIdentifier: MyFrameCell.reuseId, cellType: MyFrameCell.self)) { idx, simpleFrameModel, cell in
+                if idx == CurrentUserModel.shared.frameModels.count-1 {
+                    cell.barView.isHidden = true
+                } else {
+                    cell.barView.isHidden = false
+                }
+                
                 cell.titleLabel.text = simpleFrameModel.title
                 if let imgUrl = simpleFrameModel.imageUrl {
                     cell.contentImageView.setImage(url: imgUrl)
@@ -58,5 +64,6 @@ final class MyFrameCell: UITableViewCell {
     @IBOutlet weak var greydot: UIView!
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var barView: UIView!
     
 }

@@ -54,10 +54,10 @@
                                 <rect key="frame" x="60" y="327" width="294" height="535"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myframeCell" rowHeight="106" id="6AT-hp-cnG" customClass="MyFrameCell" customModule="Layer" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myframeCell" rowHeight="106" id="6AT-hp-cnG" customClass="MyFrameCell" customModule="Layer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="294" height="106"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6AT-hp-cnG" id="XRZ-E2-NoA">
+                                        <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6AT-hp-cnG" id="XRZ-E2-NoA">
                                             <rect key="frame" x="0.0" y="0.0" width="294" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -83,7 +83,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JgI-XG-1vp">
-                                                    <rect key="frame" x="23" y="18" width="2" height="88"/>
+                                                    <rect key="frame" x="23" y="18" width="2" height="98"/>
                                                     <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="2" id="lN0-Vp-wW6"/>
@@ -95,7 +95,7 @@
                                                 <constraint firstItem="xPm-Yl-4jM" firstAttribute="leading" secondItem="XRZ-E2-NoA" secondAttribute="leading" constant="20" id="8On-Uk-NjG"/>
                                                 <constraint firstAttribute="bottom" secondItem="Vhy-64-O0g" secondAttribute="bottom" constant="15" id="DjP-yQ-Erc"/>
                                                 <constraint firstItem="5aX-GM-b6g" firstAttribute="centerY" secondItem="xPm-Yl-4jM" secondAttribute="centerY" id="FHO-IL-0nb"/>
-                                                <constraint firstAttribute="bottom" secondItem="JgI-XG-1vp" secondAttribute="bottom" id="FhO-MG-A3W"/>
+                                                <constraint firstAttribute="bottom" secondItem="JgI-XG-1vp" secondAttribute="bottom" constant="-10" id="FhO-MG-A3W"/>
                                                 <constraint firstItem="JgI-XG-1vp" firstAttribute="top" secondItem="xPm-Yl-4jM" secondAttribute="bottom" id="H8f-Kb-vkH"/>
                                                 <constraint firstItem="xPm-Yl-4jM" firstAttribute="top" secondItem="XRZ-E2-NoA" secondAttribute="top" constant="10" id="Qvq-nx-gI1"/>
                                                 <constraint firstItem="JgI-XG-1vp" firstAttribute="centerX" secondItem="xPm-Yl-4jM" secondAttribute="centerX" id="mAS-X0-WJ6"/>
@@ -104,6 +104,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="barView" destination="JgI-XG-1vp" id="Hbf-qs-bDw"/>
                                             <outlet property="contentImageView" destination="Vhy-64-O0g" id="Tjj-mO-Wd7"/>
                                             <outlet property="greydot" destination="xPm-Yl-4jM" id="bMp-4x-2Gh"/>
                                             <outlet property="titleLabel" destination="5aX-GM-b6g" id="Vwa-I3-A2G"/>

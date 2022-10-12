@@ -23,6 +23,8 @@
 		D1503D6C289527C400C53B81 /* FrameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1503D6B289527C400C53B81 /* FrameModel.swift */; };
 		D1503D6E2895280300C53B81 /* WriterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1503D6D2895280300C53B81 /* WriterModel.swift */; };
 		D1503D70289529EE00C53B81 /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1503D6F289529EE00C53B81 /* Encodable+.swift */; };
+		D15626C928F681C200AE7E83 /* LayerManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15626C828F681C200AE7E83 /* LayerManageViewController.swift */; };
+		D15626CB28F681CD00AE7E83 /* Manage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D15626CA28F681CD00AE7E83 /* Manage.storyboard */; };
 		D16194B728EBB515009DD015 /* SelectFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16194B628EBB515009DD015 /* SelectFrameViewController.swift */; };
 		D16194BB28EBBA46009DD015 /* AddTextFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16194BA28EBBA46009DD015 /* AddTextFrameViewController.swift */; };
 		D16D99EB2881695200D7C57E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16D99EA2881695200D7C57E /* AppDelegate.swift */; };
@@ -39,6 +41,10 @@
 		D1B8E8AB28817080003B2C48 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B8E8AA28817080003B2C48 /* UIColor+.swift */; };
 		D1C73BA228EE92E600E636F6 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C73BA128EE92E600E636F6 /* UIButton.swift */; };
 		D1C73BA428EE95A800E636F6 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C73BA328EE95A800E636F6 /* Date+.swift */; };
+		D1C98D0028F6871600D438CF /* ManagePagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C98CFF28F6871600D438CF /* ManagePagerViewController.swift */; };
+		D1C98D0328F68C3C00D438CF /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C98D0228F68C3C00D438CF /* AddressViewController.swift */; };
+		D1C98D0528F68C4800D438CF /* MyLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C98D0428F68C4800D438CF /* MyLayerViewController.swift */; };
+		D1C98D0728F68C5800D438CF /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C98D0628F68C5800D438CF /* RequestViewController.swift */; };
 		D1DB663828ED437C007A8837 /* FrameUploadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB663728ED437C007A8837 /* FrameUploadModel.swift */; };
 		D1DB663A28ED45AB007A8837 /* AddFrameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB663928ED45AB007A8837 /* AddFrameType.swift */; };
 		D1E06DF92891540D001F12FD /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E06DF82891540D001F12FD /* Auth.storyboard */; };
@@ -79,6 +85,8 @@
 		D1503D6B289527C400C53B81 /* FrameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameModel.swift; sourceTree = "<group>"; };
 		D1503D6D2895280300C53B81 /* WriterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterModel.swift; sourceTree = "<group>"; };
 		D1503D6F289529EE00C53B81 /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
+		D15626C828F681C200AE7E83 /* LayerManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerManageViewController.swift; sourceTree = "<group>"; };
+		D15626CA28F681CD00AE7E83 /* Manage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Manage.storyboard; sourceTree = "<group>"; };
 		D16194B628EBB515009DD015 /* SelectFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFrameViewController.swift; sourceTree = "<group>"; };
 		D16194BA28EBBA46009DD015 /* AddTextFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextFrameViewController.swift; sourceTree = "<group>"; };
 		D16194BD28EBBF15009DD015 /* SelectLayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLayerViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +105,10 @@
 		D1B8E8AA28817080003B2C48 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		D1C73BA128EE92E600E636F6 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D1C73BA328EE95A800E636F6 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		D1C98CFF28F6871600D438CF /* ManagePagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePagerViewController.swift; sourceTree = "<group>"; };
+		D1C98D0228F68C3C00D438CF /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
+		D1C98D0428F68C4800D438CF /* MyLayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLayerViewController.swift; sourceTree = "<group>"; };
+		D1C98D0628F68C5800D438CF /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		D1DB663728ED437C007A8837 /* FrameUploadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameUploadModel.swift; sourceTree = "<group>"; };
 		D1DB663928ED45AB007A8837 /* AddFrameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFrameType.swift; sourceTree = "<group>"; };
 		D1E06DF82891540D001F12FD /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
@@ -196,6 +208,16 @@
 			path = Backend;
 			sourceTree = "<group>";
 		};
+		D15626C728F681B500AE7E83 /* Manage */ = {
+			isa = PBXGroup;
+			children = (
+				D1C98CFE28F686FF00D438CF /* Pager */,
+				D15626C828F681C200AE7E83 /* LayerManageViewController.swift */,
+				D15626CA28F681CD00AE7E83 /* Manage.storyboard */,
+			);
+			path = Manage;
+			sourceTree = "<group>";
+		};
 		D16194B528EBB507009DD015 /* SelectFrame */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +292,7 @@
 		D1A55F4B289182E500D9B645 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				D15626C728F681B500AE7E83 /* Manage */,
 				D16194B828EBBA33009DD015 /* AddFrame */,
 				D16194B528EBB507009DD015 /* SelectFrame */,
 				D122BAFF28B12DE100104170 /* UserProfile */,
@@ -305,6 +328,25 @@
 				D1C73BA328EE95A800E636F6 /* Date+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D1C98CFE28F686FF00D438CF /* Pager */ = {
+			isa = PBXGroup;
+			children = (
+				D1C98D0128F68C1B00D438CF /* Pages */,
+				D1C98CFF28F6871600D438CF /* ManagePagerViewController.swift */,
+			);
+			path = Pager;
+			sourceTree = "<group>";
+		};
+		D1C98D0128F68C1B00D438CF /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				D1C98D0228F68C3C00D438CF /* AddressViewController.swift */,
+				D1C98D0428F68C4800D438CF /* MyLayerViewController.swift */,
+				D1C98D0628F68C5800D438CF /* RequestViewController.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		D1DB663628ED436F007A8837 /* Frame */ = {
@@ -454,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D16D99F72881695300D7C57E /* LaunchScreen.storyboard in Resources */,
+				D15626CB28F681CD00AE7E83 /* Manage.storyboard in Resources */,
 				D1E06E1328917FA5001F12FD /* Profile.storyboard in Resources */,
 				D1A55F4D289182EF00D9B645 /* Layer.storyboard in Resources */,
 				D1E06E0828915D32001F12FD /* SpoqaHanSansNeo-Thin.otf in Resources */,
@@ -520,10 +563,13 @@
 			files = (
 				D119080A28AA9BBD009FBF64 /* FriendModel.swift in Sources */,
 				D119080228AA844B009FBF64 /* DefaultViewController.swift in Sources */,
+				D1C98D0728F68C5800D438CF /* RequestViewController.swift in Sources */,
 				D119080428AA84BF009FBF64 /* AuthManager.swift in Sources */,
+				D1C98D0328F68C3C00D438CF /* AddressViewController.swift in Sources */,
 				D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */,
 				D1503D6C289527C400C53B81 /* FrameModel.swift in Sources */,
 				D1B8E8A928817007003B2C48 /* UIView+.swift in Sources */,
+				D1C98D0028F6871600D438CF /* ManagePagerViewController.swift in Sources */,
 				D16194BB28EBBA46009DD015 /* AddTextFrameViewController.swift in Sources */,
 				D13AFE982895706300EFDC67 /* FrameTableViewCell.swift in Sources */,
 				D1E06E1728917FBC001F12FD /* ProfileViewController.swift in Sources */,
@@ -537,12 +583,14 @@
 				D1E06E0C2891608E001F12FD /* SignInViewModel.swift in Sources */,
 				D16D99EB2881695200D7C57E /* AppDelegate.swift in Sources */,
 				D1503D6E2895280300C53B81 /* WriterModel.swift in Sources */,
+				D1C98D0528F68C4800D438CF /* MyLayerViewController.swift in Sources */,
 				D1E06E1928917FC3001F12FD /* MessageViewController.swift in Sources */,
 				D10822E528A3B4F6001E743F /* FrameManager.swift in Sources */,
 				D1DB663828ED437C007A8837 /* FrameUploadModel.swift in Sources */,
 				D11907FF28AA823C009FBF64 /* CurrentUserModel.swift in Sources */,
 				D119080628AA8751009FBF64 /* Error.swift in Sources */,
 				D1F70E8728D9421900873E71 /* UserManager.swift in Sources */,
+				D15626C928F681C200AE7E83 /* LayerManageViewController.swift in Sources */,
 				D1A554E928EBC85C0060226F /* SelectLayerViewController.swift in Sources */,
 				D1C73BA228EE92E600E636F6 /* UIButton.swift in Sources */,
 				D1A55F4F289182F800D9B645 /* LayerViewController.swift in Sources */,

@@ -81,44 +81,41 @@
                                 <state key="normal" image="doubleCircle"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eox-36-Emm">
-                                <rect key="frame" x="239" y="687" width="244" height="244"/>
+                                <rect key="frame" x="204" y="652" width="300" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eox-36-Emm" secondAttribute="height" multiplier="1:1" id="MLl-Va-uOn"/>
-                                    <constraint firstAttribute="width" constant="244" id="fKe-Mw-8uu"/>
+                                    <constraint firstAttribute="width" constant="300" id="fKe-Mw-8uu"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHd-t9-C7T">
-                                <rect key="frame" x="280" y="728" width="162" height="162"/>
+                                <rect key="frame" x="258" y="706" width="192" height="192"/>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="162" id="MYa-A0-DOA"/>
+                                    <constraint firstAttribute="width" constant="192" id="MYa-A0-DOA"/>
                                     <constraint firstAttribute="width" secondItem="LHd-t9-C7T" secondAttribute="height" multiplier="1:1" id="Ur6-SZ-BUA"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2k-ge-UPr">
-                                <rect key="frame" x="320.5" y="768.5" width="81" height="81"/>
+                                <rect key="frame" x="306" y="754" width="96" height="96"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="6re-ir-pBL"/>
+                                    <constraint firstAttribute="width" constant="96" id="6re-ir-pBL"/>
                                     <constraint firstAttribute="width" secondItem="C2k-ge-UPr" secondAttribute="height" multiplier="1:1" id="WWg-fd-MFN"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emI-lm-7VV">
-                                <rect key="frame" x="338" y="786" width="46" height="46"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emI-lm-7VV" customClass="FloatingButton" customModule="Layer" customModuleProvider="target">
+                                <rect key="frame" x="324" y="772" width="60" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="Gzi-1U-qaS"/>
+                                    <constraint firstAttribute="width" constant="60" id="Gzi-1U-qaS"/>
                                     <constraint firstAttribute="width" secondItem="emI-lm-7VV" secondAttribute="height" multiplier="1:1" id="fwj-0q-5tY"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Swo-7m-YSl" appends="YES" id="ISo-mW-HGs"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="t1k-d8-4LM"/>
@@ -166,7 +163,6 @@
                         <outlet property="greyLayer" destination="LHd-t9-C7T" id="Je9-zl-UuQ"/>
                         <outlet property="greyWidth" destination="MYa-A0-DOA" id="9ox-yh-plU"/>
                         <outlet property="hamburgerButton" destination="rBe-a1-V4B" id="VWD-ZF-bFL"/>
-                        <outlet property="longPressRecognizer" destination="Swo-7m-YSl" id="2bv-xm-GsF"/>
                         <outlet property="plusButton" destination="PZ1-Ab-aqV" id="Hzo-HI-qUG"/>
                         <outlet property="secondDot" destination="YZM-vZ-0iP" id="pv3-gI-eCG"/>
                         <outlet property="thirdDot" destination="uH0-6T-WKI" id="M9k-lU-nKL"/>
@@ -177,11 +173,6 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JaD-kb-cAV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <customObject id="adF-4D-35p" customClass="MainPageViewController" customModule="Layer" customModuleProvider="target"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Swo-7m-YSl">
-                    <connections>
-                        <action selector="longPress:" destination="l9T-DH-zek" id="LP5-WL-jTO"/>
-                    </connections>
-                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-636.23188405797111" y="865.84821428571422"/>
         </scene>
