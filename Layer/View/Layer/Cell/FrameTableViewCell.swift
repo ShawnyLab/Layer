@@ -48,7 +48,7 @@ class FrameTableViewCell: UITableViewCell {
         
         userModel.subscribe(onNext: { [unowned self] userModel in
             if let userModel = userModel {
-                nameLabel.text = userModel.name
+                nameLabel.text = userModel.layerId
                 profileImageView.setImage(url: userModel.profileImageUrl)
             }
         })

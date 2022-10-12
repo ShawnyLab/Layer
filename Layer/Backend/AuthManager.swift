@@ -37,8 +37,15 @@ final class AuthManager: CommonBackendType {
         }
     }
     
-    func fetchFriend() {
-        
+    func fetchFriend() -> Completable {
+        return Completable.create() { [unowned self] completable in
+            
+            
+            
+            
+            
+            return Disposables.create()
+        }
     }
     
     func createUser(id: String, phoneNumber: String) {

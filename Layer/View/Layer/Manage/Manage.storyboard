@@ -490,10 +490,10 @@
             </objects>
             <point key="canvasLocation" x="-28" y="-1263"/>
         </scene>
-        <!--View Controller-->
+        <!--Request View Controller-->
         <scene sceneID="mhU-Rs-lMm">
             <objects>
-                <viewController id="89J-3j-AhT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="requestVC" id="89J-3j-AhT" customClass="RequestViewController" customModule="Layer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ozg-jd-MYM">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -508,7 +508,7 @@
                                 <rect key="frame" x="0.0" y="89" width="390" height="721"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="75" id="HzJ-x6-3iy">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="requestCell" rowHeight="75" id="HzJ-x6-3iy" customClass="RequestCell" customModule="Layer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="390" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HzJ-x6-3iy" id="s4b-Ug-prj">
@@ -528,32 +528,66 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="010-0000-0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXk-KH-FIU">
-                                                    <rect key="frame" x="71" y="37.666666666666664" width="92" height="14.333333333333336"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXk-KH-FIU">
+                                                    <rect key="frame" x="71" y="37.666666666666664" width="31" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5d-3t-qGe">
+                                                    <rect key="frame" x="268" y="21.666666666666671" width="46" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="46" id="8BW-Rz-vO7"/>
+                                                        <constraint firstAttribute="height" constant="32" id="WOk-MP-Mly"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="무시">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ri5-cS-Eze">
+                                                    <rect key="frame" x="320" y="21.666666666666671" width="46" height="32"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="onn-RK-XZd"/>
+                                                        <constraint firstAttribute="width" constant="46" id="s8s-ox-PqP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="수락">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="5Ua-1G-frf" firstAttribute="centerY" secondItem="s4b-Ug-prj" secondAttribute="centerY" id="48y-wK-8Zp"/>
+                                                <constraint firstItem="ri5-cS-Eze" firstAttribute="leading" secondItem="G5d-3t-qGe" secondAttribute="trailing" constant="6" id="A2M-A2-DCs"/>
                                                 <constraint firstItem="LXk-KH-FIU" firstAttribute="top" secondItem="Re7-QZ-EiT" secondAttribute="bottom" id="N8m-Vb-Xwn"/>
                                                 <constraint firstItem="LXk-KH-FIU" firstAttribute="leading" secondItem="5Ua-1G-frf" secondAttribute="trailing" constant="7" id="Nmt-M5-d2J"/>
                                                 <constraint firstItem="Re7-QZ-EiT" firstAttribute="leading" secondItem="5Ua-1G-frf" secondAttribute="trailing" constant="7" id="Th2-YK-91U"/>
+                                                <constraint firstItem="G5d-3t-qGe" firstAttribute="centerY" secondItem="ri5-cS-Eze" secondAttribute="centerY" id="fk6-EU-Wh9"/>
                                                 <constraint firstItem="Re7-QZ-EiT" firstAttribute="top" secondItem="5Ua-1G-frf" secondAttribute="top" constant="4" id="ps3-dl-TZP"/>
                                                 <constraint firstItem="5Ua-1G-frf" firstAttribute="leading" secondItem="s4b-Ug-prj" secondAttribute="leading" constant="24" id="qPR-tG-aa8"/>
+                                                <constraint firstItem="ri5-cS-Eze" firstAttribute="centerY" secondItem="s4b-Ug-prj" secondAttribute="centerY" id="rOH-lO-L1U"/>
+                                                <constraint firstAttribute="trailing" secondItem="ri5-cS-Eze" secondAttribute="trailing" constant="24" id="vcr-QH-N2H"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="acceptButton" destination="ri5-cS-Eze" id="dt4-FT-Lbe"/>
+                                            <outlet property="denyButton" destination="G5d-3t-qGe" id="EX1-m6-7Xh"/>
+                                            <outlet property="idLabel" destination="Re7-QZ-EiT" id="c9E-Bt-lJf"/>
+                                            <outlet property="nameLabel" destination="LXk-KH-FIU" id="79w-VV-9JX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-nI-0oI">
-                                <rect key="frame" x="314" y="57" width="56" height="29"/>
+                                <rect key="frame" x="338" y="58" width="32" height="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="보냄 &gt;">
-                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="12"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="보냄 &gt;"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vjk-Tz-HH3"/>
@@ -569,6 +603,9 @@
                             <constraint firstItem="Vjk-Tz-HH3" firstAttribute="bottom" secondItem="wzm-D2-5Ni" secondAttribute="bottom" id="oU9-XK-MyJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="wzm-D2-5Ni" id="WZW-G4-hDI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bL1-Hb-2wr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

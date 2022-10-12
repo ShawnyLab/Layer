@@ -14,9 +14,10 @@ final class ProfileViewController: UIViewController {
     static let storyId = "profileVC"
 
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var desLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
     
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -24,8 +25,9 @@ final class ProfileViewController: UIViewController {
         profileImageView.layer.cornerRadius = 39.5
         
         profileImageView.setImage(url: CurrentUserModel.shared.profileImageUrl)
-        nameLabel.text = CurrentUserModel.shared.name
+        idLabel.text = CurrentUserModel.shared.layerId
         desLabel.text = CurrentUserModel.shared.des
+        nameLabel.text = CurrentUserModel.shared.name
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
 

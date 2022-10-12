@@ -21,13 +21,16 @@ class ManagePagerViewController: UIPageViewController {
         guard let messageVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "mylayerVC") as? MyLayerViewController else { return }
         vcList.append(messageVC)
         
+        guard let requestVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "requestVC") as? RequestViewController else { return }
+        vcList.append(requestVC)
+        
         self.dataSource = self
         self.delegate = self
         
         if let firstviewController = vcList.first {
             setViewControllers([firstviewController],
                                direction: .forward,
-                               animated: true,
+                               animated: false,
                                completion: nil)
         }
         

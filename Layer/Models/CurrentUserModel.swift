@@ -14,7 +14,8 @@ final class CurrentUserModel: NSObject {
     static let shared = CurrentUserModel()
     
     var uid: String!
-    var name: String!
+    var layerId: String!
+    var name: String?
     var phoneNumber: String!
     var des: String?
     var friends: [FriendModel] = []
@@ -30,13 +31,14 @@ final class CurrentUserModel: NSObject {
         guard let value = data.value as? [String: Any] else { return }
         self.uid = data.key
         
-        if let name = value["name"] as? String,
+        if let layerId = value["layerId"] as? String,
            let phoneNumber = value["phoneNumber"] as? String {
-            self.name = name
+            self.layerId = layerId
             self.phoneNumber = phoneNumber
         } else {
             return
         }
+        self.name = value["name"] as? String
         self.profileImageUrl = value["profileImageUrl"] as? String
         self.des = value["des"] as? String
         
@@ -62,4 +64,8 @@ final class CurrentUserModel: NSObject {
 
     }
     
+    
+    func updateFriends() {
+        
+    }
 }

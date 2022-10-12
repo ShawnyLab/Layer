@@ -12,7 +12,8 @@ import NSObject_Rx
 
 final class UserModel: NSObject {
     var uid: String!
-    var name: String!
+    var name: String?
+    var layerId: String!
     var phoneNumber: String!
     var profileImageUrl: String?
     var des: String?
@@ -24,14 +25,15 @@ final class UserModel: NSObject {
         guard let value = data.value as? [String: Any] else { return }
         self.uid = data.key
         
-        if let name = value["name"] as? String,
-           let phoneNumber = value["phoneNumber"] as? String {
-            self.name = name
+        if let phoneNumber = value["phoneNumber"] as? String,
+           let layerId = value["layerId"] as? String {
+            self.layerId = layerId
             self.phoneNumber = phoneNumber
         } else {
             return nil
         }
         
+        self.name = value["name"] as? String
         self.profileImageUrl = value["profileImageUrl"] as? String
         self.des = value["des"] as? String
         let friendsData = data.childSnapshot(forPath: "friends")
