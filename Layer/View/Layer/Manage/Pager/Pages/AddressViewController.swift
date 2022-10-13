@@ -41,14 +41,6 @@ class AddressViewController: UIViewController {
                             self.contacts.append(contact)
                         }
                     }
-                    for info in self.contacts{
-                        guard let phone = info.phoneNumbers[0].value.value(forKey: "digits") else {
-                            return
-                        }
-                        let name = info.familyName + info.givenName
-                        print(phone)
-                        print(name)
-                    }
                 } catch {
                     print("unable to fetch contacts")
                 }
@@ -104,7 +96,7 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 71
     }
     
 }

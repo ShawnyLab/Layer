@@ -23,7 +23,7 @@ class SentRequestViewController: UIViewController {
         tableView.rx.setDelegate(self)
             .disposed(by: rx.disposeBag)
         
-        Observable.just(CurrentUserModel.shared.friends.filter { $0.layer == -1 })
+        friendArray
             .bind(to: tableView.rx.items(cellIdentifier: "sentrequestCell", cellType: SentRequestCell.self)) { [unowned self] idx, friendModel, cell in
                 
 
@@ -40,7 +40,11 @@ class SentRequestViewController: UIViewController {
                         
                         UserManager.shared.cancelFriendRequest(uid: friendModel.uid)
                         
-                        self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer == -1 })
+                        if let idx = self.friendArray.value.firstIndex(where: {$0.uid == friendModel.uid}) {
+                            var newArray = self.friendArray.value
+                            newArray.remove(at: idx)
+                            self.friendArray.accept(newArray)
+                        }
                     }
                     .disposed(by: rx.disposeBag)
                 

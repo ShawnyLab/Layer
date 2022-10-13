@@ -38,6 +38,7 @@ class RequestViewController: UIViewController {
                 
                 cell.denyButtonHandler = {
                     UserManager.shared.cancelFriendRequest(uid: friendModel.uid)
+                    self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer == -2 })
                 }
             }
             .disposed(by: rx.disposeBag)
@@ -58,7 +59,7 @@ class RequestViewController: UIViewController {
             .subscribe {
                 print("completed")
                 self.refresh.endRefreshing()
-                self.friendArray.accept(CurrentUserModel.shared.friends)
+                self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer == -2 })
             }
             .disposed(by: rx.disposeBag)
     }

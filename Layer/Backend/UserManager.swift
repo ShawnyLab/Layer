@@ -58,10 +58,12 @@ class UserManager: CommonBackendType {
     }
     
     func cancelFriendRequest(uid: String) {
+        if let idx = CurrentUserModel.shared.friends.firstIndex(where: {$0.uid == uid }) {
+            CurrentUserModel.shared.friends.remove(at: idx)
+        }
+        
         ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).removeValue()
         ref.child("users").child(uid).child("friends").child(CurrentUserModel.shared.uid).removeValue()
         
-        let idx = CurrentUserModel.shared.friends.firstIndex(where: {$0.uid == uid })!
-        CurrentUserModel.shared.friends.remove(at: idx)
     }
 }
