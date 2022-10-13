@@ -33,9 +33,9 @@ class UserManager: CommonBackendType {
     }
     
     func sendFriendRequest(userModel: UserModel) {
-        ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(userModel.uid).setValue(["layer": -1, "name": userModel.name ?? "", "profileImageUrl": userModel.profileImageUrl ?? ""])
+        ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(userModel.uid).setValue(["layer": -1])
         
-        ref.child("users").child(userModel.uid).child("friends").child(CurrentUserModel.shared.uid).setValue(["layer": -2, "name": CurrentUserModel.shared.name ?? "", "profileImageUrl": CurrentUserModel.shared.profileImageUrl ?? ""])
+        ref.child("users").child(userModel.uid).child("friends").child(CurrentUserModel.shared.uid).setValue(["layer": -2])
         
         let friendModel = FriendModel(userModel: userModel, layer: -1)
         CurrentUserModel.shared.friends.append(friendModel)
@@ -60,5 +60,8 @@ class UserManager: CommonBackendType {
     func cancelFriendRequest(uid: String) {
         ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).removeValue()
         ref.child("users").child(uid).child("friends").child(CurrentUserModel.shared.uid).removeValue()
+        
+        let idx = CurrentUserModel.shared.friends.firstIndex(where: {$0.uid == uid })!
+        CurrentUserModel.shared.friends.remove(at: idx)
     }
 }

@@ -16,11 +16,12 @@ class RequestViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private let refresh = UIRefreshControl()
 
+    private let friendArray = BehaviorRelay(value: CurrentUserModel.shared.friends.filter { $0.layer == -2 })
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Observable.just(CurrentUserModel.shared.friends.filter { $0.layer == -2 })
+        friendArray
             .bind(to: tableView.rx.items(cellIdentifier: "requestCell", cellType: RequestCell.self)) { [unowned self] idx, friendModel, cell in
                 
                 UserManager.shared.fetch(id: friendModel.uid)
@@ -30,6 +31,14 @@ class RequestViewController: UIViewController {
                         cell.profileImageView.setImage(url: userModel.profileImageUrl)
                     })
                     .disposed(by: rx.disposeBag)
+                
+                cell.acceptButtonHandler = {
+                    
+                }
+                
+                cell.denyButtonHandler = {
+                    UserManager.shared.cancelFriendRequest(uid: friendModel.uid)
+                }
             }
             .disposed(by: rx.disposeBag)
         
@@ -39,7 +48,9 @@ class RequestViewController: UIViewController {
         tableView.rx.setDelegate(self)
             .disposed(by: rx.disposeBag)
 
-        countLabel.text = "친구 요청 (\(CurrentUserModel.shared.friends.filter { $0.layer == -2 }.count))"
+        friendArray.map { "친구 요청 (\($0.count))" }
+            .bind(to: countLabel.rx.text)
+            .disposed(by: rx.disposeBag)
     }
     
     @objc func pullToRefresh(_ sender: Any) {
@@ -47,7 +58,7 @@ class RequestViewController: UIViewController {
             .subscribe {
                 print("completed")
                 self.refresh.endRefreshing()
-                self.countLabel.text = "친구 요청 (\(CurrentUserModel.shared.friends.filter { $0.layer == -2 }.count))"
+                self.friendArray.accept(CurrentUserModel.shared.friends)
             }
             .disposed(by: rx.disposeBag)
     }
@@ -83,6 +94,8 @@ final class RequestCell: UITableViewCell {
         denyButton.layer.borderWidth = 1
         
         acceptButton.layer.cornerRadius = 13
+        
+        profileImageView.layer.cornerRadius = 20
     }
     
     @IBAction func deny(_ sender: Any) {

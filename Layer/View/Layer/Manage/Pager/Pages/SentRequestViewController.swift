@@ -15,10 +15,10 @@ class SentRequestViewController: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    private let friendArray = BehaviorRelay(value: CurrentUserModel.shared.friends.filter { $0.layer == -1 })
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        countLabel.text = "보낸 요청 (\(CurrentUserModel.shared.friends.filter { $0.layer == -1 }.count))"
 
         tableView.rx.setDelegate(self)
             .disposed(by: rx.disposeBag)
@@ -37,7 +37,10 @@ class SentRequestViewController: UIViewController {
                 
                 cell.cancelButton.rx.tap
                     .bind { Void in
+                        
                         UserManager.shared.cancelFriendRequest(uid: friendModel.uid)
+                        
+                        self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer == -1 })
                     }
                     .disposed(by: rx.disposeBag)
                 
@@ -45,6 +48,9 @@ class SentRequestViewController: UIViewController {
             .disposed(by: rx.disposeBag)
             
             
+        friendArray.map { "보낸 요청 (\($0.count))"}
+            .bind(to: countLabel.rx.text)
+            .disposed(by: rx.disposeBag)
     }
     
 }
