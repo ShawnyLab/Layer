@@ -33,7 +33,8 @@ class RequestViewController: UIViewController {
                     .disposed(by: rx.disposeBag)
                 
                 cell.acceptButtonHandler = {
-                    
+                    UserManager.shared.acceptFriendRequest(uid: friendModel.uid)
+                    self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer == -2 })
                 }
                 
                 cell.denyButtonHandler = {

@@ -66,4 +66,14 @@ class UserManager: CommonBackendType {
         ref.child("users").child(uid).child("friends").child(CurrentUserModel.shared.uid).removeValue()
         
     }
+    
+    // set new friend layer to default zero
+    func acceptFriendRequest(uid: String) {
+        if let idx = CurrentUserModel.shared.friends.firstIndex(where: {$0.uid == uid }) {
+            CurrentUserModel.shared.friends[idx].layer = 0
+        }
+        
+        ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).child("layer").setValue(0)
+        ref.child("users").child(uid).child("friends").child(CurrentUserModel.shared.uid).child("layer").setValue(0)
+    }
 }

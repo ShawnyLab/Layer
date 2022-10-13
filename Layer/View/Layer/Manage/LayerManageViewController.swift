@@ -6,14 +6,28 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class LayerManageViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var inviteView: UIView!
     
+    @IBOutlet weak var addressView: UIView!
+    @IBOutlet weak var mylayerView: UIView!
+    @IBOutlet weak var requestView: UIView!
+    
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var mylayerLabel: UILabel!
+    @IBOutlet weak var requestLabel: UILabel!
+    
+    
     private var vcList = [UIViewController]()
     let pageVC = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    
+    private let pageIndex = BehaviorRelay(value: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +37,37 @@ class LayerManageViewController: UIViewController {
         inviteView.layer.borderWidth = 1
         inviteView.layer.borderColor = UIColor(red: 153, green: 153, blue: 153).cgColor
 
-        
+        pageIndex
+            .subscribe(onNext: { [unowned self] idx in
+                if idx == 0 {
+                    addressView.isHidden = false
+                    mylayerView.isHidden = true
+                    requestView.isHidden = true
+                    
+                    addressLabel.font = UIFont.myBoldSystemFont(ofSize: 12)
+                    mylayerLabel.font = UIFont.mySystemFont(ofSize: 12)
+                    requestLabel.font = UIFont.mySystemFont(ofSize: 12)
+                    
+                    
+                } else if idx == 1 {
+                    addressView.isHidden = true
+                    mylayerView.isHidden = false
+                    requestView.isHidden = true
+                    
+                    addressLabel.font = UIFont.mySystemFont(ofSize: 12)
+                    mylayerLabel.font = UIFont.myBoldSystemFont(ofSize: 12)
+                    requestLabel.font = UIFont.mySystemFont(ofSize: 12)
+                } else if idx == 2 {
+                    addressView.isHidden = true
+                    mylayerView.isHidden = false
+                    requestView.isHidden = true
+                    
+                    addressLabel.font = UIFont.mySystemFont(ofSize: 12)
+                    mylayerLabel.font = UIFont.mySystemFont(ofSize: 12)
+                    requestLabel.font = UIFont.myBoldSystemFont(ofSize: 12)
+                }
+            })
+            .disposed(by: rx.disposeBag)
         
         
         
@@ -96,7 +140,7 @@ extension LayerManageViewController: UIPageViewControllerDelegate, UIPageViewCon
             guard let vc = pageVC.viewControllers?.first else { return 0 }
             return vcList.firstIndex(of: vc) ?? 0
         }
-//        mainVC.pageRelay.accept(currentIndex)
+        pageIndex.accept(currentIndex)
     }
     
 }
