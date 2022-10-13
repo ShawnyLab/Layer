@@ -98,10 +98,18 @@ class LayerViewController: UIViewController {
                 
                 viewModel.fetchUserModel(idx: idx.row)
                     .subscribe { [unowned self] userModel in
-                        userProfileVC(userModel: userModel)
+                        
+                        AuthManager.shared.fetchFriend()
+                            .subscribe(onCompleted: { [unowned self] in
+                                userProfileVC(userModel: userModel)
+                                indicator.isHidden = true
+                                indicator.stopAnimating()
+                            }) { error in
+                                print(error)
+                            }
+                            .disposed(by: rx.disposeBag)
 
-                        indicator.isHidden = true
-                        indicator.stopAnimating()
+
                     } onError: { [unowned self] error in
                         print(error)
                         indicator.isHidden = true

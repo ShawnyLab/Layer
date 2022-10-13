@@ -76,4 +76,5 @@ class UserManager: CommonBackendType {
         ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).child("layer").setValue(0)
         ref.child("users").child(uid).child("friends").child(CurrentUserModel.shared.uid).child("layer").setValue(0)
     }
+
 }

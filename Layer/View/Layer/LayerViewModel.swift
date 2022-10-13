@@ -36,4 +36,5 @@ class LayerViewModel: NSObject {
     func fetchUserModel(idx: Int) -> Single<UserModel> {
         return UserManager.shared.fetch(id: frameRelay.value[idx].writerId)
     }
+    
 }
