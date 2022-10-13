@@ -17,10 +17,27 @@ class LayerViewController: UIViewController {
     @IBOutlet var viewModel: LayerViewModel!
     @IBOutlet weak var tableView: UITableView!
     
+    let refresh = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         bind()
+        refresh.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refresh
+    }
+    
+    @objc func pullToRefresh(_ sender: Any) {
+        FrameManager.shared.fetchFirst()
+            .subscribe {
+                print("fetch")
+                self.refresh.endRefreshing()
+            } onError: { err in
+                print(err)
+                self.refresh.endRefreshing()
+
+            }
+            .disposed(by: rx.disposeBag)
 
     }
 
@@ -29,7 +46,8 @@ class LayerViewController: UIViewController {
         indicator.isHidden = true
         indicator.stopAnimating()
 
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rx.setDelegate(self)
+            .disposed(by: rx.disposeBag)
         
         viewModel
             .frameRelay
@@ -101,5 +119,11 @@ class LayerViewController: UIViewController {
         let vc = storyboard?.instantiateViewController(withIdentifier: "userprofileVC") as! UserProfileViewController
         vc.userModel = userModel
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension LayerViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

@@ -30,8 +30,10 @@ final class FrameManager: CommonBackendType, FrameManagerType {
     private override init(){}
     
     func fetchFirst() -> Completable {
+        print("fetching")
         return Completable.create() { [unowned self] completable in
             ref.child("frame").queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
+                print("inner block")
                 var temp = [FrameModel]()
                 for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
                     if let frameModel = FrameModel(snapshot: data) {

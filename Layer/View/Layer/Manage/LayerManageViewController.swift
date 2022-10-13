@@ -59,8 +59,8 @@ class LayerManageViewController: UIViewController {
                     requestLabel.font = UIFont.mySystemFont(ofSize: 12)
                 } else if idx == 2 {
                     addressView.isHidden = true
-                    mylayerView.isHidden = false
-                    requestView.isHidden = true
+                    mylayerView.isHidden = true
+                    requestView.isHidden = false
                     
                     addressLabel.font = UIFont.mySystemFont(ofSize: 12)
                     mylayerLabel.font = UIFont.mySystemFont(ofSize: 12)

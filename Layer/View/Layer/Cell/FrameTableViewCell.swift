@@ -49,7 +49,11 @@ class FrameTableViewCell: UITableViewCell {
         userModel.subscribe(onNext: { [unowned self] userModel in
             if let userModel = userModel {
                 nameLabel.text = userModel.layerId
-                profileImageView.setImage(url: userModel.profileImageUrl)
+                if userModel.profileImageUrl != nil {
+                    profileImageView.setImage(url: userModel.profileImageUrl)
+                } else {
+                    profileImageView.image = nil
+                }
             }
         })
         .disposed(by: rx.disposeBag)
