@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import FirebaseAuth
+import FirebaseDatabase
 
 final class AuthManager: CommonBackendType {
     static let shared = AuthManager()
@@ -39,11 +40,19 @@ final class AuthManager: CommonBackendType {
     
     func fetchFriend() -> Completable {
         return Completable.create() { [unowned self] completable in
-            
-            
-            
-            
-            
+            print("fetchFriend")
+            ref.child("users").child(CurrentUserModel.shared.uid)
+                .child("friends").observeSingleEvent(of: .value) { DataSnapShot in
+                    var temp = [FriendModel]()
+                    for data in DataSnapShot.children.allObjects as! [DataSnapshot] {
+                        if let friendModel = FriendModel(data: data) {
+                            temp.append(friendModel)
+                        }
+                    }
+                    CurrentUserModel.shared.updateFriends(friends: temp)
+                    completable(.completed)
+                }
+
             return Disposables.create()
         }
     }

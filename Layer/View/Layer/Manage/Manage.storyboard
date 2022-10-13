@@ -614,6 +614,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countLabel" destination="bvg-Qy-0c6" id="o8f-NI-7Np"/>
                         <outlet property="tableView" destination="wzm-D2-5Ni" id="WZW-G4-hDI"/>
                     </connections>
                 </viewController>
