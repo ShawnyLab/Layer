@@ -56,4 +56,8 @@ class UserManager: CommonBackendType {
         }
 
     }
+    
+    func cancelFriendRequest(uid: String) {
+        ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).removeValue()
+    }
 }

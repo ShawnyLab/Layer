@@ -12,20 +12,33 @@ import NSObject_Rx
 
 class SentRequestViewController: UIViewController {
 
+    @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        countLabel.text = "보낸 요청 (\(CurrentUserModel.shared.friends.filter { $0.layer == -1 }.count))"
+
+        tableView.rx.setDelegate(self)
+            .disposed(by: rx.disposeBag)
+        
         Observable.just(CurrentUserModel.shared.friends.filter { $0.layer == -1 })
             .bind(to: tableView.rx.items(cellIdentifier: "sentrequestCell", cellType: SentRequestCell.self)) { [unowned self] idx, friendModel, cell in
+                
 
                 UserManager.shared.fetch(id: friendModel.uid)
-                    .subscribe(onSuccess: { [unowned self] userModel in
+                    .subscribe(onSuccess: { userModel in
                         cell.layerIdLabel.text = userModel.layerId
                         cell.nameLabel.text = userModel.name
                         cell.profileImageView.setImage(url: userModel.profileImageUrl)
                     })
+                    .disposed(by: rx.disposeBag)
+                
+                cell.cancelButton.rx.tap
+                    .bind { Void in
+                        UserManager.shared.cancelFriendRequest(uid: friendModel.uid)
+                    }
                     .disposed(by: rx.disposeBag)
                 
             }
@@ -34,9 +47,12 @@ class SentRequestViewController: UIViewController {
             
     }
     
+}
 
-
-
+extension SentRequestViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(71)
+    }
 }
 
 final class SentRequestCell: UITableViewCell {

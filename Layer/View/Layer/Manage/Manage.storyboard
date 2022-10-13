@@ -545,6 +545,9 @@
                                                     <state key="normal" title="무시">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="deny:" destination="HzJ-x6-3iy" eventType="touchUpInside" id="6q3-sz-0T6"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ri5-cS-Eze">
                                                     <rect key="frame" x="320" y="21.666666666666671" width="46" height="32"/>
@@ -558,6 +561,9 @@
                                                     <state key="normal" title="수락">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="accept:" destination="HzJ-x6-3iy" eventType="touchUpInside" id="UBx-FW-6SY"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -578,6 +584,7 @@
                                             <outlet property="denyButton" destination="G5d-3t-qGe" id="EX1-m6-7Xh"/>
                                             <outlet property="idLabel" destination="Re7-QZ-EiT" id="c9E-Bt-lJf"/>
                                             <outlet property="nameLabel" destination="LXk-KH-FIU" id="79w-VV-9JX"/>
+                                            <outlet property="profileImageView" destination="5Ua-1G-frf" id="gNO-Bh-ZiR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -704,6 +711,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countLabel" destination="not-3j-47H" id="wqc-ZH-GqH"/>
                         <outlet property="tableView" destination="cJY-3q-XDh" id="zlw-4t-WXp"/>
                     </connections>
                 </viewController>
