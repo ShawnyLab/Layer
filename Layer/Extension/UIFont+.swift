@@ -21,6 +21,11 @@ extension UIFontDescriptor.AttributeName {
 }
 
 extension UIFont {
+    
+    @objc public class func mediumSystemFont(ofSize fontSize: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.medium, size: fontSize)!
+    }
+
     @objc class func mySystemFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.regular, size: size)!
     }
@@ -73,6 +78,11 @@ extension UIFont {
             let boldSystemFontMethod = class_getClassMethod(self, #selector(boldSystemFont(ofSize:)))
             let myBoldSystemFontMethod = class_getClassMethod(self, #selector(myBoldSystemFont(ofSize:)))
             method_exchangeImplementations(boldSystemFontMethod!, myBoldSystemFontMethod!)
+            
+            let mediumSystemFontMethod = class_getClassMethod(self, #selector(mediumSystemFont(ofSize:)))
+            let myMediumSystemFontMethod = class_getClassMethod(self, #selector(myMediumSystemFont(ofSize:)))
+            method_exchangeImplementations(mediumSystemFontMethod!, myMediumSystemFontMethod!)
+
             
             let initCoderMethod = class_getInstanceMethod(self, #selector(UIFontDescriptor.init(coder:))) // Trick to get over the lack of UIFont.init(coder:))
             let myInitCoderMethod = class_getInstanceMethod(self, #selector(UIFont.init(myCoder:)))

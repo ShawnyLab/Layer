@@ -46,6 +46,9 @@
 		D1C98D0528F68C4800D438CF /* MyLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C98D0428F68C4800D438CF /* MyLayerViewController.swift */; };
 		D1C98D0728F68C5800D438CF /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C98D0628F68C5800D438CF /* RequestViewController.swift */; };
 		D1D39D0C28F6E12F0047DB72 /* SentRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D39D0B28F6E12F0047DB72 /* SentRequestViewController.swift */; };
+		D1D70C7828F7E95600DDDB60 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D70C7728F7E95600DDDB60 /* ChatViewController.swift */; };
+		D1D9D59F28F7EBA7004E9EB0 /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9D59E28F7EBA7004E9EB0 /* MyChatTableViewCell.swift */; };
+		D1D9D5A128F7EBAE004E9EB0 /* YourChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9D5A028F7EBAE004E9EB0 /* YourChatTableViewCell.swift */; };
 		D1DB663828ED437C007A8837 /* FrameUploadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB663728ED437C007A8837 /* FrameUploadModel.swift */; };
 		D1DB663A28ED45AB007A8837 /* AddFrameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB663928ED45AB007A8837 /* AddFrameType.swift */; };
 		D1E06DF92891540D001F12FD /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E06DF82891540D001F12FD /* Auth.storyboard */; };
@@ -111,6 +114,9 @@
 		D1C98D0428F68C4800D438CF /* MyLayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLayerViewController.swift; sourceTree = "<group>"; };
 		D1C98D0628F68C5800D438CF /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		D1D39D0B28F6E12F0047DB72 /* SentRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentRequestViewController.swift; sourceTree = "<group>"; };
+		D1D70C7728F7E95600DDDB60 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D1D9D59E28F7EBA7004E9EB0 /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
+		D1D9D5A028F7EBAE004E9EB0 /* YourChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourChatTableViewCell.swift; sourceTree = "<group>"; };
 		D1DB663728ED437C007A8837 /* FrameUploadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameUploadModel.swift; sourceTree = "<group>"; };
 		D1DB663928ED45AB007A8837 /* AddFrameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFrameType.swift; sourceTree = "<group>"; };
 		D1E06DF82891540D001F12FD /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
@@ -352,6 +358,24 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
+		D1D70C7628F7E94E00DDDB60 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D1D9D59D28F7EB97004E9EB0 /* Cell */,
+				D1D70C7728F7E95600DDDB60 /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		D1D9D59D28F7EB97004E9EB0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D1D9D59E28F7EBA7004E9EB0 /* MyChatTableViewCell.swift */,
+				D1D9D5A028F7EBAE004E9EB0 /* YourChatTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		D1DB663628ED436F007A8837 /* Frame */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +438,7 @@
 		D1E06E1028917F9B001F12FD /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				D1D70C7628F7E94E00DDDB60 /* Chat */,
 				D1E06E1428917FAD001F12FD /* Message.storyboard */,
 				D1E06E1828917FC3001F12FD /* MessageViewController.swift */,
 			);
@@ -566,9 +591,11 @@
 			files = (
 				D119080A28AA9BBD009FBF64 /* FriendModel.swift in Sources */,
 				D119080228AA844B009FBF64 /* DefaultViewController.swift in Sources */,
+				D1D70C7828F7E95600DDDB60 /* ChatViewController.swift in Sources */,
 				D1C98D0728F68C5800D438CF /* RequestViewController.swift in Sources */,
 				D119080428AA84BF009FBF64 /* AuthManager.swift in Sources */,
 				D1C98D0328F68C3C00D438CF /* AddressViewController.swift in Sources */,
+				D1D9D5A128F7EBAE004E9EB0 /* YourChatTableViewCell.swift in Sources */,
 				D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */,
 				D1503D6C289527C400C53B81 /* FrameModel.swift in Sources */,
 				D1B8E8A928817007003B2C48 /* UIView+.swift in Sources */,
@@ -597,6 +624,7 @@
 				D1A554E928EBC85C0060226F /* SelectLayerViewController.swift in Sources */,
 				D1C73BA228EE92E600E636F6 /* UIButton.swift in Sources */,
 				D1A55F4F289182F800D9B645 /* LayerViewController.swift in Sources */,
+				D1D9D59F28F7EBA7004E9EB0 /* MyChatTableViewCell.swift in Sources */,
 				D1C73BA428EE95A800E636F6 /* Date+.swift in Sources */,
 				D1D39D0C28F6E12F0047DB72 /* SentRequestViewController.swift in Sources */,
 				D16D99ED2881695200D7C57E /* SceneDelegate.swift in Sources */,

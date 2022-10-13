@@ -19,10 +19,23 @@ final class MessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Observable.just(CurrentUserModel.shared.friends.filter{$0.layer > 0})
+        Observable.just(CurrentUserModel.shared.friends.filter{$0.layer >= 0})
             .bind(to: friendCollectionView.rx.items(cellIdentifier: FriendCell.reuseId, cellType: FriendCell.self)) { idx, friendModel, cell in
-//                cell.profileImageView.setImage(url: friendModel.profileImageUrl)
-//                cell.nameLabel.text = friendModel.name
+                
+                UserManager.shared.fetch(id: friendModel.uid)
+                    .subscribe(onSuccess: { userModel in
+                        if let url = userModel.profileImageUrl {
+                            cell.profileImageView.setImage(url: url)
+                        } else {
+                            cell.profileImageView.image = nil
+                        }
+
+                        cell.nameLabel.text = userModel.layerId
+                    }) { error in
+                        print(error)
+                    }
+                    .disposed(by: self.rx.disposeBag)
+
             }
             .disposed(by: rx.disposeBag)
             
