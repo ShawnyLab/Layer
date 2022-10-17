@@ -59,6 +59,11 @@ extension Date {
         return date.dateTime
     }
     
+    func after(hour: Int) -> String {
+        let date = Calendar.current.date(byAdding: .hour, value: hour, to: Date())!
+        return date.dateTime
+    }
+    
     private func parseNumber(number: Int) -> String {
         if "\(number)".count == 1 {
             return "0\(number)"

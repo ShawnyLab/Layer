@@ -15,11 +15,13 @@ final class MessageViewController: UIViewController {
     @IBOutlet weak var searchBarContainer: UIView!
     @IBOutlet weak var friendCollectionView: UICollectionView!
     static let storyId = "messageVC"
+    
+    private let friendModelArray = BehaviorRelay<[FriendModel]>(value: CurrentUserModel.shared.friends.filter{$0.layer >= 0})
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Observable.just(CurrentUserModel.shared.friends.filter{$0.layer >= 0})
+        friendModelArray
             .bind(to: friendCollectionView.rx.items(cellIdentifier: FriendCell.reuseId, cellType: FriendCell.self)) { idx, friendModel, cell in
                 
                 UserManager.shared.fetch(id: friendModel.uid)
@@ -42,6 +44,22 @@ final class MessageViewController: UIViewController {
         
         friendCollectionView.rx.setDelegate(self)
             .disposed(by: rx.disposeBag)
+        
+        friendCollectionView.rx.itemSelected
+            .subscribe(onNext: { [unowned self] idx in
+                UserManager.shared.fetch(id: friendModelArray.value[idx.row].uid)
+                    .subscribe(onSuccess: { userModel in
+                        
+                        
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+                        vc.userModel = userModel
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        
+                    })
+                    .disposed(by: rx.disposeBag)
+            })
+            .disposed(by: rx.disposeBag)
+        
         makeUI()
     }
     

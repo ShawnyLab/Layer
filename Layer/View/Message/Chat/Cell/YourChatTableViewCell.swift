@@ -9,9 +9,14 @@ import UIKit
 
 class YourChatTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var messageLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        messageView.layer.cornerRadius = 13
+        profileImageView.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -131,8 +131,9 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="chevron_left"/>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dZg-xq-N5q">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dZg-xq-N5q">
                                 <rect key="frame" x="68" y="89.5" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="FUP-9p-MCy"/>
                                     <constraint firstAttribute="height" constant="40" id="n7m-ar-sdI"/>
@@ -150,7 +151,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qeG-kC-eOo">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qeG-kC-eOo">
                                 <rect key="frame" x="0.0" y="154.5" width="414" height="677.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -189,12 +190,18 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ToY-s6-6au" secondAttribute="trailing" constant="100" id="Fh5-TE-XOD"/>
                                                 <constraint firstItem="ToY-s6-6au" firstAttribute="centerY" secondItem="mrh-3F-Ih4" secondAttribute="centerY" id="RW6-tD-NzY"/>
                                                 <constraint firstItem="ToY-s6-6au" firstAttribute="leading" secondItem="mrh-3F-Ih4" secondAttribute="trailing" constant="2" id="XmF-7O-FoO"/>
                                                 <constraint firstItem="mrh-3F-Ih4" firstAttribute="top" secondItem="OFj-3n-C4z" secondAttribute="top" constant="10" id="bH5-3U-uLW"/>
                                                 <constraint firstItem="mrh-3F-Ih4" firstAttribute="leading" secondItem="OFj-3n-C4z" secondAttribute="leading" constant="25" id="o9E-kc-NTT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="vl0-Uj-8qe" id="xG7-f6-lFe"/>
+                                            <outlet property="messageView" destination="ToY-s6-6au" id="CRe-cv-8fo"/>
+                                            <outlet property="profileImageView" destination="mrh-3F-Ih4" id="X0n-FD-jwn"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCell" rowHeight="40" id="A8k-1r-cmL" customClass="MyChatTableViewCell" customModule="Layer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="90" width="414" height="40"/>
@@ -226,8 +233,13 @@
                                             <constraints>
                                                 <constraint firstItem="Sda-8u-vVm" firstAttribute="centerY" secondItem="rBj-qW-SJJ" secondAttribute="centerY" id="26w-nf-Kd8"/>
                                                 <constraint firstAttribute="trailing" secondItem="Sda-8u-vVm" secondAttribute="trailing" constant="24" id="FZa-gz-Vl6"/>
+                                                <constraint firstItem="Sda-8u-vVm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rBj-qW-SJJ" secondAttribute="leading" constant="100" id="p1m-US-8jr"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="5pt-kc-8m4" id="OKY-D2-Ysm"/>
+                                            <outlet property="messageView" destination="Sda-8u-vVm" id="Pdq-vl-V4n"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -304,6 +316,16 @@
                             <constraint firstAttribute="bottom" secondItem="Cjt-PQ-y8B" secondAttribute="bottom" id="xUn-4U-vDk"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomView" destination="Cjt-PQ-y8B" id="Sqq-Um-gqa"/>
+                        <outlet property="idLabel" destination="dGh-zf-83E" id="ort-Na-hZ1"/>
+                        <outlet property="messageTextfield" destination="ofa-XQ-OoK" id="NYz-70-OxB"/>
+                        <outlet property="nameLabel" destination="mAO-ET-6Qg" id="Nvl-Gv-mMW"/>
+                        <outlet property="profileImageView" destination="dZg-xq-N5q" id="yoC-Yy-7ci"/>
+                        <outlet property="sendButton" destination="kPD-1P-2md" id="Bb3-kP-ElD"/>
+                        <outlet property="tableView" destination="qeG-kC-eOo" id="RvM-bq-J3Y"/>
+                        <outlet property="textfieldView" destination="QQs-qK-G3e" id="S2n-EC-QkI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZh-bL-m2L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

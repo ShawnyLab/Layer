@@ -49,6 +49,8 @@
 		D1D70C7828F7E95600DDDB60 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D70C7728F7E95600DDDB60 /* ChatViewController.swift */; };
 		D1D9D59F28F7EBA7004E9EB0 /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9D59E28F7EBA7004E9EB0 /* MyChatTableViewCell.swift */; };
 		D1D9D5A128F7EBAE004E9EB0 /* YourChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9D5A028F7EBAE004E9EB0 /* YourChatTableViewCell.swift */; };
+		D1D9D5A328F7EEF0004E9EB0 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9D5A228F7EEF0004E9EB0 /* ChatManager.swift */; };
+		D1D9D5A628F7F00A004E9EB0 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9D5A528F7F00A004E9EB0 /* ChatModel.swift */; };
 		D1DB663828ED437C007A8837 /* FrameUploadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB663728ED437C007A8837 /* FrameUploadModel.swift */; };
 		D1DB663A28ED45AB007A8837 /* AddFrameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB663928ED45AB007A8837 /* AddFrameType.swift */; };
 		D1E06DF92891540D001F12FD /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E06DF82891540D001F12FD /* Auth.storyboard */; };
@@ -117,6 +119,8 @@
 		D1D70C7728F7E95600DDDB60 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D1D9D59E28F7EBA7004E9EB0 /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
 		D1D9D5A028F7EBAE004E9EB0 /* YourChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourChatTableViewCell.swift; sourceTree = "<group>"; };
+		D1D9D5A228F7EEF0004E9EB0 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		D1D9D5A528F7F00A004E9EB0 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		D1DB663728ED437C007A8837 /* FrameUploadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameUploadModel.swift; sourceTree = "<group>"; };
 		D1DB663928ED45AB007A8837 /* AddFrameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFrameType.swift; sourceTree = "<group>"; };
 		D1E06DF82891540D001F12FD /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 		D1503D6A289527A500C53B81 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D1D9D5A428F7F003004E9EB0 /* ChatModel */,
 				D12D4AD228EEA5EB00923303 /* CommonModel */,
 				D1DB663628ED436F007A8837 /* Frame */,
 				D1503D6D2895280300C53B81 /* WriterModel.swift */,
@@ -212,6 +217,7 @@
 				D10822E428A3B4F6001E743F /* FrameManager.swift */,
 				D119080328AA84BF009FBF64 /* AuthManager.swift */,
 				D1F70E8628D9421900873E71 /* UserManager.swift */,
+				D1D9D5A228F7EEF0004E9EB0 /* ChatManager.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -374,6 +380,14 @@
 				D1D9D5A028F7EBAE004E9EB0 /* YourChatTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		D1D9D5A428F7F003004E9EB0 /* ChatModel */ = {
+			isa = PBXGroup;
+			children = (
+				D1D9D5A528F7F00A004E9EB0 /* ChatModel.swift */,
+			);
+			path = ChatModel;
 			sourceTree = "<group>";
 		};
 		D1DB663628ED436F007A8837 /* Frame */ = {
@@ -599,6 +613,8 @@
 				D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */,
 				D1503D6C289527C400C53B81 /* FrameModel.swift in Sources */,
 				D1B8E8A928817007003B2C48 /* UIView+.swift in Sources */,
+				D1D9D5A328F7EEF0004E9EB0 /* ChatManager.swift in Sources */,
+				D1D9D5A628F7F00A004E9EB0 /* ChatModel.swift in Sources */,
 				D1C98D0028F6871600D438CF /* ManagePagerViewController.swift in Sources */,
 				D16194BB28EBBA46009DD015 /* AddTextFrameViewController.swift in Sources */,
 				D13AFE982895706300EFDC67 /* FrameTableViewCell.swift in Sources */,
