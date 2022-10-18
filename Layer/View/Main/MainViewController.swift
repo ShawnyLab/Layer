@@ -55,6 +55,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.floatingButton.mainView = self.view
+        
         plusButton.isHidden = true
         circleButton.isHidden = true
         hamburgerButton.isHidden = true
@@ -232,16 +234,15 @@ final class FloatingButton: UIButton {
     
     var openLayer: (() -> Void)!
     var hideLayer: (() -> Void)!
+    var mainView: UIView!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touches began")
         
         if pressTimer == nil {
             pressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
                 self.cnt += 1
                 if self.cnt == 6 {
                     self.isPressing = true
-                    print("longPress")
                     self.openLayer()
                     timer.invalidate()
                     self.pressTimer = nil
@@ -253,9 +254,34 @@ final class FloatingButton: UIButton {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         cnt = 0
         print("touches ended")
+        let location = touches.first!.location(in: self.mainView)
+        
+        print(self.frame.origin.x, self.frame.origin.y)
+        
+        
+        let xGap = self.frame.origin.x - location.x
+        let yGap = self.frame.origin.y - location.y
+        
+        if xGap*xGap + yGap*yGap <= 49*49 {
+            print("black")
+            mainView.backgroundColor = .black
+        } else if xGap*xGap + yGap*yGap <= 98*98 {
+            print("gray")
+            mainView.backgroundColor = .layerGray
+        } else if xGap*xGap + yGap*yGap <= 150*150 {
+            print("white")
+            mainView.backgroundColor = .white
+        }
+        
         hideLayer()
         self.pressTimer?.invalidate()
         self.pressTimer = nil
     }
 
+}
+
+enum LayerType {
+    case black
+    case gray
+    case white
 }

@@ -17,7 +17,8 @@ class LayerViewController: UIViewController {
     @IBOutlet var viewModel: LayerViewModel!
     @IBOutlet weak var tableView: UITableView!
     
-    let refresh = UIRefreshControl()
+    private let refresh = UIRefreshControl()
+    private var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +119,44 @@ class LayerViewController: UIViewController {
                     .disposed(by: rx.disposeBag)
                     
                     
+
+            })
+            .disposed(by: rx.disposeBag)
+        
+        tableView.rx.didScroll
+            .subscribe(onNext: { [unowned self] in
+                
+                // Stack OverFlow https://stackoverflow.com/questions/39015228/detect-when-uitableview-has-scrolled-to-the-bottom
+                
+                if !isLoading {
+                    
+                    let height = tableView.frame.size.height
+                    let contentYOffset = tableView.contentOffset.y
+                    let distanceFromBottom = tableView.contentSize.height - contentYOffset
+                    
+                    if distanceFromBottom < height {
+                        isLoading = true
+                        indicator.isHidden = false
+                        indicator.startAnimating()
+                        
+                        viewModel.fetchMore()
+                            .subscribe(onCompleted: { [unowned self] in
+                                indicator.isHidden = true
+                                indicator.stopAnimating()
+                                
+                                isLoading = false
+                            }, onError: { [unowned self] error in
+                                print(error)
+                                indicator.isHidden = true
+                                indicator.stopAnimating()
+                                
+                                isLoading = false
+
+                            })
+                            .disposed(by: rx.disposeBag)
+                    }
+                }
+                
 
             })
             .disposed(by: rx.disposeBag)

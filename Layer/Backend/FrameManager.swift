@@ -30,10 +30,8 @@ final class FrameManager: CommonBackendType, FrameManagerType {
     private override init(){}
     
     func fetchFirst() -> Completable {
-        print("fetching")
         return Completable.create() { [unowned self] completable in
-            ref.child("frame").queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
-                print("inner block")
+            ref.child("frame").queryOrderedByKey().queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
                 var temp = [FrameModel]()
                 for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
                     if let frameModel = FrameModel(snapshot: data) {
@@ -50,16 +48,28 @@ final class FrameManager: CommonBackendType, FrameManagerType {
     func fetchMore() -> Completable {
         return Completable.create() { [unowned self] completable in
             if frameRelay.value.isEmpty {
+                completable(.error(DataFetchingError.noData))
                 return Disposables.create()
             }
             
-            ref.child("frame").queryStarting(afterValue: frameRelay.value.last!.uid).queryLimited(toFirst: 5).observeSingleEvent(of: .value) { dataSnapShot in
-                var temp = [FrameModel]()
-                for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
-                    if let frameModel = FrameModel(snapshot: data) {
-                        temp.append(frameModel)
+            ref.child("frame").queryOrderedByKey().queryEnding(beforeValue: frameRelay.value.last!.uid).queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
+                
+                if dataSnapShot.exists() {
+                    print("==========================")
+                    print(dataSnapShot)
+                    var temp = [FrameModel]()
+                    for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
+                        if let frameModel = FrameModel(snapshot: data) {
+                            temp.insert(frameModel, at: 0)
+                        }
                     }
+                    
+                    frameRelay.accept(frameRelay.value + temp)
+                    completable(.completed)
+                } else {
+                    completable(.error(DataFetchingError.noData))
                 }
+
             }
             
             return Disposables.create()
