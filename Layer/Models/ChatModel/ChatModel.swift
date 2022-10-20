@@ -24,7 +24,7 @@ final class ChatModel {
     
     init?(data: DataSnapshot) {
         if data.exists() {
-            let value = data.value as! [String: Any]
+            guard let value = data.value as? [String: Any] else { return nil }
             
             self.uid = data.key
             

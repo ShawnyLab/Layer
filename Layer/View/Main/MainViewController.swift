@@ -39,6 +39,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var greyWidth: NSLayoutConstraint!
     @IBOutlet weak var whiteWidth: NSLayoutConstraint!
         
+    @IBOutlet weak var logoImage: UIImageView!
+    
     private var isPressing = false
     private var isAnimating = false
     
@@ -77,17 +79,22 @@ class MainViewController: UIViewController {
         pageRelay
             .subscribe(onNext: { [unowned self] index in
                 if index == 0 {
-                    titleLabel.text = "Layer"
+                    titleLabel.isHidden = true
+                    logoImage.isHidden = false
                     plusButton.isHidden = false
                     circleButton.isHidden = true
                     hamburgerButton.isHidden = true
                 } else if index == 1 {
                     titleLabel.text = "Message"
+                    titleLabel.isHidden = false
+                    logoImage.isHidden = true
                     plusButton.isHidden = true
                     circleButton.isHidden = true
                     hamburgerButton.isHidden = true
                 } else if index == 2 {
                     titleLabel.text = "Profile"
+                    titleLabel.isHidden = false
+                    logoImage.isHidden = true
                     plusButton.isHidden = true
                     circleButton.isHidden = false
                     hamburgerButton.isHidden = false

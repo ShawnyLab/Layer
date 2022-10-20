@@ -54,7 +54,7 @@ class ChatViewController: UIViewController {
         sendButton.rx.tap
             .bind { [unowned self] Void in
                 let chatModel = ChatManager.shared.send(userId: userModel.uid, message: messageTextfield.text ?? "", isTemp: false)
-                
+                messageTextfield.text = nil
                 self.chatArray.append(chatModel)
                 tableView.reloadData()
             }

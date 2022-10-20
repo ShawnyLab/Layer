@@ -802,11 +802,13 @@
 				DEVELOPMENT_TEAM = H32HN8A88T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Layer/Info.plist;
+				INFOPLIST_KEY_NSContactsUsageDescription = "레이어 추천을 위해 연락처 접근을 허용합니다";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프레임 업로드를 위해 앨범 접근을 허용합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = light;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -833,11 +835,13 @@
 				DEVELOPMENT_TEAM = H32HN8A88T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Layer/Info.plist;
+				INFOPLIST_KEY_NSContactsUsageDescription = "레이어 추천을 위해 연락처 접근을 허용합니다";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "프레임 업로드를 위해 앨범 접근을 허용합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = light;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
