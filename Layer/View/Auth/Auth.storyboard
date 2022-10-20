@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,29 +18,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Layer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd4-ar-jVK">
-                                <rect key="frame" x="176" y="114" width="62.5" height="29"/>
+                                <rect key="frame" x="176" y="118" width="62.5" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호로 새 계정을 만들어볼까요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7J-DB-0VL">
-                                <rect key="frame" x="114" y="158" width="186" height="16"/>
+                                <rect key="frame" x="114" y="162" width="186" height="16"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="전화번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sSX-b3-XMs">
-                                <rect key="frame" x="165.5" y="294" width="83.5" height="30.5"/>
+                                <rect key="frame" x="165.5" y="298" width="83.5" height="30.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" textContentType="tel"/>
                             </textField>
                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="인증번호 6자리" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x1m-8U-XGE">
-                                <rect key="frame" x="134.5" y="294" width="145" height="30.5"/>
+                                <rect key="frame" x="134.5" y="298" width="145" height="30.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" textContentType="tel"/>
                             </textField>
                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="새로운 아이디" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HDa-N3-qrz">
-                                <rect key="frame" x="142" y="294" width="130" height="30.5"/>
+                                <rect key="frame" x="142" y="298" width="130" height="30.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" textContentType="tel"/>
                             </textField>
@@ -68,7 +68,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="NoF-bU-0rA">
-                                <rect key="frame" x="197" y="443" width="20" height="20"/>
+                                <rect key="frame" x="197" y="445" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0nG-I1-ZYR"/>
@@ -118,18 +118,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Layer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmG-Kj-HKF">
-                                <rect key="frame" x="175.5" y="388.5" width="63" height="29"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoBlack" translatesAutoresizingMaskIntoConstraints="NO" id="8O3-49-ZNb">
+                                <rect key="frame" x="174" y="407.5" width="66" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8O3-49-ZNb" secondAttribute="height" multiplier="15:8" id="irr-Kx-NEc"/>
+                                    <constraint firstAttribute="width" constant="66" id="oKm-nE-Fcs"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iWi-9D-tY6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JmG-Kj-HKF" firstAttribute="centerY" secondItem="iWi-9D-tY6" secondAttribute="centerY" constant="-50" id="52b-Ts-JBF"/>
-                            <constraint firstItem="JmG-Kj-HKF" firstAttribute="centerX" secondItem="iWi-9D-tY6" secondAttribute="centerX" id="HOy-72-esM"/>
+                            <constraint firstItem="8O3-49-ZNb" firstAttribute="centerX" secondItem="iWi-9D-tY6" secondAttribute="centerX" id="JYu-S4-hRB"/>
+                            <constraint firstItem="8O3-49-ZNb" firstAttribute="centerY" secondItem="iWi-9D-tY6" secondAttribute="centerY" constant="-30" id="UJF-N2-FvF"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -139,6 +140,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logoBlack" width="197.33332824707031" height="77.333335876464844"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

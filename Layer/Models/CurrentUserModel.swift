@@ -69,4 +69,35 @@ final class CurrentUserModel: NSObject {
         self.friends = friends
     }
 
+    func uploadImageOnStorage(image: UIImage, completion: @escaping () -> Void) {
+        let storageRef = Storage.storage().reference().child("userImages").child(self.uid).child("image.jpeg")
+        
+        
+        let data = image.jpegData(compressionQuality: 0.9)
+        if let data = data {
+            storageRef
+                .putData(data) { metadata, error in
+                    guard let metadata = metadata else {
+                        // Uh-oh, an error occurred!
+                        print(error)
+                        return
+                    }
+                    // Metadata contains file metadata such as size, content-type.
+                    let size = metadata.size
+                    // You can also access to download URL after upload.
+                    storageRef.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            // Uh-oh, an error occurred!
+                            print(error)
+                            return
+                        }
+                        
+                        self.profileImageUrl = downloadURL.absoluteString
+                        UserManager.shared.updateProfileImageUrl(uid: self.uid, url: self.profileImageUrl ?? "")
+                        completion()
+                    }
+                }
+            
+        }
+    }
 }

@@ -25,6 +25,10 @@
                                     <constraint firstAttribute="width" constant="79" id="rv7-2W-HUa"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjn-he-HNo">
+                                <rect key="frame" x="18" y="89" width="79" height="79"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Layer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aK-f1-hra">
                                 <rect key="frame" x="24" y="173" width="43" height="19.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -118,23 +122,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="u3E-eb-vKF">
+                                <rect key="frame" x="197" y="445" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pfm-Bw-4eY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="11u-Fx-lYL"/>
+                            <constraint firstItem="Tjn-he-HNo" firstAttribute="leading" secondItem="TSP-U0-kYT" secondAttribute="leading" id="AkF-t0-Llf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="hiA-pL-TN2" secondAttribute="bottom" id="ELq-Fg-Gb0"/>
+                            <constraint firstItem="Tjn-he-HNo" firstAttribute="top" secondItem="TSP-U0-kYT" secondAttribute="top" id="FoG-gO-Vkp"/>
+                            <constraint firstItem="Tjn-he-HNo" firstAttribute="bottom" secondItem="TSP-U0-kYT" secondAttribute="bottom" id="Gbr-8W-Eoh"/>
                             <constraint firstItem="eg0-yH-R32" firstAttribute="top" secondItem="ylV-ef-647" secondAttribute="bottom" constant="5" id="Iuy-Q0-5MT"/>
                             <constraint firstItem="9aK-f1-hra" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="NHd-Ss-yWQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pfm-Bw-4eY" secondAttribute="trailing" id="P4P-AF-NQA"/>
                             <constraint firstItem="eg0-yH-R32" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="R47-Dw-PXi"/>
+                            <constraint firstItem="u3E-eb-vKF" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="Tb6-2o-FQS"/>
                             <constraint firstItem="TSP-U0-kYT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="41" id="YO4-He-030"/>
                             <constraint firstItem="hiA-pL-TN2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="60" id="YTa-5g-ck0"/>
                             <constraint firstItem="pfm-Bw-4eY" firstAttribute="top" secondItem="pAq-P5-nIb" secondAttribute="bottom" constant="3" id="ZHo-RF-pDJ"/>
+                            <constraint firstItem="u3E-eb-vKF" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="ce6-rx-IKI"/>
                             <constraint firstItem="ylV-ef-647" firstAttribute="top" secondItem="9aK-f1-hra" secondAttribute="bottom" constant="14" id="crA-p4-3Xn"/>
                             <constraint firstItem="9aK-f1-hra" firstAttribute="top" secondItem="TSP-U0-kYT" secondAttribute="bottom" constant="5" id="eH9-Wg-mcV"/>
                             <constraint firstItem="ylV-ef-647" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="ihE-yQ-wLo"/>
                             <constraint firstItem="pAq-P5-nIb" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="kJ3-ie-KQ5"/>
+                            <constraint firstItem="Tjn-he-HNo" firstAttribute="trailing" secondItem="TSP-U0-kYT" secondAttribute="trailing" id="lIO-5d-gwR"/>
                             <constraint firstItem="hiA-pL-TN2" firstAttribute="top" secondItem="pfm-Bw-4eY" secondAttribute="bottom" constant="23" id="o7e-8K-Qp5"/>
                             <constraint firstItem="pfm-Bw-4eY" firstAttribute="top" secondItem="eg0-yH-R32" secondAttribute="bottom" constant="67" id="skC-Yn-IbP"/>
                             <constraint firstItem="hiA-pL-TN2" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="t4T-kc-lGd"/>
@@ -144,6 +157,8 @@
                     <connections>
                         <outlet property="desLabel" destination="eg0-yH-R32" id="SwE-u5-t7H"/>
                         <outlet property="idLabel" destination="9aK-f1-hra" id="xWn-RM-oh9"/>
+                        <outlet property="imageButton" destination="Tjn-he-HNo" id="bqi-H6-uqa"/>
+                        <outlet property="indicator" destination="u3E-eb-vKF" id="WAw-ae-zLD"/>
                         <outlet property="nameLabel" destination="ylV-ef-647" id="ZYT-EZ-Hgr"/>
                         <outlet property="profileImageView" destination="TSP-U0-kYT" id="bFX-qR-p21"/>
                         <outlet property="tableView" destination="hiA-pL-TN2" id="fG7-cY-gHz"/>
