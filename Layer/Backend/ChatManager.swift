@@ -25,7 +25,9 @@ final class ChatManager: CommonBackendType {
                     temp.removeAll()
                     for data in DataSnapshot.children.allObjects as! [DataSnapshot] {
                         if let chatModel = ChatModel(data: data) {
-                            temp.append(chatModel)
+                            if chatModel.uid != "lastMessage" {
+                                temp.append(chatModel)
+                            }
                         }
                     }
                     chatObservable.onNext(temp)
@@ -41,13 +43,30 @@ final class ChatManager: CommonBackendType {
         
         let createdAt = Date().dateTime
         
-        ref.child("chatRoom").child(roomId).child(key)
-            .setValue(["userId": CurrentUserModel.shared.uid, "message": message, "createdAt": createdAt])
+        var dueDate: String? = nil
         
         if isTemp {
-            return ChatModel(message: message, userId: CurrentUserModel.shared.uid, createdAt: createdAt, dueDate: Date().after(hour: 1), uid: key)
-        } else {
-            return ChatModel(message: message, userId: CurrentUserModel.shared.uid, createdAt: createdAt, dueDate: nil, uid: key)
+            dueDate = Date().after(hour: 1)
+        }
+        
+        ref.child("chatRoom").child(roomId).child(key)
+            .setValue(["userId": CurrentUserModel.shared.uid, "message": message, "createdAt": createdAt, "dueDate": dueDate])
+        
+        ref.child("chatRoom").child(roomId).child("lastMessage")
+            .setValue(["userId": CurrentUserModel.shared.uid, "message": message, "createdAt": createdAt, "dueDate": dueDate])
+        
+        return ChatModel(message: message, userId: CurrentUserModel.shared.uid, createdAt: createdAt, dueDate: dueDate, uid: key)
+        
+
+    }
+    
+    func fetchRooms() -> Observable<[ChatRoomModel]> {
+        return Observable<[ChatRoomModel]>.create() { [unowned self] chatRoomObservable in
+            
+            
+            
+            
+            return Disposables.create()
         }
     }
 }
