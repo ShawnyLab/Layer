@@ -71,7 +71,6 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="3U0-We-pT9" firstAttribute="leading" secondItem="et0-1N-Tvj" secondAttribute="leading" id="0d5-ja-dd4"/>
                                                                 <constraint firstAttribute="trailing" secondItem="vct-P8-xna" secondAttribute="trailing" constant="23" id="2eo-J2-PB9"/>
@@ -104,7 +103,6 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="sw6-9n-qii" secondAttribute="trailing" constant="24" id="Ac2-8E-EdA"/>
                                                                 <constraint firstItem="sw6-9n-qii" firstAttribute="top" secondItem="aHe-cS-iYG" secondAttribute="top" constant="15" id="Bgi-lg-PP0"/>

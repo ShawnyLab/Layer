@@ -99,6 +99,11 @@ class ChatViewController: UIViewController {
     func hideKeyboard() {
         self.view.endEditing(true)
     }
+    
+    @IBAction func popAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {

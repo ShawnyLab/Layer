@@ -12,11 +12,16 @@ class MainPageViewController: UIPageViewController {
     static let storyId = "mainpageVC"
     private var vcList = [UIViewController]()
     var mainVC: MainViewController!
+    
+    let layerRelay = BehaviorRelay<LayerType>(value: .white)
         
     override func viewDidLoad() {
         super.viewDidLoad()
 
         guard let layerVC = UIStoryboard(name: "Layer", bundle: nil).instantiateViewController(withIdentifier: "layerVC") as? LayerViewController else { return }
+        layerRelay
+            .bind(to: layerVC.layerRelay)
+            .disposed(by: rx.disposeBag)
         vcList.append(layerVC)
         
         guard let messageVC = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: MessageViewController.storyId) as? MessageViewController else { return }

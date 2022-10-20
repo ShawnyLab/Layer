@@ -17,6 +17,8 @@ class LayerViewController: UIViewController {
     @IBOutlet var viewModel: LayerViewModel!
     @IBOutlet weak var tableView: UITableView!
     
+    
+    let layerRelay = BehaviorRelay<LayerType>(value: .white)
     private let refresh = UIRefreshControl()
     private var isLoading = false
     
@@ -26,6 +28,20 @@ class LayerViewController: UIViewController {
         bind()
         refresh.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
         tableView.refreshControl = refresh
+        
+        layerRelay.subscribe(onNext: { [unowned self] layer in
+            switch layer {
+            case .white:
+                break
+            case .black:
+                self.view.backgroundColor = .black
+                self.tableView.backgroundColor = .black
+                break
+            case .gray:
+                break
+            }
+        })
+        .disposed(by: rx.disposeBag)
     }
     
     @objc func pullToRefresh(_ sender: Any) {
@@ -54,6 +70,27 @@ class LayerViewController: UIViewController {
             .frameRelay
             .bind(to: tableView.rx.items(cellIdentifier: FrameTableViewCell.reuseId, cellType: FrameTableViewCell.self)) { idx, frameModel, cell in
                 cell.bind(frameModel: frameModel)
+                
+                self.layerRelay
+                    .subscribe(onNext: { [unowned self] layer in
+                        switch layer {
+                        case .white:
+                            break
+                        case .black:
+                            cell.profileImageView.backgroundColor = .white
+                            cell.dueLabel.textColor = .white
+                            cell.contentLabel.textColor = .white
+                            cell.nameLabel.textColor = .white
+                            cell.titleLabel.textColor = .white
+                            cell.backgroundColor = .black
+                            break
+                        case .gray:
+                            break
+                        }
+                    })
+                    .disposed(by: self.rx.disposeBag)
+                
+                
                 
                 let changeLayer = UIAction(title: "공개 범위 변경") { _ in
                     //MARK: - Todo 공개 범위 변경 Action

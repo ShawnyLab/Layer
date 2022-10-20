@@ -38,13 +38,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var blackWidth: NSLayoutConstraint!
     @IBOutlet weak var greyWidth: NSLayoutConstraint!
     @IBOutlet weak var whiteWidth: NSLayoutConstraint!
-        
+    
     @IBOutlet weak var logoImage: UIImageView!
     
     private var isPressing = false
     private var isAnimating = false
     
-    
+    let layerRelay = BehaviorRelay<LayerType>(value: .white)
     
     let pageRelay = BehaviorRelay<Int>(value: 0)
     
@@ -117,6 +117,10 @@ class MainViewController: UIViewController {
         floatingButton.openLayer = {
             self.showLayers()
         }
+        
+        floatingButton.changeLayer = { layer in
+            self.changeLayer(layer)
+        }
 
         circleButton.rx.tap
             .subscribe(onNext: { [unowned self] in
@@ -125,9 +129,39 @@ class MainViewController: UIViewController {
             })
             .disposed(by: rx.disposeBag)
         
+        layerRelay
+            .subscribe(onNext: { [unowned self] layer in
+                switch layer {
+                case .white:
+                    break
+                case .black:
+                    showBlack()
+                    break
+                case .gray:
+                    break
+                }
+            })
+            .disposed(by: rx.disposeBag)
     }
 
     private func makeUI() {
+        layerRelay.subscribe(onNext: { [unowned self] layer in
+            switch layer {
+            case .black:
+                blackDot()
+                break
+            case .white:
+                whiteDot()
+                break
+            case .gray:
+                whiteDot()
+                break
+            }
+        })
+        .disposed(by: rx.disposeBag)
+    }
+    
+    private func whiteDot() {
         firstDot.layer.cornerRadius = 3
         firstDot.layer.borderWidth = 1
         firstDot.layer.borderColor = UIColor.black.cgColor
@@ -154,7 +188,35 @@ class MainViewController: UIViewController {
             }
         })
         .disposed(by: rx.disposeBag)
+    }
+    
+    private func blackDot() {
+        firstDot.layer.cornerRadius = 3
+        firstDot.layer.borderWidth = 1
+        firstDot.layer.borderColor = UIColor.white.cgColor
+        secondDot.layer.cornerRadius = 3
+        secondDot.layer.borderWidth = 1
+        secondDot.layer.borderColor = UIColor.white.cgColor
+        thirdDot.layer.cornerRadius = 3
+        thirdDot.layer.borderWidth = 1
+        thirdDot.layer.borderColor = UIColor.white.cgColor
         
+        pageRelay.subscribe(onNext: { [unowned self] page in
+            if page == 0 {
+                firstDot.backgroundColor = .white
+                secondDot.backgroundColor = .black
+                thirdDot.backgroundColor = .black
+            } else if page == 1 {
+                firstDot.backgroundColor = .black
+                secondDot.backgroundColor = .white
+                thirdDot.backgroundColor = .black
+            } else if page == 2 {
+                firstDot.backgroundColor = .black
+                secondDot.backgroundColor = .black
+                thirdDot.backgroundColor = .white
+            }
+        })
+        .disposed(by: rx.disposeBag)
     }
     
     private func showLayers() {
@@ -228,8 +290,95 @@ class MainViewController: UIViewController {
         }
     }
     
+    private func changeLayer(_ layer: LayerType) {
+        switch layer {
+        case .black:
+            changeToBlackLayer()
+        case .gray:
+            break
+        case .white:
+            changeToWhiteLayer()
+            break
+        }
+    }
+    
+    private func changeToBlackLayer() {
+        self.whiteWidth.constant = 0
+        self.floatingButtonWidth.constant = 60
+
+        self.floatingButtonTrailing.constant = 30
+        self.floatingButtonBottom.constant = -30
+        UIView.animate(withDuration: 0.6, animations: {
+            self.view.layoutIfNeeded()
+            self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
+            self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
+            self.layerRelay.accept(.black)
+        }) { _ in
+            self.isAnimating = false
+        }
+        
+        self.greyWidth.constant = 0
+        UIView.animate(withDuration: 0.5, delay: 0.1) {
+            self.view.layoutIfNeeded()
+            self.greyLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+        }
+        
+        self.blackWidth.constant = UIScreen.main.bounds.height*2
+        
+        UIView.animate(withDuration: 0.6, delay: 0.2, animations: {
+            self.view.layoutIfNeeded()
+            self.blackLayer.alpha = 0
+            self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+        }) { _ in
+            self.blackWidth.constant = 0
+            self.blackLayer.alpha = 1
+        }
+    }
+    
+    private func changeToWhiteLayer() {
+        self.floatingButtonWidth.constant = 60
+
+        self.floatingButtonTrailing.constant = 30
+        self.floatingButtonBottom.constant = -30
+        UIView.animate(withDuration: 0.6, animations: {
+            self.view.layoutIfNeeded()
+            self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
+
+        }) { _ in
+            self.isAnimating = false
+
+        }
+        self.greyWidth.constant = 0
+        UIView.animate(withDuration: 0.5, delay: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            self.greyLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+        }
+        
+        self.blackWidth.constant = 0
+        self.whiteWidth.constant = UIScreen.main.bounds.width*2
+
+        UIView.animate(withDuration: 0.4, delay: 0.2) {
+            self.view.layoutIfNeeded()
+            self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
+            self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+        }
+    }
+    
+    private func showBlack() {
+        view.backgroundColor = .black
+        logoImage.image = UIImage(named: "logoWhite")
+        plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
+        floatingButton.backgroundColor = .black
+        floatingButton.layer.borderWidth = 1
+        floatingButton.layer.borderColor = UIColor.white.cgColor
+    }
+    
     private func bind() {
         guard let pageVC = self.children.first as? MainPageViewController else { fatalError() }
+        self.layerRelay
+            .bind(to: pageVC.layerRelay)
+            .disposed(by: rx.disposeBag)
         pageVC.mainVC = self
     }
 }
@@ -241,6 +390,7 @@ final class FloatingButton: UIButton {
     
     var openLayer: (() -> Void)!
     var hideLayer: (() -> Void)!
+    var changeLayer: ((LayerType) -> Void)!
     var mainView: UIView!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -271,16 +421,18 @@ final class FloatingButton: UIButton {
         
         if xGap*xGap + yGap*yGap <= 49*49 {
             print("black")
-            mainView.backgroundColor = .black
+            changeLayer(.black)
         } else if xGap*xGap + yGap*yGap <= 98*98 {
             print("gray")
+            hideLayer()
             mainView.backgroundColor = .layerGray
         } else if xGap*xGap + yGap*yGap <= 150*150 {
             print("white")
-            mainView.backgroundColor = .white
+            changeLayer(.white)
+        } else {
+            hideLayer()
         }
         
-        hideLayer()
         self.pressTimer?.invalidate()
         self.pressTimer = nil
     }
