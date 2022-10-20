@@ -68,4 +68,5 @@ final class CurrentUserModel: NSObject {
     func updateFriends(friends: [FriendModel]) {
         self.friends = friends
     }
+
 }

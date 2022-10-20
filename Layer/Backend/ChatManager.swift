@@ -63,9 +63,52 @@ final class ChatManager: CommonBackendType {
     func fetchRooms() -> Observable<[ChatRoomModel]> {
         return Observable<[ChatRoomModel]>.create() { [unowned self] chatRoomObservable in
             
+            ref.child("findRoom").child(CurrentUserModel.shared.uid)
+                .observeSingleEvent(of: .value) { DataSnapshot in
+                    if DataSnapshot.exists() {
+                        var temp = [ChatRoomModel]()
+                        
+                        for data in DataSnapshot.children.allObjects as! [DataSnapshot] {
+                            let roomId = data.value as! String
+
+                            self.observeLastMessage(roomId: roomId)
+                                .subscribe(onNext: { [unowned self] roomModel in
+                                    if temp.contains(roomModel) {
+                                        let idx = temp.firstIndex(where: {$0.uid == roomModel.uid})!
+                                        temp[idx].lastMessage = roomModel.lastMessage
+                                    } else {
+                                        temp.insert(roomModel, at: 0)
+                                    }
+                                    chatRoomObservable.onNext(temp.sorted(by: {$0.lastMessage!.createdAt > $1.lastMessage!.createdAt}))
+                                })
+                                .disposed(by: self.rx.disposeBag)
+                        }
+                    } else {
+                        chatRoomObservable.onNext([])
+                    }
+                }
             
             
+            return Disposables.create()
+        }
+    }
+    
+    func observeLastMessage(roomId: String) -> Observable<ChatRoomModel> {
+        return Observable<ChatRoomModel>.create() { [unowned self] roomObservable in
             
+            ref.child("chatRoom").child(roomId).child("lastMessage")
+                .observe(.value) { DataSnapshot in
+                    if DataSnapshot.exists() {
+                        if let lastMessage = ChatModel(data: DataSnapshot) {
+                            let model = ChatRoomModel(lastMessage: lastMessage, uid: roomId)
+                            roomObservable.onNext(model)
+                        } else {
+                            roomObservable.onError(DataFetchingError.noData)
+                        }
+                    } else {
+                        roomObservable.onError(DataFetchingError.noData)
+                    }
+                }
             return Disposables.create()
         }
     }
