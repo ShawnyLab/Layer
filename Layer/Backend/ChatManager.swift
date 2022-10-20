@@ -69,4 +69,10 @@ final class ChatManager: CommonBackendType {
             return Disposables.create()
         }
     }
+    
+    func createChatRoom(userId: String) {
+        let roomId = [CurrentUserModel.shared.uid!, userId].sorted().joined()
+        ref.child("findRoom").child(CurrentUserModel.shared.uid).child(roomId).setValue(roomId)
+        ref.child("findRoom").child(userId).child(roomId).setValue(roomId)
+    }
 }

@@ -55,7 +55,11 @@ class ChatViewController: UIViewController {
             .bind { [unowned self] Void in
                 let chatModel = ChatManager.shared.send(userId: userModel.uid, message: messageTextfield.text ?? "", isTemp: false)
                 messageTextfield.text = nil
+                if self.chatArray.isEmpty {
+                    ChatManager.shared.createChatRoom(userId: userModel.uid)
+                }
                 self.chatArray.append(chatModel)
+
                 tableView.reloadData()
             }
             .disposed(by: rx.disposeBag)
