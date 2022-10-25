@@ -41,7 +41,6 @@
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Zfv-DM-Wo6">
                                 <rect key="frame" x="24" y="144" width="390" height="80"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="x00-SQ-7ie"/>
                                 </constraints>
@@ -176,6 +175,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="availableLabel" destination="HGK-di-Hjy" id="dI4-xw-sA3"/>
                         <outlet property="friendCollectionView" destination="Zfv-DM-Wo6" id="YMx-et-c0E"/>
                         <outlet property="indicator" destination="07J-oM-cUL" id="UYx-EE-SDK"/>
                         <outlet property="searchBarContainer" destination="b8l-Jj-c2s" id="Tb7-Hg-B4X"/>

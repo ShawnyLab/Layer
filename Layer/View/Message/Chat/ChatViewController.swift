@@ -21,6 +21,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var textfieldView: UIView!
     
+    
     var userModel: UserModel!
     var chatArray: [ChatModel] = []
     

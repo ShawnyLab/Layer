@@ -396,6 +396,8 @@ class MainViewController: UIViewController {
         floatingButton.backgroundColor = .black
         floatingButton.layer.borderWidth = 1
         floatingButton.layer.borderColor = UIColor.white.cgColor
+        titleLabel.textColor = .white
+
     }
     
     private func showWhite() {
@@ -404,6 +406,7 @@ class MainViewController: UIViewController {
         plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
         floatingButton.backgroundColor = .white
         floatingButton.layer.borderWidth = 0
+        titleLabel.textColor = .black
         
     }
     
@@ -413,6 +416,8 @@ class MainViewController: UIViewController {
         plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
         floatingButton.backgroundColor = .gray
         floatingButton.layer.borderWidth = 0
+        titleLabel.textColor = .black
+
     }
     
     private func bind() {

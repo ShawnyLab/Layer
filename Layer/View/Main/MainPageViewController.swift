@@ -25,6 +25,9 @@ class MainPageViewController: UIPageViewController {
         vcList.append(layerVC)
         
         guard let messageVC = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: MessageViewController.storyId) as? MessageViewController else { return }
+        layerRelay
+            .bind(to: messageVC.layerRelay)
+            .disposed(by: rx.disposeBag)
         vcList.append(messageVC)
         
         guard let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: ProfileViewController.storyId) as? ProfileViewController else { return }

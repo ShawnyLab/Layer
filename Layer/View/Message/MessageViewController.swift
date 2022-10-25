@@ -16,8 +16,11 @@ final class MessageViewController: UIViewController {
     @IBOutlet weak var friendCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var availableLabel: UILabel!
     
     static let storyId = "messageVC"
+    
+    let layerRelay = BehaviorRelay<LayerType>(value: .white)
     
     private let friendModelArray = BehaviorRelay<[FriendModel]>(value: CurrentUserModel.shared.friends.filter{$0.layer >= 0})
     
@@ -28,7 +31,25 @@ final class MessageViewController: UIViewController {
 
         indicator.isHidden = true
         friendModelArray
-            .bind(to: friendCollectionView.rx.items(cellIdentifier: FriendCell.reuseId, cellType: FriendCell.self)) { idx, friendModel, cell in
+            .bind(to: friendCollectionView.rx.items(cellIdentifier: FriendCell.reuseId, cellType: FriendCell.self)) { [unowned self] idx, friendModel, cell in
+                
+                
+                layerRelay
+                    .subscribe(onNext: { [unowned self] layer in
+                        switch layer {
+                        case .white:
+                            cell.profileImageView.backgroundColor = .black
+                            cell.nameLabel.textColor = .black
+                        case .black:
+                            cell.profileImageView.backgroundColor = .white
+                            cell.nameLabel.textColor = .white
+                            
+                        case .gray:
+                            cell.profileImageView.backgroundColor = .black
+                            cell.nameLabel.textColor = .black
+                        }
+                    })
+                    .disposed(by: rx.disposeBag)
                 
                 UserManager.shared.fetch(id: friendModel.uid)
                     .subscribe(onSuccess: { userModel in
@@ -80,6 +101,30 @@ final class MessageViewController: UIViewController {
         chatRoomArray
             .bind(to: tableView.rx.items(cellIdentifier: "chatroomCell", cellType: ChatRoomCell.self)) { [unowned self] idx, roomModel, cell in
                 let otherUserId = roomModel.otherUserId()
+                
+                layerRelay
+                    .subscribe(onNext: { [unowned self] layer in
+                        switch layer {
+                        case .white:
+                            cell.backgroundColor = .white
+                            cell.profileImageView.backgroundColor = .black
+                            cell.idLabel.textColor = .black
+                            cell.messageLabel.textColor = .black
+                        case .black:
+                            cell.backgroundColor = .black
+                            cell.profileImageView.backgroundColor = .white
+                            cell.idLabel.textColor = .white
+                            cell.messageLabel.textColor = .white
+
+                        case .gray:
+                            cell.backgroundColor = .layerGray
+                            cell.profileImageView.backgroundColor = .black
+                            cell.idLabel.textColor = .black
+                            cell.messageLabel.textColor = .black
+
+                        }
+                    })
+                    .disposed(by: rx.disposeBag)
                 
                 UserManager.shared.fetch(id: otherUserId)
                     .subscribe(onSuccess: { userModel in
@@ -133,6 +178,31 @@ final class MessageViewController: UIViewController {
     
     private func makeUI() {
         searchBarContainer.layer.cornerRadius = 13
+        
+        layerRelay
+            .subscribe(onNext: { [unowned self] layer in
+                switch layer {
+                case .white:
+                    self.view.backgroundColor = .white
+                    friendCollectionView.backgroundColor = .white
+                    availableLabel.textColor = .black
+                    tableView.backgroundColor = .white
+                    break
+                case .black:
+                    self.view.backgroundColor = .black
+                    friendCollectionView.backgroundColor = .black
+                    availableLabel.textColor = .white
+                    tableView.backgroundColor = .black
+                    break
+                case .gray:
+                    self.view.backgroundColor = .layerGray
+                    friendCollectionView.backgroundColor = .layerGray
+                    availableLabel.textColor = .black
+                    tableView.backgroundColor = .layerGray
+                    break
+                }
+            })
+            .disposed(by: rx.disposeBag)
     }
 }
 
