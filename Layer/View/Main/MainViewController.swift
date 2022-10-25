@@ -63,7 +63,6 @@ class MainViewController: UIViewController {
         circleButton.isHidden = true
         hamburgerButton.isHidden = true
 
-        makeUI()
         bind()
         
         self.floatingButton.layer.cornerRadius = 30
@@ -133,34 +132,19 @@ class MainViewController: UIViewController {
             .subscribe(onNext: { [unowned self] layer in
                 switch layer {
                 case .white:
-                    break
+                    whiteDot()
+                    showWhite()
                 case .black:
+                    blackDot()
                     showBlack()
-                    break
                 case .gray:
-                    break
+                    whiteDot()
+                    showGray()
                 }
             })
             .disposed(by: rx.disposeBag)
     }
 
-    private func makeUI() {
-        layerRelay.subscribe(onNext: { [unowned self] layer in
-            switch layer {
-            case .black:
-                blackDot()
-                break
-            case .white:
-                whiteDot()
-                break
-            case .gray:
-                whiteDot()
-                break
-            }
-        })
-        .disposed(by: rx.disposeBag)
-    }
-    
     private func whiteDot() {
         firstDot.layer.cornerRadius = 3
         firstDot.layer.borderWidth = 1
@@ -295,7 +279,7 @@ class MainViewController: UIViewController {
         case .black:
             changeToBlackLayer()
         case .gray:
-            break
+            changeToGrayLayer()
         case .white:
             changeToWhiteLayer()
             break
@@ -343,7 +327,7 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.6, animations: {
             self.view.layoutIfNeeded()
             self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
-
+            self.layerRelay.accept(.white)
         }) { _ in
             self.isAnimating = false
 
@@ -356,12 +340,52 @@ class MainViewController: UIViewController {
         }
         
         self.blackWidth.constant = 0
-        self.whiteWidth.constant = UIScreen.main.bounds.width*2
+        self.whiteWidth.constant = UIScreen.main.bounds.height*2
 
-        UIView.animate(withDuration: 0.4, delay: 0.2) {
+        UIView.animate(withDuration: 0.4, delay: 0.2, animations: {
             self.view.layoutIfNeeded()
             self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
             self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+            
+            self.whiteLayer.alpha = 0
+        }) { _ in
+            self.whiteWidth.constant = 0
+            self.whiteLayer.alpha = 1
+        }
+    }
+    
+    private func changeToGrayLayer() {
+        self.floatingButtonWidth.constant = 60
+
+        self.floatingButtonTrailing.constant = 30
+        self.floatingButtonBottom.constant = -30
+        UIView.animate(withDuration: 0.6, animations: {
+            self.view.layoutIfNeeded()
+            self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
+            self.layerRelay.accept(.gray)
+        }) { _ in
+            self.isAnimating = false
+
+        }
+        self.greyWidth.constant = 0
+        UIView.animate(withDuration: 0.5, delay: 0.1) {
+            self.view.layoutIfNeeded()
+            
+            self.greyLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+        }
+        
+        self.blackWidth.constant = 0
+        self.whiteWidth.constant = UIScreen.main.bounds.height*2
+
+        UIView.animate(withDuration: 0.4, delay: 0.2, animations: {
+            self.view.layoutIfNeeded()
+            self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
+            self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+            
+            self.whiteLayer.alpha = 0
+        }) { _ in
+            self.whiteWidth.constant = 0
+            self.whiteLayer.alpha = 1
         }
     }
     
@@ -372,6 +396,23 @@ class MainViewController: UIViewController {
         floatingButton.backgroundColor = .black
         floatingButton.layer.borderWidth = 1
         floatingButton.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    private func showWhite() {
+        view.backgroundColor = .white
+        logoImage.image = UIImage(named: "logoBlack")
+        plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
+        floatingButton.backgroundColor = .white
+        floatingButton.layer.borderWidth = 0
+        
+    }
+    
+    private func showGray() {
+        view.backgroundColor = .layerGray
+        logoImage.image = UIImage(named: "logoBlack")
+        plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
+        floatingButton.backgroundColor = .gray
+        floatingButton.layer.borderWidth = 0
     }
     
     private func bind() {
@@ -420,14 +461,10 @@ final class FloatingButton: UIButton {
         let yGap = self.frame.origin.y - location.y
         
         if xGap*xGap + yGap*yGap <= 49*49 {
-            print("black")
             changeLayer(.black)
         } else if xGap*xGap + yGap*yGap <= 98*98 {
-            print("gray")
-            hideLayer()
-            mainView.backgroundColor = .layerGray
+            changeLayer(.gray)
         } else if xGap*xGap + yGap*yGap <= 150*150 {
-            print("white")
             changeLayer(.white)
         } else {
             hideLayer()

@@ -32,13 +32,15 @@ class LayerViewController: UIViewController {
         layerRelay.subscribe(onNext: { [unowned self] layer in
             switch layer {
             case .white:
-                break
+                self.view.backgroundColor = .white
+                self.tableView.backgroundColor = .white
             case .black:
                 self.view.backgroundColor = .black
                 self.tableView.backgroundColor = .black
-                break
             case .gray:
-                break
+                self.view.backgroundColor = .layerGray
+                self.tableView.backgroundColor = .layerGray
+                
             }
         })
         .disposed(by: rx.disposeBag)
@@ -72,10 +74,15 @@ class LayerViewController: UIViewController {
                 cell.bind(frameModel: frameModel)
                 
                 self.layerRelay
-                    .subscribe(onNext: { [unowned self] layer in
+                    .subscribe(onNext: { layer in
                         switch layer {
                         case .white:
-                            break
+                            cell.profileImageView.backgroundColor = .black
+                            cell.dueLabel.textColor = .black
+                            cell.contentLabel.textColor = .black
+                            cell.nameLabel.textColor = .black
+                            cell.titleLabel.textColor = .black
+                            cell.backgroundColor = .white
                         case .black:
                             cell.profileImageView.backgroundColor = .white
                             cell.dueLabel.textColor = .white
@@ -83,9 +90,13 @@ class LayerViewController: UIViewController {
                             cell.nameLabel.textColor = .white
                             cell.titleLabel.textColor = .white
                             cell.backgroundColor = .black
-                            break
                         case .gray:
-                            break
+                            cell.profileImageView.backgroundColor = .black
+                            cell.dueLabel.textColor = .black
+                            cell.contentLabel.textColor = .black
+                            cell.nameLabel.textColor = .black
+                            cell.titleLabel.textColor = .black
+                            cell.backgroundColor = .layerGray
                         }
                     })
                     .disposed(by: self.rx.disposeBag)
