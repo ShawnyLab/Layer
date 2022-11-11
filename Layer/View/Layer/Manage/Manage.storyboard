@@ -404,13 +404,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blackLeading" destination="6EA-q2-1ht" id="Jbi-fn-qiC"/>
                         <outlet property="blackView" destination="iJs-Vi-8K7" id="d1S-PX-oAt"/>
-                        <outlet property="grayLeading" destination="4gF-dc-7JH" id="Si3-cK-HhL"/>
                         <outlet property="grayView" destination="RY1-jb-uv3" id="4DL-sw-V6B"/>
                         <outlet property="idLabel" destination="gax-X9-b2O" id="nfS-2t-ebx"/>
                         <outlet property="profileImageView" destination="g5X-Ou-c8L" id="4Vp-s0-EmZ"/>
-                        <outlet property="whiteLeading" destination="eKT-TN-Izl" id="TN8-bH-bGe"/>
                         <outlet property="whiteView" destination="6aP-xv-Uul" id="dUQ-Iv-ktE"/>
                     </connections>
                 </viewController>

@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import AVFoundation
 
 final class ChangeLayerViewController: UIViewController {
     static let storyId = "changelayerVC"
@@ -17,16 +18,14 @@ final class ChangeLayerViewController: UIViewController {
     @IBOutlet weak var whiteView: UIView!
     @IBOutlet weak var grayView: UIView!
     @IBOutlet weak var blackView: UIView!
- 
-    @IBOutlet weak var blackLeading: NSLayoutConstraint!
-    @IBOutlet weak var grayLeading: NSLayoutConstraint!
-    @IBOutlet weak var whiteLeading: NSLayoutConstraint!
     
     @IBOutlet weak var profileImageView: UIImageView!
     
     var userModel: UserModel!
     
     var defaultImagePoint: CGPoint!
+    
+    private let layerStatus = BehaviorRelay<LayerType?>(value: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,27 +82,71 @@ final class ChangeLayerViewController: UIViewController {
                 let blackWidth = self!.blackView.frame.width/2 * self!.blackView.frame.width/2
                 
                 if sender.state == .ended {
+                    UIView.animate(withDuration: 0.1, animations: {
+
+                        self!.blackView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        self!.grayView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        self!.whiteView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        if diff < whiteWidth {
+                            //do something
+                        } else {
+                            senderView.center = self!.defaultImagePoint
+                        }
+
+                    })
+
                     
-                    
-                    if diff < whiteWidth {
-                        //do something
-                    } else {
-                        senderView.center = self!.defaultImagePoint
-                    }
                 } else if sender.state == .changed {
                     if diff < blackWidth {
-                        self!.blackLeading.constant = 125
-                        self!.blackView.circular()
-//                        self!.grayLeading.rx.constant.onNext(87)
-//                        self!.whiteLeading.rx.constant.onNext(27)
+                        if self!.layerStatus.value != .black {
+                            AudioServicesPlaySystemSound(1519)
+                            self!.layerStatus.accept(.black)
+                        }
+                        
+                        UIView.animate(withDuration: 0.1, animations: {
+
+                            self!.blackView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                            self!.grayView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                            self!.whiteView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+
+                        })
+
                     } else if diff < grayWidth {
-//                        self!.blackLeading.rx.constant.onNext(147)
-//                        self!.grayLeading.rx.constant.onNext(70)
-//                        self!.whiteLeading.rx.constant.onNext(27)
+                        if self!.layerStatus.value != .gray {
+                            AudioServicesPlaySystemSound(1519)
+                            self!.layerStatus.accept(.gray)
+                        }
+                        
+                        UIView.animate(withDuration: 0.1, animations: {
+
+                            self!.blackView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                            self!.grayView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                            self!.whiteView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+
+                        })
                     } else if diff < whiteWidth {
-//                        self!.blackLeading.rx.constant.onNext(147)
-//                        self!.grayLeading.rx.constant.onNext(70)
-//                        self!.whiteLeading.rx.constant.onNext(0)
+                        if self!.layerStatus.value != .white {
+                            AudioServicesPlaySystemSound(1519)
+                            self!.layerStatus.accept(.white)
+                        }
+                        
+                        UIView.animate(withDuration: 0.1, animations: {
+
+                            self!.whiteView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                            self!.grayView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                            self!.blackView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+
+                        })
+                    } else {
+                        self!.layerStatus.accept(nil)
+                        
+                        UIView.animate(withDuration: 0.1, animations: {
+
+                            self!.whiteView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                            self!.grayView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                            self!.blackView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+
+                        })
                     }
                 }
 
