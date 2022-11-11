@@ -69,7 +69,7 @@
                                     <constraint firstAttribute="width" constant="50" id="EDT-Lf-ipR"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="hamburger"/>
+                                <state key="normal" image="hamburgerBlack"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fe-dl-yS2">
                                 <rect key="frame" x="299" y="78.5" width="50" height="50"/>
@@ -78,7 +78,7 @@
                                     <constraint firstAttribute="height" constant="50" id="hMp-eP-dBn"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="doubleCircle"/>
+                                <state key="normal" image="doubleCircleBlack"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eox-36-Emm">
                                 <rect key="frame" x="204" y="652" width="300" height="300"/>
@@ -199,8 +199,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="doubleCircle" width="26" height="26"/>
-        <image name="hamburger" width="24" height="21"/>
+        <image name="doubleCircleBlack" width="26" height="26"/>
+        <image name="hamburgerBlack" width="24" height="21"/>
         <image name="logoBlack" width="197.33332824707031" height="77.333335876464844"/>
         <image name="plusBlack" width="23" height="23"/>
         <systemColor name="systemBackgroundColor">

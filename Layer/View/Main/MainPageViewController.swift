@@ -31,6 +31,9 @@ class MainPageViewController: UIPageViewController {
         vcList.append(messageVC)
         
         guard let profileVC = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: ProfileViewController.storyId) as? ProfileViewController else { return }
+        layerRelay
+            .bind(to: profileVC.layerRelay)
+            .disposed(by: rx.disposeBag)
         vcList.append(profileVC)
         
         self.dataSource = self

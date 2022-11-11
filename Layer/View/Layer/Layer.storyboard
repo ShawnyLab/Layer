@@ -87,16 +87,16 @@
                                                             </constraints>
                                                         </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Njy-67-Khu">
-                                                            <rect key="frame" x="0.0" y="80" width="414" height="414"/>
+                                                            <rect key="frame" x="0.0" y="80" width="414" height="303.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Njy-67-Khu" secondAttribute="height" multiplier="1:1" id="4bk-Gw-XTF"/>
+                                                                <constraint firstAttribute="width" secondItem="Njy-67-Khu" secondAttribute="height" multiplier="375:275" id="4bk-Gw-XTF"/>
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHe-cS-iYG">
-                                                            <rect key="frame" x="0.0" y="494" width="414" height="253"/>
+                                                            <rect key="frame" x="0.0" y="383.5" width="414" height="363.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sw6-9n-qii">
-                                                                    <rect key="frame" x="24" y="15" width="366" height="193"/>
+                                                                    <rect key="frame" x="24" y="15" width="366" height="303.5"/>
                                                                     <string key="text">오늘은 정말 추운 날이에요. 비가 많이왔어요 하하하하 너무 추워요오늘은 정말 추운 날이에요. 비가 많이왔어요 하하하하 너무 추워요오늘은 정말 추운 날이에요. 비가 많이왔어요 하하하하 너무 추워요오늘은 정말 추운 날이에요. 비가 많이왔어요 하하하하 너무 추워요오늘은 정말 추운 날이에요. 비가 많이왔어요 하하하하 너무 추워요오늘은 정말 추운 날이에요. 비가 많이왔어요 하하하하 너무 추워요</string>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                                     <nil key="textColor"/>

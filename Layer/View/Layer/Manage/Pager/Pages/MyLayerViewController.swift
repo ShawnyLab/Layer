@@ -39,6 +39,14 @@ class MyLayerViewController: UIViewController {
                         cell.nameLabel.text = userModel.name
                         cell.idLabel.text = userModel.layerId
                         cell.profileImageView.setImage(url: userModel.profileImageUrl)
+                        
+                        cell.changeButtonHandler = {
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: ChangeLayerViewController.storyId) as! ChangeLayerViewController
+                            vc.modalPresentationStyle = .fullScreen
+                            vc.userModel = userModel
+                            
+                            self.present(vc, animated: true)
+                        }
                     })
                     .disposed(by: rx.disposeBag)
             }
@@ -70,6 +78,8 @@ final class MyLayerCell: UITableViewCell {
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var layerLabel: UILabel!
     
+    var changeButtonHandler: (() -> Void)!
+    
     override func awakeFromNib() {
         changeButton.layer.cornerRadius = 13
         changeButton.layer.borderColor = UIColor.black.cgColor
@@ -80,6 +90,10 @@ final class MyLayerCell: UITableViewCell {
         layerLabel.layer.borderWidth = 1
         
         profileImageView.layer.cornerRadius = 20
+    }
+    
+    @IBAction func changeLayer(_ sender: Any) {
+        changeButtonHandler!()
     }
     
     

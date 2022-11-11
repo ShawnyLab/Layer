@@ -55,15 +55,12 @@ final class FrameManager: CommonBackendType, FrameManagerType {
             ref.child("frame").queryOrderedByKey().queryEnding(beforeValue: frameRelay.value.last!.uid).queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
                 
                 if dataSnapShot.exists() {
-                    print("==========================")
-                    print(dataSnapShot)
                     var temp = [FrameModel]()
                     for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
                         if let frameModel = FrameModel(snapshot: data) {
                             temp.insert(frameModel, at: 0)
                         }
                     }
-                    
                     frameRelay.accept(frameRelay.value + temp)
                     completable(.completed)
                 } else {

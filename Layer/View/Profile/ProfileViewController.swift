@@ -24,6 +24,9 @@ final class ProfileViewController: UIViewController {
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    let layerRelay = BehaviorRelay<LayerType>(value: .white)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +42,7 @@ final class ProfileViewController: UIViewController {
 
         
         Observable.just(CurrentUserModel.shared.frameModels)
-            .bind(to: tableView.rx.items(cellIdentifier: MyFrameCell.reuseId, cellType: MyFrameCell.self)) { idx, simpleFrameModel, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: MyFrameCell.reuseId, cellType: MyFrameCell.self)) { [unowned self] idx, simpleFrameModel, cell in
                 if idx == CurrentUserModel.shared.frameModels.count-1 {
                     cell.barView.isHidden = true
                 } else {
@@ -54,6 +57,24 @@ final class ProfileViewController: UIViewController {
                 }
                 
                 cell.greydot.layer.cornerRadius = 4
+                
+                layerRelay
+                    .subscribe(onNext: { [unowned self] layer in
+                        switch layer {
+                        case .white:
+                            cell.backgroundColor = .white
+                            cell.titleLabel.textColor = .black
+                        case .black:
+                            cell.backgroundColor = .black
+                            cell.titleLabel.textColor = .white
+
+                        case .gray:
+                            cell.backgroundColor = .layerGray
+                            cell.titleLabel.textColor = .black
+
+                        }
+                    })
+                    .disposed(by: rx.disposeBag)
             }
             .disposed(by: rx.disposeBag)
         
@@ -62,6 +83,37 @@ final class ProfileViewController: UIViewController {
             .bind { Void in
                 self.presentAlbum()
             }
+            .disposed(by: rx.disposeBag)
+        
+        layerRelay
+            .subscribe(onNext: { [unowned self] layer in
+                switch layer {
+                case .white:
+                    self.view.backgroundColor = .white
+                    tableView.backgroundColor = .white
+                    idLabel.textColor = .black
+                    nameLabel.textColor = .black
+                    desLabel.textColor = .black
+                    
+                    break
+                case .black:
+                    self.view.backgroundColor = .black
+                    tableView.backgroundColor = .black
+                    idLabel.textColor = .white
+                    nameLabel.textColor = .white
+                    desLabel.textColor = .white
+
+                    break
+                case .gray:
+                    self.view.backgroundColor = .layerGray
+                    tableView.backgroundColor = .layerGray
+                    idLabel.textColor = .black
+                    nameLabel.textColor = .black
+                    desLabel.textColor = .black
+
+                    break
+                }
+            })
             .disposed(by: rx.disposeBag)
     }
     

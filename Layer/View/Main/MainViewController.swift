@@ -397,26 +397,31 @@ class MainViewController: UIViewController {
         floatingButton.layer.borderWidth = 1
         floatingButton.layer.borderColor = UIColor.white.cgColor
         titleLabel.textColor = .white
-
+        hamburgerButton.setImage(UIImage(named: "hamburgerWhite"), for: .normal)
+        circleButton.setImage(UIImage(named: "doubleCircleWhite"), for: .normal)
     }
     
     private func showWhite() {
         view.backgroundColor = .white
         logoImage.image = UIImage(named: "logoBlack")
-        plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
+        plusButton.setImage(UIImage(named: "plusBlack"), for: .normal)
         floatingButton.backgroundColor = .white
         floatingButton.layer.borderWidth = 0
         titleLabel.textColor = .black
+        hamburgerButton.setImage(UIImage(named: "hamburgerBlack"), for: .normal)
+        circleButton.setImage(UIImage(named: "doubleCircleBlack"), for: .normal)
         
     }
     
     private func showGray() {
         view.backgroundColor = .layerGray
         logoImage.image = UIImage(named: "logoBlack")
-        plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
+        plusButton.setImage(UIImage(named: "plusBlack"), for: .normal)
         floatingButton.backgroundColor = .gray
         floatingButton.layer.borderWidth = 0
         titleLabel.textColor = .black
+        hamburgerButton.setImage(UIImage(named: "hamburgerBlack"), for: .normal)
+        circleButton.setImage(UIImage(named: "doubleCircleBlack"), for: .normal)
 
     }
     
