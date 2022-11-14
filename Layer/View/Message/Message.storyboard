@@ -324,7 +324,7 @@
                                     <constraint firstAttribute="width" constant="50" id="n4u-Dj-0zL"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="hamburger"/>
+                                <state key="normal" image="hamburgerBlack"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjt-PQ-y8B">
                                 <rect key="frame" x="0.0" y="806" width="414" height="90"/>
@@ -358,9 +358,20 @@
                                             <constraint firstAttribute="height" constant="34" id="lTH-2x-tDW"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9L-KH-OQ3">
+                                        <rect key="frame" x="29" y="0.0" width="123" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                        <color key="tintColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title=" 1시간 뒤 사라지는 메세지" image="circle.fill" catalog="system">
+                                            <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="QQs-qK-G3e" firstAttribute="top" secondItem="d9L-KH-OQ3" secondAttribute="bottom" constant="7" id="8X6-yw-vJM"/>
+                                    <constraint firstItem="d9L-KH-OQ3" firstAttribute="leading" secondItem="Cjt-PQ-y8B" secondAttribute="leading" constant="29" id="HFs-BP-07m"/>
                                     <constraint firstAttribute="bottom" secondItem="QQs-qK-G3e" secondAttribute="bottom" constant="30" id="ah1-VV-6wo"/>
                                     <constraint firstItem="QQs-qK-G3e" firstAttribute="centerX" secondItem="Cjt-PQ-y8B" secondAttribute="centerX" id="bd4-fD-wqB"/>
                                     <constraint firstItem="QQs-qK-G3e" firstAttribute="leading" secondItem="Cjt-PQ-y8B" secondAttribute="leading" constant="25" id="cK2-Ue-ee3"/>
@@ -398,6 +409,7 @@
                         <outlet property="profileImageView" destination="dZg-xq-N5q" id="yoC-Yy-7ci"/>
                         <outlet property="sendButton" destination="kPD-1P-2md" id="Bb3-kP-ElD"/>
                         <outlet property="tableView" destination="qeG-kC-eOo" id="RvM-bq-J3Y"/>
+                        <outlet property="tempButton" destination="d9L-KH-OQ3" id="pPP-8i-jAp"/>
                         <outlet property="textfieldView" destination="QQs-qK-G3e" id="S2n-EC-QkI"/>
                     </connections>
                 </viewController>
@@ -409,7 +421,7 @@
     <resources>
         <image name="chevron_left" width="14.666666984558105" height="22.666666030883789"/>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
-        <image name="hamburger" width="24" height="21"/>
+        <image name="hamburgerBlack" width="24" height="21"/>
         <image name="sendButton" width="87" height="90"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

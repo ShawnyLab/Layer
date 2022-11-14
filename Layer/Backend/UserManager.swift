@@ -80,5 +80,18 @@ class UserManager: CommonBackendType {
     func updateProfileImageUrl(uid: String, url: String) {
         ref.child("users").child(uid).child("profileImageUrl").setValue(url)
     }
+    
+    func changeLayer(uid: String, layer: LayerType) {
+        switch layer {
+        case .black:
+            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).child("layer").setValue(2)
+        case .gray:
+            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).child("layer").setValue(1)
+        case .white:
+            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).child("layer").setValue(0)
+        }
+        
+        CurrentUserModel.shared.friends.first(where: {$0.uid == uid})!.layer = layer.rawValue
+    }
 
 }

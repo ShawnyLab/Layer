@@ -87,7 +87,6 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource {
 
         }
         
-        
         return cell
     }
     
@@ -108,12 +107,15 @@ final class AddressCell: UITableViewCell {
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var inviteButton: UIButton!
     @IBOutlet weak var requestButton: UIButton!
-    
+
+    @IBOutlet weak var profileImageView: UIImageView!
     override func awakeFromNib() {
         inviteButton.layer.cornerRadius = 13
         requestButton.layer.cornerRadius = 13
         
         inviteButton.layer.borderWidth = 1
         inviteButton.layer.borderColor = UIColor.black.cgColor
+        profileImageView.circular()
+        
     }
 }

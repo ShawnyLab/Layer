@@ -15,6 +15,7 @@
 		D119080428AA84BF009FBF64 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119080328AA84BF009FBF64 /* AuthManager.swift */; };
 		D119080628AA8751009FBF64 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119080528AA8751009FBF64 /* Error.swift */; };
 		D119080A28AA9BBD009FBF64 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119080928AA9BBD009FBF64 /* FriendModel.swift */; };
+		D11DB5A62921C4C3005B3B08 /* ChangeDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DB5A52921C4C3005B3B08 /* ChangeDoneViewController.swift */; };
 		D122BB0128B12DEA00104170 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122BB0028B12DEA00104170 /* UserProfileViewController.swift */; };
 		D12D4AD428EEA5F400923303 /* CommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12D4AD328EEA5F400923303 /* CommonModel.swift */; };
 		D13AFE982895706300EFDC67 /* FrameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13AFE972895706300EFDC67 /* FrameTableViewCell.swift */; };
@@ -27,6 +28,7 @@
 		D1503D70289529EE00C53B81 /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1503D6F289529EE00C53B81 /* Encodable+.swift */; };
 		D15626C928F681C200AE7E83 /* LayerManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15626C828F681C200AE7E83 /* LayerManageViewController.swift */; };
 		D15626CB28F681CD00AE7E83 /* Manage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D15626CA28F681CD00AE7E83 /* Manage.storyboard */; };
+		D15D766D291F901400FD5EBC /* ChangeFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D766C291F901400FD5EBC /* ChangeFinalViewController.swift */; };
 		D16194B728EBB515009DD015 /* SelectFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16194B628EBB515009DD015 /* SelectFrameViewController.swift */; };
 		D16194BB28EBBA46009DD015 /* AddTextFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16194BA28EBBA46009DD015 /* AddTextFrameViewController.swift */; };
 		D16D99EB2881695200D7C57E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16D99EA2881695200D7C57E /* AppDelegate.swift */; };
@@ -85,6 +87,7 @@
 		D119080328AA84BF009FBF64 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		D119080528AA8751009FBF64 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		D119080928AA9BBD009FBF64 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
+		D11DB5A52921C4C3005B3B08 /* ChangeDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDoneViewController.swift; sourceTree = "<group>"; };
 		D122BB0028B12DEA00104170 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		D12D4AD328EEA5F400923303 /* CommonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModel.swift; sourceTree = "<group>"; };
 		D13AFE972895706300EFDC67 /* FrameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameTableViewCell.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		D1503D6F289529EE00C53B81 /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
 		D15626C828F681C200AE7E83 /* LayerManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerManageViewController.swift; sourceTree = "<group>"; };
 		D15626CA28F681CD00AE7E83 /* Manage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Manage.storyboard; sourceTree = "<group>"; };
+		D15D766C291F901400FD5EBC /* ChangeFinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeFinalViewController.swift; sourceTree = "<group>"; };
 		D16194B628EBB515009DD015 /* SelectFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFrameViewController.swift; sourceTree = "<group>"; };
 		D16194BA28EBBA46009DD015 /* AddTextFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextFrameViewController.swift; sourceTree = "<group>"; };
 		D16194BD28EBBF15009DD015 /* SelectLayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLayerViewController.swift; sourceTree = "<group>"; };
@@ -239,12 +243,22 @@
 		D15626C728F681B500AE7E83 /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				D15D766B291F900700FD5EBC /* ChangeFinal */,
 				D13E1880291E349C004F35D0 /* ChangeLayer */,
 				D1C98CFE28F686FF00D438CF /* Pager */,
 				D15626C828F681C200AE7E83 /* LayerManageViewController.swift */,
 				D15626CA28F681CD00AE7E83 /* Manage.storyboard */,
 			);
 			path = Manage;
+			sourceTree = "<group>";
+		};
+		D15D766B291F900700FD5EBC /* ChangeFinal */ = {
+			isa = PBXGroup;
+			children = (
+				D15D766C291F901400FD5EBC /* ChangeFinalViewController.swift */,
+				D11DB5A52921C4C3005B3B08 /* ChangeDoneViewController.swift */,
+			);
+			path = ChangeFinal;
 			sourceTree = "<group>";
 		};
 		D16194B528EBB507009DD015 /* SelectFrame */ = {
@@ -645,6 +659,7 @@
 				D1DB663A28ED45AB007A8837 /* AddFrameType.swift in Sources */,
 				D13E1882291E34A4004F35D0 /* ChangeLayerViewController.swift in Sources */,
 				D1E06E0A28915D64001F12FD /* UIFont+.swift in Sources */,
+				D15D766D291F901400FD5EBC /* ChangeFinalViewController.swift in Sources */,
 				D1E06E0C2891608E001F12FD /* SignInViewModel.swift in Sources */,
 				D16D99EB2881695200D7C57E /* AppDelegate.swift in Sources */,
 				D1503D6E2895280300C53B81 /* WriterModel.swift in Sources */,
@@ -662,6 +677,7 @@
 				D1A55F4F289182F800D9B645 /* LayerViewController.swift in Sources */,
 				D1D9D59F28F7EBA7004E9EB0 /* MyChatTableViewCell.swift in Sources */,
 				D1C73BA428EE95A800E636F6 /* Date+.swift in Sources */,
+				D11DB5A62921C4C3005B3B08 /* ChangeDoneViewController.swift in Sources */,
 				D1D39D0C28F6E12F0047DB72 /* SentRequestViewController.swift in Sources */,
 				D16D99ED2881695200D7C57E /* SceneDelegate.swift in Sources */,
 				D13AFE9A289573BC00EFDC67 /* LayerViewModel.swift in Sources */,

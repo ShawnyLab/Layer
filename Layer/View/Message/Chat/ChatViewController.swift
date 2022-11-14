@@ -21,10 +21,11 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var textfieldView: UIView!
     
+    @IBOutlet weak var tempButton: UIButton!
     
     var userModel: UserModel!
     var chatArray: [ChatModel] = []
-    
+    private var isTemp = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,7 @@ class ChatViewController: UIViewController {
         
         sendButton.rx.tap
             .bind { [unowned self] Void in
-                let chatModel = ChatManager.shared.send(userId: userModel.uid, message: messageTextfield.text ?? "", isTemp: false)
+                let chatModel = ChatManager.shared.send(userId: userModel.uid, message: messageTextfield.text ?? "", isTemp: isTemp)
                 messageTextfield.text = nil
                 if self.chatArray.isEmpty {
                     ChatManager.shared.createChatRoom(userId: userModel.uid)
@@ -72,7 +73,21 @@ class ChatViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-
+        tempButton.rx.tap
+            .bind { [unowned self] _ in
+                if isTemp {
+                    tempButton.setTitle(" 사라지지 않는 메시지", for: .normal)
+                    tempButton.tintColor = UIColor(red: 248, green: 152, blue: 152)
+                    tempButton.setTitleColor(UIColor(red: 248, green: 152, blue: 152), for: .normal)
+                    isTemp = false
+                } else {
+                    tempButton.setTitle(" 1시간 뒤 사라지는 메세지", for: .normal)
+                    tempButton.tintColor = UIColor(red: 217, green: 217, blue: 217)
+                    tempButton.setTitleColor(UIColor(red: 153, green: 153, blue: 153), for: .normal)
+                    isTemp = true
+                }
+            }
+            .disposed(by: rx.disposeBag)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

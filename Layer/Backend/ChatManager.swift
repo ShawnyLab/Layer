@@ -25,9 +25,18 @@ final class ChatManager: CommonBackendType {
                     temp.removeAll()
                     for data in DataSnapshot.children.allObjects as! [DataSnapshot] {
                         if let chatModel = ChatModel(data: data) {
-                            if chatModel.uid != "lastMessage" {
-                                temp.append(chatModel)
+                            if let dueDate = chatModel.dueDate {
+                                if dueDate > Date().dateTime {
+                                    if chatModel.uid != "lastMessage" {
+                                        temp.append(chatModel)
+                                    }
+                                } 
+                            } else {
+                                if chatModel.uid != "lastMessage" {
+                                    temp.append(chatModel)
+                                }
                             }
+
                         }
                     }
                     chatObservable.onNext(temp)

@@ -94,6 +94,10 @@ class LayerManageViewController: UIViewController {
         pageVC.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(pageVC.view)
     }
+    
+    @IBAction func back(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension LayerManageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {

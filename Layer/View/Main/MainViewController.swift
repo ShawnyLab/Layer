@@ -486,8 +486,8 @@ final class FloatingButton: UIButton {
 
 }
 
-enum LayerType {
-    case black
-    case gray
+enum LayerType: Int {
     case white
+    case gray
+    case black
 }

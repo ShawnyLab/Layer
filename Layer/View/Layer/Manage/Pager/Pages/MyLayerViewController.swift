@@ -18,6 +18,15 @@ class MyLayerViewController: UIViewController {
     private let friendArray = BehaviorRelay(value: CurrentUserModel.shared.friends.filter { $0.layer >= 0 })
     private let refresh = UIRefreshControl()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AuthManager.shared.fetchFriend()
+            .subscribe {
+                self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer >= 0 })
+            }
+            .disposed(by: rx.disposeBag)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +43,22 @@ class MyLayerViewController: UIViewController {
         friendArray
             .bind(to: tableView.rx.items(cellIdentifier: "mylayerCell", cellType: MyLayerCell.self)) { [unowned self] idx, friendModel, cell in
                 
+                if friendModel.layer == 0 {
+                    cell.layerLabel.text = "Layer White"
+                    cell.layerLabel.textColor = UIColor(red: 153, green: 153, blue: 153)
+                    cell.layerLabel.layer.borderWidth = 1
+                    cell.layerLabel.layer.borderColor = UIColor(red: 153, green: 153, blue: 153).cgColor
+                    cell.layerLabel.backgroundColor = .white
+                } else if friendModel.layer == 1 {
+                    
+                } else if friendModel.layer == 2 {
+                    cell.layerLabel.text = "Layer Black"
+                    cell.layerLabel.textColor = .white
+                    cell.layerLabel.backgroundColor = .black
+                    cell.layerLabel.layer.borderWidth = 0
+                }
+                
+                
                 UserManager.shared.fetch(id: friendModel.uid)
                     .subscribe(onSuccess: { userModel in
                         cell.nameLabel.text = userModel.name
@@ -42,10 +67,12 @@ class MyLayerViewController: UIViewController {
                         
                         cell.changeButtonHandler = {
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: ChangeLayerViewController.storyId) as! ChangeLayerViewController
-                            vc.modalPresentationStyle = .fullScreen
+                            let nav = UINavigationController(rootViewController: vc)
+                            nav.modalPresentationStyle = .fullScreen
+                            nav.navigationBar.isHidden = true
                             vc.userModel = userModel
                             
-                            self.present(vc, animated: true)
+                            self.present(nav, animated: true)
                         }
                     })
                     .disposed(by: rx.disposeBag)
