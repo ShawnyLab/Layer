@@ -71,12 +71,15 @@ class ChatViewController: UIViewController {
                 //Todo - indicator
                 self.chatArray = chatArray
                 self.tableView.reloadData()
-                
+                print(chatArray.count-1)
+                tableView.scrollToRow(at: [0, chatArray.count-1], at: .bottom, animated: true)
             })
             .disposed(by: rx.disposeBag)
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+
         
         sendButton.rx.tap
             .bind { [unowned self] Void in
