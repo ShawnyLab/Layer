@@ -83,6 +83,7 @@ class LayerViewController: UIViewController {
                             cell.nameLabel.textColor = .black
                             cell.titleLabel.textColor = .black
                             cell.backgroundColor = .white
+                            cell.optionBtn.setImage(UIImage(named: "elipsisBlack"), for: .normal)
                         case .black:
                             cell.profileImageView.backgroundColor = .white
                             cell.dueLabel.textColor = .white
@@ -90,6 +91,7 @@ class LayerViewController: UIViewController {
                             cell.nameLabel.textColor = .white
                             cell.titleLabel.textColor = .white
                             cell.backgroundColor = .black
+                            cell.optionBtn.setImage(UIImage(named: "elipsisWhite"), for: .normal)
                         case .gray:
                             cell.profileImageView.backgroundColor = .black
                             cell.dueLabel.textColor = .black
@@ -97,6 +99,7 @@ class LayerViewController: UIViewController {
                             cell.nameLabel.textColor = .black
                             cell.titleLabel.textColor = .black
                             cell.backgroundColor = .layerGray
+                            cell.optionBtn.setImage(UIImage(named: "elipsisBlack"), for: .normal)
                         }
                     })
                     .disposed(by: self.rx.disposeBag)
@@ -129,8 +132,21 @@ class LayerViewController: UIViewController {
                     
                     cell.optionBtn.menu = UIMenu(children: [edit, changeLayer, delete])
                 } else {
-                    let sendMessage = UIAction(title: "댓글 보내기") { _ in
-                        //MARK: - Todo 댓글 보내기 Action
+                    let sendMessage = UIAction(title: "댓글 보내기") { [unowned self] _ in
+                        indicator.isHidden = false
+                        indicator.startAnimating()
+                        
+                        UserManager.shared.fetch(id: frameModel.writerId)
+                            .subscribe { [unowned self] userModel in
+                                let vc = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+                                vc.userModel = userModel
+                                vc.frameModel = frameModel
+                                indicator.isHidden = true
+                                indicator.stopAnimating()
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
+                            .disposed(by: rx.disposeBag)
+
                     }
                     cell.optionBtn.menu = UIMenu(children: [sendMessage, changeLayer])
                 }

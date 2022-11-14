@@ -23,12 +23,37 @@ class ChatViewController: UIViewController {
     
     @IBOutlet weak var tempButton: UIButton!
     
+    @IBOutlet weak var frameView: UIView!
+    @IBOutlet weak var frameTitleLabel: UILabel!
+    @IBOutlet weak var frameImageView: UIImageView!
+    @IBOutlet weak var frameContentLabel: UILabel!
+    
+    var frameModel: FrameModel?
     var userModel: UserModel!
     var chatArray: [ChatModel] = []
     private var isTemp = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let frameModel {
+            frameView.isHidden = false
+            if let imageUrl = frameModel.imageUrl {
+                frameContentLabel.isHidden = true
+                frameImageView.isHidden = false
+                frameImageView.setImage(url: imageUrl)
+                
+                frameTitleLabel.text = frameModel.createdAt
+            } else {
+                frameImageView.isHidden = true
+                frameContentLabel.isHidden = false
+                frameContentLabel.text = frameModel.content
+                frameTitleLabel.text = frameModel.title
+            }
+        } else {
+            frameView.isHidden = true
+        }
+        
         nameLabel.text = userModel.name
         idLabel.text = userModel.layerId
         
@@ -100,9 +125,9 @@ class ChatViewController: UIViewController {
         
         let keyboardHeight = keyboardFrame.height
         
-        self.bottomView.isHidden = false
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
+            self?.frameView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
         }
         
         
@@ -110,6 +135,7 @@ class ChatViewController: UIViewController {
     
     @objc func keyboardWillHideNotification(_ notification: Notification) {
         bottomView.transform = .identity
+        frameView.transform = .identity
     }
     
     func hideKeyboard() {

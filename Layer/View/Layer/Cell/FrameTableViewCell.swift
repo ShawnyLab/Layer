@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
-class FrameTableViewCell: UITableViewCell {
+final class FrameTableViewCell: UITableViewCell {
 
     static let reuseId = "frameCell"
 
