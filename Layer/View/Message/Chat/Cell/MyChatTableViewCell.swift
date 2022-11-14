@@ -11,6 +11,11 @@ class MyChatTableViewCell: UITableViewCell {
 
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var frameView: UIView!
+    
+    @IBOutlet weak var frameTitleLabel: UILabel!
+    @IBOutlet weak var frameImageView: UIImageView!
+    @IBOutlet weak var frameContentlabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

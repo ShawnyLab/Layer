@@ -12,14 +12,16 @@ final class ChatModel {
     let userId: String
     let createdAt: String
     let dueDate: String?
+    let frameModel: FrameModel?
     let uid: String
     
-    init(message: String, userId: String, createdAt: String, dueDate: String?, uid: String) {
+    init(message: String, userId: String, createdAt: String, dueDate: String?, uid: String, frameModel: FrameModel?) {
         self.message = message
         self.userId = userId
         self.createdAt = createdAt
         self.dueDate = dueDate
         self.uid = uid
+        self.frameModel = frameModel
     }
     
     init?(data: DataSnapshot) {
@@ -40,6 +42,12 @@ final class ChatModel {
                
             self.dueDate = value["dueDate"] as? String
             
+            if data.childSnapshot(forPath: "frame").exists() {
+                let frameData = data.childSnapshot(forPath: "frame")
+                self.frameModel = FrameModel(snapshot: frameData)
+            } else {
+                self.frameModel = nil
+            }
             
             
         } else {

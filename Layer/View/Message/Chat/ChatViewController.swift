@@ -80,7 +80,7 @@ class ChatViewController: UIViewController {
         
         sendButton.rx.tap
             .bind { [unowned self] Void in
-                let chatModel = ChatManager.shared.send(userId: userModel.uid, message: messageTextfield.text ?? "", isTemp: isTemp)
+                let chatModel = ChatManager.shared.send(userId: userModel.uid, message: messageTextfield.text ?? "", isTemp: isTemp, frameModel: frameModel)
                 messageTextfield.text = nil
                 if self.chatArray.isEmpty {
                     ChatManager.shared.createChatRoom(userId: userModel.uid)
@@ -163,11 +163,26 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.messageLabel.text = chatArray[indexPath.row].message
             
+            if let frameModel = chatArray[indexPath.row].frameModel {
+                print("frame")
+                cell.frameView.isHidden = false
+                cell.frameImageView.setImage(url: frameModel.imageUrl)
+                
+            } else {
+                cell.frameView.isHidden = true
+            }
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "yourCell", for: indexPath) as! YourChatTableViewCell
             cell.profileImageView.image = self.profileImageView.image
             cell.messageLabel.text = chatArray[indexPath.row].message
+            
+            if let frameModel = chatArray[indexPath.row].frameModel {
+                cell.frameView.isHidden = false
+            } else {
+                cell.frameView.isHidden = true
+            }
             return cell
         }
     }

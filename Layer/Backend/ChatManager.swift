@@ -45,7 +45,7 @@ final class ChatManager: CommonBackendType {
         }
     }
     
-    func send(userId: String, message: String, isTemp: Bool) -> ChatModel {
+    func send(userId: String, message: String, isTemp: Bool, frameModel: FrameModel?) -> ChatModel {
         let roomId = [CurrentUserModel.shared.uid!, userId].sorted().joined()
         
         let key = ref.child("chatRoom").child(roomId).childByAutoId().key!
@@ -63,8 +63,12 @@ final class ChatManager: CommonBackendType {
         
         ref.child("chatRoom").child(roomId).child("lastMessage")
             .setValue(["userId": CurrentUserModel.shared.uid, "message": message, "createdAt": createdAt, "dueDate": dueDate])
+        if let frameModel {
+            ref.child("chatRoom").child(roomId).child(key)
+                .child("frame").setValue(["content": frameModel.content, "title": frameModel.title, "isOpened": frameModel.isOpened, "layer": frameModel.layer, "imageUrl": frameModel.imageUrl, "writerId": frameModel.writerId, "createdAt": frameModel.createdAt, "dueDate": frameModel.dueDate])
+        }
         
-        return ChatModel(message: message, userId: CurrentUserModel.shared.uid, createdAt: createdAt, dueDate: dueDate, uid: key)
+        return ChatModel(message: message, userId: CurrentUserModel.shared.uid, createdAt: createdAt, dueDate: dueDate, uid: key, frameModel: frameModel)
         
 
     }
