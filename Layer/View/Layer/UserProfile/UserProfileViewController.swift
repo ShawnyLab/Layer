@@ -42,6 +42,8 @@ final class UserProfileViewController: UIViewController {
         
         cancelButton.isHidden = true
         
+        print(isFriend())
+        
         if isFriend() == -3 {
             
         } else if isFriend() == -1 {
@@ -55,6 +57,7 @@ final class UserProfileViewController: UIViewController {
             addFriendButton.setTitle("친구 수락", for: .normal)
             addFriendButton.setTitleColor(.white, for: .normal)
         } else {
+            print("else")
             addFriendButton.isHidden = true
             bindTableView()
         }

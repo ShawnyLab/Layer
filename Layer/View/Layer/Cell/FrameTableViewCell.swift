@@ -23,10 +23,7 @@ final class FrameTableViewCell: UITableViewCell {
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
-    
-    let userModel = BehaviorSubject<UserModel?>(value: nil)
-    let imageUrl = BehaviorRelay<String?>(value: nil)
-    
+        
     func bind(frameModel: FrameModel) {
         profileImageView.layer.cornerRadius = 12.5
         
@@ -39,24 +36,8 @@ final class FrameTableViewCell: UITableViewCell {
         
         titleLabel.text = frameModel.title
         contentLabel.text = frameModel.content
-        
-        UserManager.shared.fetch(id: frameModel.writerId)
-            .subscribe(onSuccess: { userModel in
-                self.userModel.onNext(userModel)
-            })
-            .disposed(by: rx.disposeBag)
-        
-        userModel.subscribe(onNext: { [unowned self] userModel in
-            if let userModel = userModel {
-                nameLabel.text = userModel.layerId
-                if userModel.profileImageUrl != nil {
-                    profileImageView.setImage(url: userModel.profileImageUrl)
-                } else {
-                    profileImageView.image = nil
-                }
-            }
-        })
-        .disposed(by: rx.disposeBag)
+
+
         
         if frameModel.dueDate == nil {
             dueLabel.isHidden = true

@@ -40,7 +40,6 @@ final class AuthManager: CommonBackendType {
     
     func fetchFriend() -> Completable {
         return Completable.create() { [unowned self] completable in
-            print("fetchFriend")
             ref.child("users").child(CurrentUserModel.shared.uid)
                 .child("friends").observeSingleEvent(of: .value) { DataSnapShot in
                     var temp = [FriendModel]()

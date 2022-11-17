@@ -77,6 +77,7 @@ final class SignInViewController: UIViewController {
                             indicator.stopAnimating()
                             
                             if let verifId = verificationId {
+                                print("verifId")
                                 numberTextfield.text = nil
                                 numberTextfield.isHidden = true
                                 codeTextfield.isHidden = false
@@ -84,8 +85,8 @@ final class SignInViewController: UIViewController {
                                 nextButton.backgroundColor = UIColor(red: 108, green: 108, blue: 108)
                                 
                                 self.verifId = verifId
-                                
-                                
+                            } else {
+                                print(error)
                             }
                         }
                 } else if codeTextfield.isHidden == false {

@@ -13,6 +13,7 @@ class MyChatTableViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var frameView: UIView!
     
+    @IBOutlet weak var frameContainer: UIView!
     @IBOutlet weak var frameTitleLabel: UILabel!
     @IBOutlet weak var frameImageView: UIImageView!
     @IBOutlet weak var frameContentlabel: UILabel!
@@ -20,12 +21,8 @@ class MyChatTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         messageView.layer.cornerRadius = 13
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+        frameContainer.layer.borderWidth = 1
     }
 
 }

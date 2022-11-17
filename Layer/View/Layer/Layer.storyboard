@@ -667,7 +667,7 @@
                                     <constraint firstAttribute="width" constant="50" id="Gv6-Sh-3Pv"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="hamburger"/>
+                                <state key="normal" image="hamburgerBlack"/>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pTV-kw-LfE">
                                 <rect key="frame" x="20" y="157" width="79" height="79"/>
@@ -757,7 +757,7 @@
     <resources>
         <image name="chevron_left" width="14.666666984558105" height="22.666666030883789"/>
         <image name="elipsisBlack" width="20" height="4"/>
-        <image name="hamburger" width="24" height="21"/>
+        <image name="hamburgerBlack" width="24" height="21"/>
         <image name="imageFrame" width="89" height="89"/>
         <image name="textFrame" width="89" height="89"/>
         <namedColor name="LayerGray">

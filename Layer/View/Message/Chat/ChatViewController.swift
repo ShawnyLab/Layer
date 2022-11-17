@@ -71,8 +71,10 @@ class ChatViewController: UIViewController {
                 //Todo - indicator
                 self.chatArray = chatArray
                 self.tableView.reloadData()
-                print(chatArray.count-1)
-                tableView.scrollToRow(at: [0, chatArray.count-1], at: .bottom, animated: true)
+                if !chatArray.isEmpty {
+                    tableView.scrollToRow(at: [0, chatArray.count-1], at: .bottom, animated: true)
+                }
+                
             })
             .disposed(by: rx.disposeBag)
         
@@ -87,6 +89,10 @@ class ChatViewController: UIViewController {
                 messageTextfield.text = nil
                 if self.chatArray.isEmpty {
                     ChatManager.shared.createChatRoom(userId: userModel.uid)
+                }
+                if frameModel != nil {
+                    self.frameView.isHidden = true
+                    self.frameModel = nil
                 }
                 self.chatArray.append(chatModel)
 
@@ -167,14 +173,24 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             cell.messageLabel.text = chatArray[indexPath.row].message
             
             if let frameModel = chatArray[indexPath.row].frameModel {
-                print("frame")
                 cell.frameView.isHidden = false
-                cell.frameImageView.setImage(url: frameModel.imageUrl)
-                
+
+                if let imageUrl = frameModel.imageUrl {
+                    cell.frameImageView.isHidden = false
+                    cell.frameImageView.setImage(url: imageUrl)
+                    cell.frameContentlabel.isHidden = true
+                } else {
+                    cell.frameImageView.isHidden = true
+                    cell.frameContentlabel.isHidden = false
+                    cell.frameContentlabel.text = frameModel.content
+
+                }
+                cell.frameTitleLabel.text = frameModel.title
+
             } else {
+                cell.frameImageView.image = nil
                 cell.frameView.isHidden = true
             }
-            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "yourCell", for: indexPath) as! YourChatTableViewCell
@@ -183,7 +199,21 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             
             if let frameModel = chatArray[indexPath.row].frameModel {
                 cell.frameView.isHidden = false
+
+                if let imageUrl = frameModel.imageUrl {
+                    cell.frameImageView.isHidden = false
+                    cell.frameImageView.setImage(url: imageUrl)
+                    cell.frameContentLabel.isHidden = true
+                } else {
+                    cell.frameImageView.isHidden = true
+                    cell.frameContentLabel.isHidden = false
+                    cell.frameContentLabel.text = frameModel.content
+
+                }
+                cell.frameTitleLabel.text = frameModel.title
+
             } else {
+                cell.frameImageView.image = nil
                 cell.frameView.isHidden = true
             }
             return cell

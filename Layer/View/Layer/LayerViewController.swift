@@ -73,6 +73,17 @@ class LayerViewController: UIViewController {
             .bind(to: tableView.rx.items(cellIdentifier: FrameTableViewCell.reuseId, cellType: FrameTableViewCell.self)) { idx, frameModel, cell in
                 cell.bind(frameModel: frameModel)
                 
+                UserManager.shared.fetch(id: frameModel.writerId)
+                    .subscribe(onSuccess: { [unowned self] userModel in
+                        cell.nameLabel.text = userModel.layerId
+                        if userModel.profileImageUrl != nil {
+                            cell.profileImageView.setImage(url: userModel.profileImageUrl)
+                        } else {
+                            cell.profileImageView.image = nil
+                        }
+                    })
+                    .disposed(by: self.rx.disposeBag)
+                
                 self.layerRelay
                     .subscribe(onNext: { layer in
                         switch layer {
@@ -163,6 +174,7 @@ class LayerViewController: UIViewController {
                 
                 viewModel.fetchUserModel(idx: idx.row)
                     .subscribe { [unowned self] userModel in
+                        print(userModel.uid)
                         
                         AuthManager.shared.fetchFriend()
                             .subscribe(onCompleted: { [unowned self] in
