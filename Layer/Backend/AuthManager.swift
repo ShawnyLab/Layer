@@ -25,7 +25,11 @@ final class AuthManager: CommonBackendType {
                         
                         if DataSnapshot.exists() {
                             CurrentUserModel.shared.setData(data: DataSnapshot)
-                            completable(.completed)
+                                .subscribe(onCompleted: {
+                                    completable(.completed)
+                                })
+                                .disposed(by: self.rx.disposeBag)
+                            
                         } else {
                             completable(.error(DataFetchingError.noData))
                         }

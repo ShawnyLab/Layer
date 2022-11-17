@@ -19,6 +19,7 @@ final class CurrentUserModel: NSObject {
     var phoneNumber: String!
     var des: String?
     var friends: [FriendModel] = []
+    var friendsHash = [String: Int]()
     var frames: [String: Bool] = [:]
     var frameModels: [SimpleFrameModel] = []
     var profileImageUrl: String?
@@ -27,41 +28,50 @@ final class CurrentUserModel: NSObject {
         super.init()
     }
 
-    func setData(data: DataSnapshot) {
-        guard let value = data.value as? [String: Any] else { return }
-        self.uid = data.key
-        
-        if let layerId = value["layerId"] as? String,
-           let phoneNumber = value["phoneNumber"] as? String {
-            self.layerId = layerId
-            self.phoneNumber = phoneNumber
-        } else {
-            return
-        }
-        self.name = value["name"] as? String
-        self.profileImageUrl = value["profileImageUrl"] as? String
-        self.des = value["des"] as? String
-        
-        let friendsData = data.childSnapshot(forPath: "friends")
-        
-        if friendsData.exists() {
-            for friendData in friendsData.children.allObjects as! [DataSnapshot] {
-                if let friendModel = FriendModel(data: friendData) {
-                    friends.append(friendModel)
+    func setData(data: DataSnapshot) -> Completable {
+        return Completable.create() { [unowned self] completable in
+            
+            guard let value = data.value as? [String: Any] else {
+                completable(.error(DataFetchingError.noData))
+                return Disposables.create()
+            }
+            self.uid = data.key
+            
+            if let layerId = value["layerId"] as? String,
+               let phoneNumber = value["phoneNumber"] as? String {
+                self.layerId = layerId
+                self.phoneNumber = phoneNumber
+            } else {
+                completable(.error(DataFetchingError.noData))
+                return Disposables.create()
+            }
+            self.name = value["name"] as? String
+            self.profileImageUrl = value["profileImageUrl"] as? String
+            self.des = value["des"] as? String
+            
+            let friendsData = data.childSnapshot(forPath: "friends")
+            
+            if friendsData.exists() {
+                for friendData in friendsData.children.allObjects as! [DataSnapshot] {
+                    if let friendModel = FriendModel(data: friendData) {
+                        friends.append(friendModel)
+                        friendsHash[friendModel.uid] = friendModel.layer
+                    }
                 }
             }
-        }
-        
-        let frameData = data.childSnapshot(forPath: "frames")
-        
-        if frameData.exists() {
-            for frames in frameData.children.allObjects as! [DataSnapshot] {
-                if let frameModel = SimpleFrameModel(data: frames) {
-                    frameModels.append(frameModel)
+            
+            let frameData = data.childSnapshot(forPath: "frames")
+            
+            if frameData.exists() {
+                for frames in frameData.children.allObjects as! [DataSnapshot] {
+                    if let frameModel = SimpleFrameModel(data: frames) {
+                        frameModels.append(frameModel)
+                    }
                 }
             }
+            completable(.completed)
+            return Disposables.create()
         }
-
     }
     
     

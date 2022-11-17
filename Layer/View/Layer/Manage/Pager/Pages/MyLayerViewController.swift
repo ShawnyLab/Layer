@@ -50,7 +50,10 @@ class MyLayerViewController: UIViewController {
                     cell.layerLabel.layer.borderColor = UIColor(red: 153, green: 153, blue: 153).cgColor
                     cell.layerLabel.backgroundColor = .white
                 } else if friendModel.layer == 1 {
-                    
+                    cell.layerLabel.text = "Layer Gray"
+                    cell.layerLabel.textColor = .white
+                    cell.layerLabel.backgroundColor = UIColor(red: 95, green: 95, blue: 95)
+                    cell.layerLabel.layer.borderWidth = 0
                 } else if friendModel.layer == 2 {
                     cell.layerLabel.text = "Layer Black"
                     cell.layerLabel.textColor = .white

@@ -18,6 +18,7 @@ class LayerViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
+    
     let layerRelay = BehaviorRelay<LayerType>(value: .white)
     private let refresh = UIRefreshControl()
     private var isLoading = false
@@ -26,6 +27,10 @@ class LayerViewController: UIViewController {
         super.viewDidLoad()
         
         bind()
+        layerRelay
+            .bind(to: viewModel.layerStatus)
+            .disposed(by: rx.disposeBag)
+        
         refresh.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
         tableView.refreshControl = refresh
         
@@ -47,17 +52,18 @@ class LayerViewController: UIViewController {
     }
     
     @objc func pullToRefresh(_ sender: Any) {
-        FrameManager.shared.fetchFirst()
-            .subscribe {
-                print("fetch")
-                self.refresh.endRefreshing()
-            } onError: { err in
-                print(err)
-                self.refresh.endRefreshing()
-
-            }
-            .disposed(by: rx.disposeBag)
-
+        layerRelay.subscribe { [unowned self] layerType in
+            FrameManager.shared.fetchLayer(layer: layerType)
+                .subscribe {
+                    print("fetch")
+                    self.refresh.endRefreshing()
+                } onError: { err in
+                    print(err)
+                    self.refresh.endRefreshing()
+                }
+                .disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
     }
 
     

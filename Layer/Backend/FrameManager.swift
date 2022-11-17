@@ -29,6 +29,36 @@ final class FrameManager: CommonBackendType, FrameManagerType {
     
     private override init(){}
     
+    func fetchLayer(layer: LayerType) -> Completable {
+        return Completable.create() { [unowned self] completable in
+            ref.child("frame").queryOrderedByKey().queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
+                var temp = [FrameModel]()
+                for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
+                    if let frameModel = FrameModel(snapshot: data) {
+                        let writerLayer = CurrentUserModel.shared.friendsHash[frameModel.writerId] ?? -3
+                        switch layer {
+                        case .white:
+                            if writerLayer >= 0 || frameModel.isOpened {
+                                temp.insert(frameModel, at: 0)
+                            }
+                        case .gray:
+                            if writerLayer >= 1 {
+                                temp.insert(frameModel, at: 0)
+                            }
+                        case .black:
+                            if writerLayer >= 2 {
+                                temp.insert(frameModel, at: 0)
+                            }
+                        }
+                    }
+                }
+                frameRelay.accept(temp)
+                completable(.completed)
+            }
+            return Disposables.create()
+        }
+    }
+    
     func fetchFirst() -> Completable {
         return Completable.create() { [unowned self] completable in
             ref.child("frame").queryOrderedByKey().queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in

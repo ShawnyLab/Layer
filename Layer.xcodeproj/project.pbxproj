@@ -72,6 +72,7 @@
 		D1E06E1528917FAD001F12FD /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E06E1428917FAD001F12FD /* Message.storyboard */; };
 		D1E06E1728917FBC001F12FD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E06E1628917FBC001F12FD /* ProfileViewController.swift */; };
 		D1E06E1928917FC3001F12FD /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E06E1828917FC3001F12FD /* MessageViewController.swift */; };
+		D1F1581B29264C6C00A20D0E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1581A29264C6C00A20D0E /* SettingViewController.swift */; };
 		D1F70E8728D9421900873E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8628D9421900873E71 /* UserManager.swift */; };
 		D1F70E8928D9439500873E71 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8828D9439500873E71 /* UserModel.swift */; };
 		D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */; };
@@ -147,6 +148,7 @@
 		D1E06E1428917FAD001F12FD /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		D1E06E1628917FBC001F12FD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D1E06E1828917FC3001F12FD /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		D1F1581A29264C6C00A20D0E /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D1F70E8628D9421900873E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D1F70E8828D9439500873E71 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFrameModel.swift; sourceTree = "<group>"; };
@@ -493,10 +495,19 @@
 		D1E06E1128917F9F001F12FD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D1F1581929264C5C00A20D0E /* Setting */,
 				D1E06E1228917FA5001F12FD /* Profile.storyboard */,
 				D1E06E1628917FBC001F12FD /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		D1F1581929264C5C00A20D0E /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				D1F1581A29264C6C00A20D0E /* SettingViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		EE1ACEF6AEB37D58409B0A83 /* Pods */ = {
@@ -657,6 +668,7 @@
 				D16194B728EBB515009DD015 /* SelectFrameViewController.swift in Sources */,
 				D13AFE9C2895757D00EFDC67 /* UIImageView+.swift in Sources */,
 				D1DB663A28ED45AB007A8837 /* AddFrameType.swift in Sources */,
+				D1F1581B29264C6C00A20D0E /* SettingViewController.swift in Sources */,
 				D13E1882291E34A4004F35D0 /* ChangeLayerViewController.swift in Sources */,
 				D1E06E0A28915D64001F12FD /* UIFont+.swift in Sources */,
 				D15D766D291F901400FD5EBC /* ChangeFinalViewController.swift in Sources */,

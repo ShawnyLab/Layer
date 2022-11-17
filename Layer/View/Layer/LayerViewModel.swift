@@ -10,6 +10,7 @@ import RxCocoa
 
 class LayerViewModel: NSObject {
     
+    let layerStatus = BehaviorRelay<LayerType>(value: .white)
     let frameRelay = BehaviorRelay<[FrameModel]>(value: [])
     
     override init() {
@@ -23,13 +24,16 @@ class LayerViewModel: NSObject {
     }
     
     func reload() {
-        FrameManager.shared.fetchFirst()
-            .subscribe {
-                print("fetch")
-            } onError: { err in
-                print(err)
-            }
-            .disposed(by: rx.disposeBag)
+        layerStatus.subscribe { [unowned self] layerType in
+            FrameManager.shared.fetchLayer(layer: layerType)
+                .subscribe {
+                    print("fetch")
+                } onError: { err in
+                    print(err)
+                }
+                .disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
 
     }
     

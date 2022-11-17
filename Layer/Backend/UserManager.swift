@@ -92,6 +92,7 @@ class UserManager: CommonBackendType {
         }
         
         CurrentUserModel.shared.friends.first(where: {$0.uid == uid})!.layer = layer.rawValue
+        CurrentUserModel.shared.friendsHash[uid] = layer.rawValue
     }
 
 }

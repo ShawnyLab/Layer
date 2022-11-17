@@ -432,6 +432,11 @@ class MainViewController: UIViewController {
             .disposed(by: rx.disposeBag)
         pageVC.mainVC = self
     }
+    
+    @IBAction func setting(_ sender: Any) {
+        let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "settingVC") as! SettingViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 final class FloatingButton: UIButton {

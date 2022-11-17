@@ -70,6 +70,9 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="hamburgerBlack"/>
+                                <connections>
+                                    <action selector="setting:" destination="l9T-DH-zek" eventType="touchUpInside" id="BGb-S1-Sgz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fe-dl-yS2">
                                 <rect key="frame" x="299" y="78.5" width="50" height="50"/>
