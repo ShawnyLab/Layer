@@ -43,18 +43,18 @@ class MyLayerViewController: UIViewController {
         friendArray
             .bind(to: tableView.rx.items(cellIdentifier: "mylayerCell", cellType: MyLayerCell.self)) { [unowned self] idx, friendModel, cell in
                 
-                if friendModel.layer == 0 {
+                if friendModel.layer/10 == 0 {
                     cell.layerLabel.text = "Layer White"
                     cell.layerLabel.textColor = UIColor(red: 153, green: 153, blue: 153)
                     cell.layerLabel.layer.borderWidth = 1
                     cell.layerLabel.layer.borderColor = UIColor(red: 153, green: 153, blue: 153).cgColor
                     cell.layerLabel.backgroundColor = .white
-                } else if friendModel.layer == 1 {
+                } else if friendModel.layer/10 == 1 {
                     cell.layerLabel.text = "Layer Gray"
                     cell.layerLabel.textColor = .white
                     cell.layerLabel.backgroundColor = UIColor(red: 95, green: 95, blue: 95)
                     cell.layerLabel.layer.borderWidth = 0
-                } else if friendModel.layer == 2 {
+                } else if friendModel.layer/10 == 2 {
                     cell.layerLabel.text = "Layer Black"
                     cell.layerLabel.textColor = .white
                     cell.layerLabel.backgroundColor = .black

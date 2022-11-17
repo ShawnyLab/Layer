@@ -27,26 +27,53 @@ final class FrameManager: CommonBackendType, FrameManagerType {
     
     let frameRelay = BehaviorRelay<[FrameModel]>(value: [])
     
+    private var layerType: LayerType = .white
+    
     private override init(){}
     
     func fetchLayer(layer: LayerType) -> Completable {
+        self.layerType = layer
         return Completable.create() { [unowned self] completable in
-            ref.child("frame").queryOrderedByKey().queryLimited(toLast: 5).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
+            ref.child("frame").queryOrderedByKey().queryLimited(toLast: 10).observeSingleEvent(of: .value) { [unowned self] dataSnapShot in
                 var temp = [FrameModel]()
                 for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
                     if let frameModel = FrameModel(snapshot: data) {
-                        let writerLayer = CurrentUserModel.shared.friendsHash[frameModel.writerId] ?? -3
+                        let writerLayer = (CurrentUserModel.shared.friendsHash[frameModel.writerId] ?? -30)/10
+                        
+                        let myLayerFromWriter = (CurrentUserModel.shared.friendsHash[frameModel.writerId] ?? -3)%10
+                        print(writerLayer, myLayerFromWriter, frameModel.writerId)
+                        
+                        var canShow = false
+                        
+                        if frameModel.layer == 7 {
+                            canShow = true
+                        } else if (frameModel.layer == 6 && myLayerFromWriter == 1) || (frameModel.layer == 6 && myLayerFromWriter == 2) {
+                            canShow = true
+                        } else if (frameModel.layer == 5 && myLayerFromWriter == 0) || (frameModel.layer == 5 && myLayerFromWriter == 2) {
+                            canShow = true
+                        } else if (frameModel.layer == 4 && myLayerFromWriter == 2) {
+                            canShow = true
+                        } else if (frameModel.layer == 3 && myLayerFromWriter == 0) || (frameModel.layer == 3 && myLayerFromWriter == 1) {
+                            canShow = true
+                        } else if (frameModel.layer == 2 && myLayerFromWriter == 1) {
+                            canShow = true
+                        } else if (frameModel.layer == 1 && myLayerFromWriter == 0) {
+                            canShow = true
+                        }
+                        
+                        
+                        
                         switch layer {
                         case .white:
-                            if writerLayer >= 0 || frameModel.isOpened {
+                            if (writerLayer >= 0 && canShow) || frameModel.isOpened || frameModel.writerId == CurrentUserModel.shared.uid {
                                 temp.insert(frameModel, at: 0)
                             }
                         case .gray:
-                            if writerLayer >= 1 {
+                            if (writerLayer >= 1 && canShow) || frameModel.writerId == CurrentUserModel.shared.uid {
                                 temp.insert(frameModel, at: 0)
                             }
                         case .black:
-                            if writerLayer >= 2 {
+                            if (writerLayer >= 2 && canShow) || frameModel.writerId == CurrentUserModel.shared.uid {
                                 temp.insert(frameModel, at: 0)
                             }
                         }
@@ -88,7 +115,45 @@ final class FrameManager: CommonBackendType, FrameManagerType {
                     var temp = [FrameModel]()
                     for data in dataSnapShot.children.allObjects as! [DataSnapshot] {
                         if let frameModel = FrameModel(snapshot: data) {
-                            temp.insert(frameModel, at: 0)
+                            let writerLayer = (CurrentUserModel.shared.friendsHash[frameModel.writerId] ?? -30)/10
+                            
+                            let myLayerFromWriter = (CurrentUserModel.shared.friendsHash[frameModel.writerId] ?? -3)%10
+                            print(writerLayer, myLayerFromWriter, frameModel.writerId)
+                            
+                            var canShow = false
+                            
+                            if frameModel.layer == 7 {
+                                canShow = true
+                            } else if (frameModel.layer == 6 && myLayerFromWriter == 1) || (frameModel.layer == 6 && myLayerFromWriter == 2) {
+                                canShow = true
+                            } else if (frameModel.layer == 5 && myLayerFromWriter == 0) || (frameModel.layer == 5 && myLayerFromWriter == 2) {
+                                canShow = true
+                            } else if (frameModel.layer == 4 && myLayerFromWriter == 2) {
+                                canShow = true
+                            } else if (frameModel.layer == 3 && myLayerFromWriter == 0) || (frameModel.layer == 3 && myLayerFromWriter == 1) {
+                                canShow = true
+                            } else if (frameModel.layer == 2 && myLayerFromWriter == 1) {
+                                canShow = true
+                            } else if (frameModel.layer == 1 && myLayerFromWriter == 0) {
+                                canShow = true
+                            }
+                            
+                            
+                            
+                            switch self.layerType {
+                            case .white:
+                                if (writerLayer >= 0 && canShow) || frameModel.isOpened || frameModel.writerId == CurrentUserModel.shared.uid {
+                                    temp.insert(frameModel, at: 0)
+                                }
+                            case .gray:
+                                if (writerLayer >= 1 && canShow) || frameModel.writerId == CurrentUserModel.shared.uid {
+                                    temp.insert(frameModel, at: 0)
+                                }
+                            case .black:
+                                if (writerLayer >= 2 && canShow) || frameModel.writerId == CurrentUserModel.shared.uid {
+                                    temp.insert(frameModel, at: 0)
+                                }
+                            }
                         }
                     }
                     frameRelay.accept(frameRelay.value + temp)

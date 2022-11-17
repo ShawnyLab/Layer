@@ -53,15 +53,23 @@ class LayerViewController: UIViewController {
     
     @objc func pullToRefresh(_ sender: Any) {
         layerRelay.subscribe { [unowned self] layerType in
-            FrameManager.shared.fetchLayer(layer: layerType)
-                .subscribe {
-                    print("fetch")
-                    self.refresh.endRefreshing()
-                } onError: { err in
-                    print(err)
-                    self.refresh.endRefreshing()
-                }
-                .disposed(by: rx.disposeBag)
+            AuthManager.shared.fetchFriend()
+                .subscribe(onCompleted: {
+                    FrameManager.shared.fetchLayer(layer: layerType)
+                        .subscribe {
+
+                            print("fetch")
+                            self.refresh.endRefreshing()
+                        } onError: { err in
+                            print(err)
+                            self.refresh.endRefreshing()
+                        }
+                        .disposed(by: self.rx.disposeBag)
+
+                })
+                .disposed(by: self.rx.disposeBag)
+            
+
         }
         .disposed(by: rx.disposeBag)
     }
@@ -180,7 +188,6 @@ class LayerViewController: UIViewController {
                 
                 viewModel.fetchUserModel(idx: idx.row)
                     .subscribe { [unowned self] userModel in
-                        print(userModel.uid)
                         
                         AuthManager.shared.fetchFriend()
                             .subscribe(onCompleted: { [unowned self] in

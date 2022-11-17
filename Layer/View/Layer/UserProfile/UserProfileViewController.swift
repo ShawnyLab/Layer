@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 final class UserProfileViewController: UIViewController {
 
@@ -20,6 +23,7 @@ final class UserProfileViewController: UIViewController {
     @IBOutlet weak var addFriendButton: UIButton!
     
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     
     var userModel: UserModel!
@@ -36,34 +40,38 @@ final class UserProfileViewController: UIViewController {
         nameLabel.text = userModel.name
         desLabel.text = userModel.des
         
-        addFriendButton.layer.cornerRadius = 13
-        addFriendButton.layer.borderWidth = 0
-        addFriendButton.layer.borderColor = UIColor.black.cgColor
-        
         cancelButton.isHidden = true
+        cancelButton.layer.cornerRadius = 13
+        cancelButton.layer.borderWidth = 1
         
-        print(isFriend())
+        tableView.isHidden = true
         
-        if isFriend() == -3 {
-            
-        } else if isFriend() == -1 {
-            addFriendButton.backgroundColor = .white
-            addFriendButton.layer.borderWidth = 1
-            addFriendButton.setTitle("친구신청 대기중...", for: .normal)
-            addFriendButton.setTitleColor(.black, for: .normal)
-            
-            cancelButton.isHidden = false
-        } else if isFriend() == -2 {
-            addFriendButton.setTitle("친구 수락", for: .normal)
-            addFriendButton.setTitleColor(.white, for: .normal)
-        } else {
-            print("else")
+        addFriendButton.layer.cornerRadius = 13
+        
+        if isFriend() == -4 {
             addFriendButton.isHidden = true
+        } else if isFriend() == -3 {
+            buttonDefault()
+        } else if isFriend() == -1 {
+            buttonRequested()
+        } else if isFriend() == -2 {
+            buttonAccept()
+            cancelButton.isHidden = false
+        } else {
+            if isFriend() == 0 {
+                buttonWhite()
+            } else if isFriend() == 1 {
+                buttonGray()
+            } else if isFriend() == 2 {
+                buttonBlack()
+            }
             bindTableView()
         }
         
         addFriendButton.rx.tap
             .subscribe(onNext: { [unowned self] in
+                
+                
                 
                 if isFriend() == -3 {
                     UserManager.shared.sendFriendRequest(userModel: userModel)
@@ -102,18 +110,78 @@ final class UserProfileViewController: UIViewController {
         profileImageView.layer.cornerRadius = 39.5
     }
     
+    private func buttonDefault() {
+        addFriendButton.isHidden = false
+        addFriendButton.backgroundColor = .black
+        addFriendButton.layer.borderWidth = 0
+        addFriendButton.setTitleColor(UIColor(red: 152, green: 248, blue: 190), for: .normal)
+        addFriendButton.setTitle("친구 신청", for: .normal)
+    }
+    
+    private func buttonAccept() {
+        addFriendButton.isHidden = false
+        addFriendButton.backgroundColor = .black
+        addFriendButton.layer.borderWidth = 0
+        addFriendButton.setTitleColor(UIColor(red: 152, green: 248, blue: 190), for: .normal)
+        addFriendButton.setTitle("친구 수락", for: .normal)
+    }
+    
+    private func buttonRequested() {
+        addFriendButton.isHidden = false
+        addFriendButton.backgroundColor = .white
+        addFriendButton.layer.borderWidth = 1
+        addFriendButton.layer.borderColor = UIColor.black.cgColor
+        addFriendButton.setTitleColor(.black, for: .normal)
+        addFriendButton.setTitle("요청됨", for: .normal)
+    }
+    
+    private func buttonWhite() {
+        addFriendButton.isHidden = false
+        addFriendButton.backgroundColor = .white
+        addFriendButton.layer.borderWidth = 1
+        addFriendButton.layer.borderColor = UIColor(red: 153, green: 153, blue: 153).cgColor
+        addFriendButton.setTitleColor(UIColor(red: 153, green: 153, blue: 153), for: .normal)
+        addFriendButton.setTitle("Layer White", for: .normal)
+    }
+    
+    private func buttonGray() {
+        addFriendButton.isHidden = false
+        addFriendButton.backgroundColor = UIColor(red: 95, green: 95, blue: 95)
+        addFriendButton.layer.borderWidth = 0
+        addFriendButton.setTitleColor(.white, for: .normal)
+        addFriendButton.setTitle("Layer Gray", for: .normal)
+    }
+    
+    private func buttonBlack() {
+        addFriendButton.isHidden = false
+        addFriendButton.backgroundColor = .black
+        addFriendButton.layer.borderWidth = 0
+        addFriendButton.setTitleColor(.white, for: .normal)
+        addFriendButton.setTitle("Layer Black", for: .normal)
+    }
+    
     private func isFriend() -> Int {
         // code -3 : not friend
         
         
         if let friendModel = CurrentUserModel.shared.friends.first(where: {$0.uid == userModel.uid}) {
-            return friendModel.layer
+            return friendModel.layer / 10
+        } else if userModel.uid == CurrentUserModel.shared.uid {
+            return -4
         }
+        
         return -3
     }
     
     private func bindTableView() {
+        tableView.isHidden = false
         
+        Observable.just(userModel.frameArray)
+            .bind(to: tableView.rx.items(cellIdentifier: FriendFrameCell.reuseId, cellType: FriendFrameCell.self)) { idx, frameModel, cell in
+                cell.frameTitleLabel.text = frameModel.title
+                cell.frameImageView.setImage(url: frameModel.imageUrl)
+            }
+            .disposed(by: rx.disposeBag)
     }
     
     @IBAction func back(_ sender: Any) {
@@ -121,4 +189,15 @@ final class UserProfileViewController: UIViewController {
     }
     
 
+}
+
+final class FriendFrameCell: UITableViewCell {
+    static let reuseId = "friendframeCell"
+    
+    @IBOutlet weak var frameImageView: UIImageView!
+    @IBOutlet weak var frameTitleLabel: UILabel!
+    
+    
+    
+    
 }

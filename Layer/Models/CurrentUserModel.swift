@@ -77,6 +77,9 @@ final class CurrentUserModel: NSObject {
     
     func updateFriends(friends: [FriendModel]) {
         self.friends = friends
+        for friend in friends {
+            self.friendsHash[friend.uid] = friend.layer
+        }
     }
 
     func uploadImageOnStorage(image: UIImage, completion: @escaping () -> Void) {

@@ -81,18 +81,32 @@ class UserManager: CommonBackendType {
         ref.child("users").child(uid).child("profileImageUrl").setValue(url)
     }
     
-    func changeLayer(uid: String, layer: LayerType) {
+    func changeLayer(userModel: UserModel, layer: LayerType) {
+        guard let preLayer = CurrentUserModel.shared.friendsHash[userModel.uid] else { return } // 기존 레이어
+        
+        guard let otherUserMe = userModel.friends.first(where: {$0.uid == CurrentUserModel.shared.uid}) else { return }
+        guard let otherLayer = otherUserMe.layer else { return } //다른 사람의 레이어
+        
         switch layer {
+            
         case .black:
-            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).child("layer").setValue(2)
+            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(userModel.uid).child("layer").setValue(20 + preLayer%10)
+            ref.child("users").child(userModel.uid).child("friends").child(CurrentUserModel.shared.uid).child("layer").setValue(otherLayer/10 * 10 + 2)
+            
         case .gray:
-            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).child("layer").setValue(1)
+            
+            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(userModel.uid).child("layer").setValue(10 + preLayer%10)
+            ref.child("users").child(userModel.uid).child("friends").child(CurrentUserModel.shared.uid).child("layer").setValue(otherLayer/10 * 10 + 1)
+
         case .white:
-            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(uid).child("layer").setValue(0)
+            ref.child("users").child(CurrentUserModel.shared.uid).child("friends").child(userModel.uid).child("layer").setValue(preLayer%10)
+            ref.child("users").child(userModel.uid).child("friends").child(CurrentUserModel.shared.uid).child("layer").setValue(otherLayer/10 * 10)
+
         }
         
-        CurrentUserModel.shared.friends.first(where: {$0.uid == uid})!.layer = layer.rawValue
-        CurrentUserModel.shared.friendsHash[uid] = layer.rawValue
+        otherUserMe.layer = otherLayer/10 * 10 + layer.rawValue
+        CurrentUserModel.shared.friends.first(where: {$0.uid == userModel.uid})!.layer = preLayer%10 + layer.rawValue*10
+        CurrentUserModel.shared.friendsHash[userModel.uid] = preLayer%10 + layer.rawValue*10
     }
 
 }

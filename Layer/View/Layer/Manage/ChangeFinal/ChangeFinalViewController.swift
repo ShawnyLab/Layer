@@ -40,14 +40,14 @@ final class ChangeFinalViewController: UIViewController {
         switch layerStatus {
         case .black:
             subLabel.text = "레이어 BLACK에 배치"
-            toShowRelay.accept(CurrentUserModel.shared.friends.filter({$0.layer == 2 && $0.uid != userModel.uid}))
+            toShowRelay.accept(CurrentUserModel.shared.friends.filter({$0.layer/10 == 2 && $0.uid != userModel.uid}))
         case .gray:
             subLabel.text = "레이어 GRAY에 배치"
-            toShowRelay.accept(CurrentUserModel.shared.friends.filter({$0.layer == 1 && $0.uid != userModel.uid}))
+            toShowRelay.accept(CurrentUserModel.shared.friends.filter({$0.layer/10 == 1 && $0.uid != userModel.uid}))
 
         case .white:
             subLabel.text = "레이어 WHITE에 배치"
-            toShowRelay.accept(CurrentUserModel.shared.friends.filter({$0.layer == 0 && $0.uid != userModel.uid}))
+            toShowRelay.accept(CurrentUserModel.shared.friends.filter({$0.layer/10 == 0 && $0.uid != userModel.uid}))
 
         case .none:
             break
@@ -61,7 +61,7 @@ final class ChangeFinalViewController: UIViewController {
         
         doneButton.rx.tap
             .bind { [unowned self] _ in
-                UserManager.shared.changeLayer(uid: userModel.uid, layer: layerStatus)
+                UserManager.shared.changeLayer(userModel: userModel, layer: layerStatus)
                 self.dismiss(animated: true) {
                     self.topVC.dismiss(animated: true)
                 }

@@ -18,7 +18,8 @@ final class UserModel: NSObject {
     var profileImageUrl: String?
     var des: String?
     var friends: [FriendModel] = []
-    var frames: [String: Bool] = [:]
+    var frameArray: [FrameModel] = []
+//    var frames: [String: Bool] = [:]
     
     init?(data: DataSnapshot) {
         super.init()
@@ -46,11 +47,14 @@ final class UserModel: NSObject {
             }
         }
         
-        let frameData = data.childSnapshot(forPath: "frames")
+        let framesData = data.childSnapshot(forPath: "frames")
         
-        if frameData.exists() {
-            guard let frameValue = frameData.value as? [String: Bool] else { return }
-            self.frames = frameValue
+        if framesData.exists() {
+            for frameData in framesData.children.allObjects as! [DataSnapshot] {
+                if let frameModel = FrameModel(snapshot: frameData) {
+                    frameArray.append(frameModel)
+                }
+            }
         }
         
     }
