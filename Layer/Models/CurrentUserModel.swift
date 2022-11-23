@@ -45,6 +45,7 @@ final class CurrentUserModel: NSObject {
                 completable(.error(DataFetchingError.noData))
                 return Disposables.create()
             }
+            
             self.name = value["name"] as? String
             self.profileImageUrl = value["profileImageUrl"] as? String
             self.des = value["des"] as? String
@@ -86,7 +87,7 @@ final class CurrentUserModel: NSObject {
         let storageRef = Storage.storage().reference().child("userImages").child(self.uid).child("image.jpeg")
         
         
-        let data = image.jpegData(compressionQuality: 0.9)
+        let data = image.jpegData(compressionQuality: 0.01)
         if let data = data {
             storageRef
                 .putData(data) { metadata, error in

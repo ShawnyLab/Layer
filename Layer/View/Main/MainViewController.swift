@@ -292,11 +292,12 @@ class MainViewController: UIViewController {
 
         self.floatingButtonTrailing.constant = 30
         self.floatingButtonBottom.constant = -30
-        UIView.animate(withDuration: 0.6, animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
             self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
             self.layerRelay.accept(.black)
+
         }) { _ in
             self.isAnimating = false
         }
@@ -309,7 +310,7 @@ class MainViewController: UIViewController {
         
         self.blackWidth.constant = UIScreen.main.bounds.height*2
         
-        UIView.animate(withDuration: 0.6, delay: 0.2, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.blackLayer.alpha = 0
             self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
@@ -327,9 +328,10 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.6, animations: {
             self.view.layoutIfNeeded()
             self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
-            self.layerRelay.accept(.white)
+            
         }) { _ in
             self.isAnimating = false
+            self.layerRelay.accept(.white)
 
         }
         self.greyWidth.constant = 0
@@ -390,15 +392,19 @@ class MainViewController: UIViewController {
     }
     
     private func showBlack() {
-        view.backgroundColor = .black
-        logoImage.image = UIImage(named: "logoWhite")
-        plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
-        floatingButton.backgroundColor = .black
-        floatingButton.layer.borderWidth = 1
-        floatingButton.layer.borderColor = UIColor.white.cgColor
-        titleLabel.textColor = .white
-        hamburgerButton.setImage(UIImage(named: "hamburgerWhite"), for: .normal)
-        circleButton.setImage(UIImage(named: "doubleCircleWhite"), for: .normal)
+        
+        UIView.animate(withDuration: 0.4, animations: { [unowned self] in
+            view.backgroundColor = .black
+            logoImage.image = UIImage(named: "logoWhite")
+            plusButton.setImage(UIImage(named: "plusWhite"), for: .normal)
+            floatingButton.backgroundColor = .black
+            floatingButton.layer.borderWidth = 1
+            floatingButton.layer.borderColor = UIColor.white.cgColor
+            titleLabel.textColor = .white
+            hamburgerButton.setImage(UIImage(named: "hamburgerWhite"), for: .normal)
+            circleButton.setImage(UIImage(named: "doubleCircleWhite"), for: .normal)
+        })
+
     }
     
     private func showWhite() {
@@ -454,7 +460,7 @@ final class FloatingButton: UIButton {
         if pressTimer == nil {
             pressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
                 self.cnt += 1
-                if self.cnt == 6 {
+                if self.cnt == 2 {
                     self.isPressing = true
                     self.openLayer()
                     timer.invalidate()

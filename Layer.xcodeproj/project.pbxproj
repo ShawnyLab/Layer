@@ -23,6 +23,7 @@
 		D13AFE9C2895757D00EFDC67 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13AFE9B2895757D00EFDC67 /* UIImageView+.swift */; };
 		D13E1882291E34A4004F35D0 /* ChangeLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13E1881291E34A4004F35D0 /* ChangeLayerViewController.swift */; };
 		D13E1884291E3631004F35D0 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13E1883291E3631004F35D0 /* CALayer+.swift */; };
+		D140B988292E44CF00B05901 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D140B987292E44CF00B05901 /* ProfileEditViewController.swift */; };
 		D1503D6C289527C400C53B81 /* FrameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1503D6B289527C400C53B81 /* FrameModel.swift */; };
 		D1503D6E2895280300C53B81 /* WriterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1503D6D2895280300C53B81 /* WriterModel.swift */; };
 		D1503D70289529EE00C53B81 /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1503D6F289529EE00C53B81 /* Encodable+.swift */; };
@@ -96,6 +97,7 @@
 		D13AFE9B2895757D00EFDC67 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		D13E1881291E34A4004F35D0 /* ChangeLayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLayerViewController.swift; sourceTree = "<group>"; };
 		D13E1883291E3631004F35D0 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		D140B987292E44CF00B05901 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		D148248228B0FD68005FF425 /* Layer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Layer.entitlements; sourceTree = "<group>"; };
 		D1503D6B289527C400C53B81 /* FrameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameModel.swift; sourceTree = "<group>"; };
 		D1503D6D2895280300C53B81 /* WriterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterModel.swift; sourceTree = "<group>"; };
@@ -213,6 +215,14 @@
 				D13E1881291E34A4004F35D0 /* ChangeLayerViewController.swift */,
 			);
 			path = ChangeLayer;
+			sourceTree = "<group>";
+		};
+		D140B986292E44C700B05901 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				D140B987292E44CF00B05901 /* ProfileEditViewController.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		D1503D6A289527A500C53B81 /* Models */ = {
@@ -495,6 +505,7 @@
 		D1E06E1128917F9F001F12FD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D140B986292E44C700B05901 /* Edit */,
 				D1F1581929264C5C00A20D0E /* Setting */,
 				D1E06E1228917FA5001F12FD /* Profile.storyboard */,
 				D1E06E1628917FBC001F12FD /* ProfileViewController.swift */,
@@ -666,6 +677,7 @@
 				D1A55F512891841300D9B645 /* MainViewController.swift in Sources */,
 				D12D4AD428EEA5F400923303 /* CommonModel.swift in Sources */,
 				D16194B728EBB515009DD015 /* SelectFrameViewController.swift in Sources */,
+				D140B988292E44CF00B05901 /* ProfileEditViewController.swift in Sources */,
 				D13AFE9C2895757D00EFDC67 /* UIImageView+.swift in Sources */,
 				D1DB663A28ED45AB007A8837 /* AddFrameType.swift in Sources */,
 				D1F1581B29264C6C00A20D0E /* SettingViewController.swift in Sources */,

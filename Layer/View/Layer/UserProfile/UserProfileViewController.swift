@@ -176,10 +176,18 @@ final class UserProfileViewController: UIViewController {
     private func bindTableView() {
         tableView.isHidden = false
         
+        tableView.rx.setDelegate(self)
+            .disposed(by: rx.disposeBag)
+        
         Observable.just(userModel.frameArray)
             .bind(to: tableView.rx.items(cellIdentifier: FriendFrameCell.reuseId, cellType: FriendFrameCell.self)) { idx, frameModel, cell in
                 cell.frameTitleLabel.text = frameModel.title
-                cell.frameImageView.setImage(url: frameModel.imageUrl)
+                if let imageUrl = frameModel.imageUrl {
+                    cell.frameImageView.isHidden = false
+                    cell.frameImageView.setImage(url: frameModel.imageUrl)
+                } else {
+                    cell.frameImageView.isHidden = true
+                }
             }
             .disposed(by: rx.disposeBag)
     }
@@ -189,6 +197,12 @@ final class UserProfileViewController: UIViewController {
     }
     
 
+}
+
+extension UserProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }
 
 final class FriendFrameCell: UITableViewCell {

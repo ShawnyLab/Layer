@@ -49,7 +49,7 @@ extension FrameUploadModel {
     
     private func uploadImageOnStorage(uid: String, completion: @escaping () -> Void) {
         let storageRef = Storage.storage().reference().child("frameImages").child(uid).child("image.jpeg")
-        let data = image!.jpegData(compressionQuality: 0.9)
+        let data = image!.jpegData(compressionQuality: 0.01)
         if let data = data {
             storageRef
                 .putData(data) { metadata, error in

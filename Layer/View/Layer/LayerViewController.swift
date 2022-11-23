@@ -37,14 +37,23 @@ class LayerViewController: UIViewController {
         layerRelay.subscribe(onNext: { [unowned self] layer in
             switch layer {
             case .white:
-                self.view.backgroundColor = .white
-                self.tableView.backgroundColor = .white
+                UIView.animate(withDuration: 1.0, delay: 0.3, animations: {
+                    self.view.backgroundColor = .white
+                    self.tableView.backgroundColor = .white
+                })
+
             case .black:
-                self.view.backgroundColor = .black
-                self.tableView.backgroundColor = .black
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.view.backgroundColor = .black
+                    self.tableView.backgroundColor = .black
+                })
+
             case .gray:
-                self.view.backgroundColor = .layerGray
-                self.tableView.backgroundColor = .layerGray
+                UIView.animate(withDuration: 1.0, delay: 0.3, animations: {
+                    self.view.backgroundColor = .layerGray
+                    self.tableView.backgroundColor = .layerGray
+                })
+
                 
             }
         })
@@ -86,7 +95,7 @@ class LayerViewController: UIViewController {
             .frameRelay
             .bind(to: tableView.rx.items(cellIdentifier: FrameTableViewCell.reuseId, cellType: FrameTableViewCell.self)) { idx, frameModel, cell in
                 cell.bind(frameModel: frameModel)
-                
+                cell.selectionStyle = .none
                 UserManager.shared.fetch(id: frameModel.writerId)
                     .subscribe(onSuccess: { [unowned self] userModel in
                         cell.nameLabel.text = userModel.layerId
@@ -102,29 +111,38 @@ class LayerViewController: UIViewController {
                     .subscribe(onNext: { layer in
                         switch layer {
                         case .white:
-                            cell.profileImageView.backgroundColor = .black
-                            cell.dueLabel.textColor = .black
-                            cell.contentLabel.textColor = .black
-                            cell.nameLabel.textColor = .black
-                            cell.titleLabel.textColor = .black
-                            cell.backgroundColor = .white
-                            cell.optionBtn.setImage(UIImage(named: "elipsisBlack"), for: .normal)
+                            UIView.animate(withDuration: 1.0, delay: 0.3, animations: {
+                                cell.profileImageView.backgroundColor = .black
+                                cell.dueLabel.textColor = .black
+                                cell.contentLabel.textColor = .black
+                                cell.nameLabel.textColor = .black
+                                cell.titleLabel.textColor = .black
+                                cell.backgroundColor = .white
+                                cell.optionBtn.setImage(UIImage(named: "elipsisBlack"), for: .normal)
+                            })
+
                         case .black:
-                            cell.profileImageView.backgroundColor = .white
-                            cell.dueLabel.textColor = .white
-                            cell.contentLabel.textColor = .white
-                            cell.nameLabel.textColor = .white
-                            cell.titleLabel.textColor = .white
-                            cell.backgroundColor = .black
-                            cell.optionBtn.setImage(UIImage(named: "elipsisWhite"), for: .normal)
+                            UIView.animate(withDuration: 1.0, delay: 0.3 ,animations: {
+                                cell.profileImageView.backgroundColor = .white
+                                cell.dueLabel.textColor = .white
+                                cell.contentLabel.textColor = .white
+                                cell.nameLabel.textColor = .white
+                                cell.titleLabel.textColor = .white
+                                cell.backgroundColor = .black
+                                cell.optionBtn.setImage(UIImage(named: "elipsisWhite"), for: .normal)
+                            })
+
                         case .gray:
-                            cell.profileImageView.backgroundColor = .black
-                            cell.dueLabel.textColor = .black
-                            cell.contentLabel.textColor = .black
-                            cell.nameLabel.textColor = .black
-                            cell.titleLabel.textColor = .black
-                            cell.backgroundColor = .layerGray
-                            cell.optionBtn.setImage(UIImage(named: "elipsisBlack"), for: .normal)
+                            UIView.animate(withDuration: 1.0, animations: {
+                                cell.profileImageView.backgroundColor = .black
+                                cell.dueLabel.textColor = .black
+                                cell.contentLabel.textColor = .black
+                                cell.nameLabel.textColor = .black
+                                cell.titleLabel.textColor = .black
+                                cell.backgroundColor = .layerGray
+                                cell.optionBtn.setImage(UIImage(named: "elipsisBlack"), for: .normal)
+                            })
+
                         }
                     })
                     .disposed(by: self.rx.disposeBag)

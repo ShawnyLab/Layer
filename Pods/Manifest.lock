@@ -819,6 +819,7 @@ PODS:
     - Libuv-gRPC/Interface (= 0.0.10)
   - Libuv-gRPC/Interface (0.0.10)
   - lottie-ios (3.4.0)
+  - Mantis (2.3.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -866,6 +867,7 @@ DEPENDENCIES:
   - FSPagerView
   - Kingfisher
   - lottie-ios
+  - Mantis (~> 2.3.0)
   - Moya
   - "NSObject+Rx"
   - ObjectMapper
@@ -914,6 +916,7 @@ SPEC REPOS:
     - leveldb-library
     - Libuv-gRPC
     - lottie-ios
+    - Mantis
     - Moya
     - nanopb
     - "NSObject+Rx"
@@ -964,6 +967,7 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   lottie-ios: 69495122151a378fdc7d1bb4c5930347e37baf1f
+  Mantis: ff534b83a23bb690c646e0542ca29927b85351f7
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
@@ -979,6 +983,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 941012f0f5a0d2daf1cca2dcdd2fc22dfc47cf4f
+PODFILE CHECKSUM: d117b0ac3c8db9e0a00b87ebc4e8134bf69f0e7f
 
 COCOAPODS: 1.11.2

@@ -19,6 +19,12 @@ final class SettingViewController: UIViewController {
     @IBOutlet weak var logoutBtn: UIButton!
     
     @IBOutlet weak var profileImageView: UIImageView!
+    
+    @IBOutlet weak var profileEditButton: UIButton!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +37,14 @@ final class SettingViewController: UIViewController {
         idLabel.text = CurrentUserModel.shared.layerId
         nameLabel.text = CurrentUserModel.shared.name
         profileImageView.setImage(url: CurrentUserModel.shared.profileImageUrl)
+        profileImageView.circular()
+        
+        profileEditButton.rx.tap
+            .bind { _ in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "profileeditVC") as! ProfileEditViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: rx.disposeBag)
     }
 
     @IBAction func logout(_ sender: Any) {

@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import Mantis
 
 class SelectFrameViewController: AddFrameType {
     static let storyId = "selectframeVC"
@@ -66,15 +67,36 @@ extension SelectFrameViewController: PHPickerViewControllerDelegate {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in // 6.
                 DispatchQueue.main.async {
                     guard let selectedImage = image as? UIImage else { return }
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "addtextframeVC") as! AddTextFrameViewController
-                    self.frameUploadModel = FrameUploadModel()
-                    vc.frameUploadModel = self.frameUploadModel
-                    vc.image = selectedImage
-                    self.navigationController?.pushViewController(vc, animated: true)
+
+                    let cropVC = Mantis.cropViewController(image: selectedImage)
+                    cropVC.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 375 / 275)
+                
+                    cropVC.delegate = self
+                    self.present(cropVC, animated: true)
                 }
             }
         }
         
         //Picker View Source https://velog.io/@wannabe_eung/%EC%95%A8%EB%B2%94%EC%9D%98-%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%A5%BC-%EC%84%A0%ED%83%9D%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-PHPickerViewController%EB%A5%BC-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90
     }
+}
+
+extension SelectFrameViewController: CropViewControllerDelegate {
+    func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
+        
+        cropViewController
+            .dismiss(animated: true) {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "addtextframeVC") as! AddTextFrameViewController
+                self.frameUploadModel = FrameUploadModel()
+                vc.frameUploadModel = self.frameUploadModel
+                vc.image = cropped
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: Mantis.CropViewController, original: UIImage) {
+        cropViewController.dismiss(animated: true)
+    }
+    
+    
 }
