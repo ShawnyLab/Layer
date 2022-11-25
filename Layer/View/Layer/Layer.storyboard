@@ -438,7 +438,6 @@
                                     <color key="titleColor" red="0.97254901959999995" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="back:" destination="kGU-ch-CXZ" eventType="touchUpInside" id="gDr-xk-5nf"/>
                                     <action selector="popAction:" destination="s8I-aG-Z1O" eventType="touchUpInside" id="maD-s7-5e3"/>
                                 </connections>
                             </button>

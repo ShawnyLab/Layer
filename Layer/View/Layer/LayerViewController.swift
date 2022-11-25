@@ -175,8 +175,20 @@ class LayerViewController: UIViewController {
                     cell.optionBtn.menu = UIMenu(children: [changeLayer, delete])
                 } else {
                     let changeLayer = UIAction(title: "레이어 이동") { _ in
-                        //MARK: - Todo 레이어 이동 Action
+                        self.indicator.isHidden = false
+                        self.indicator.startAnimating()
                         
+                        UserManager.shared.fetch(id: frameModel.writerId)
+                            .subscribe { userModel in
+                                let vc = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: ChangeLayerViewController.storyId) as! ChangeLayerViewController
+                                vc.userModel = userModel
+                                
+                                self.indicator.isHidden = true
+                                self.indicator.stopAnimating()
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: true)
+                            }
+                            .disposed(by: self.rx.disposeBag)
                     }
                     
                     let sendMessage = UIAction(title: "댓글 보내기") { [unowned self] _ in
