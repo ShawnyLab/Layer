@@ -149,18 +149,17 @@ class LayerViewController: UIViewController {
                 
                 
                 
-                let changeLayer = UIAction(title: "공개 범위 변경") { _ in
-                    //MARK: - Todo 공개 범위 변경 Action
-                }
+
                 
                 if frameModel.writerId == CurrentUserModel.shared.uid {
                     //My Frame
-                    let edit = UIAction(title: "프레임 수정") { _ in
-                        //MARK: - Todo 프레임 수정 Action
+                    let changeLayer = UIAction(title: "공개 범위 변경") { _ in
+                        let vc = self.storyboard?.instantiateViewController(identifier: "selectlayerVC") as! SelectLayerViewController
+                        vc.frameUploadModel = frameModel.toUploadModel()
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }
 
                     let delete = UIAction(title: "프레임 삭제", attributes: .destructive) { [unowned self] _ in
-                        //MARK: - Todo 프레임 삭제 Action
                         indicator.isHidden = false
                         indicator.startAnimating()
                         FrameManager.shared.delete(uid: frameModel.uid)
@@ -168,13 +167,18 @@ class LayerViewController: UIViewController {
                                 indicator.isHidden = true
                                 indicator.stopAnimating()
                                 
-//                                viewModel.reload()
+                                viewModel.reload()
                             }
                             .disposed(by: rx.disposeBag)
                     }
                     
-                    cell.optionBtn.menu = UIMenu(children: [edit, changeLayer, delete])
+                    cell.optionBtn.menu = UIMenu(children: [changeLayer, delete])
                 } else {
+                    let changeLayer = UIAction(title: "레이어 이동") { _ in
+                        //MARK: - Todo 레이어 이동 Action
+                        
+                    }
+                    
                     let sendMessage = UIAction(title: "댓글 보내기") { [unowned self] _ in
                         indicator.isHidden = false
                         indicator.startAnimating()

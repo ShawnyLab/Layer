@@ -70,4 +70,16 @@ struct FrameModel: Codable, Equatable {
     mutating func setImageUrl(imageUrl: String) {
         self.imageUrl = imageUrl
     }
+    
+    func toUploadModel() -> FrameUploadModel {
+        let model = FrameUploadModel()
+        model.layer = self.layer
+        model.title = self.title
+        model.content = self.content
+        model.imageUrl = self.imageUrl
+        model.isTemp = self.dueDate != nil
+        model.isOpened = self.isOpened
+        
+        return model
+    }
 }
