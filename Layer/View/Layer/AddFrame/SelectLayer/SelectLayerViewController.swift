@@ -34,6 +34,7 @@ class SelectLayerViewController: AddFrameType {
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var blockView: UIView!
     
     private let whiteOn = BehaviorRelay(value: true)
     private let grayOn = BehaviorRelay(value: true)
@@ -48,6 +49,7 @@ class SelectLayerViewController: AddFrameType {
         super.viewDidLoad()
         
         indicator.isHidden = true
+        blockView.isHidden = true
         
         tempView.layer.cornerRadius = 13
         tempView.layer.borderColor = UIColor.black.cgColor
@@ -155,6 +157,7 @@ class SelectLayerViewController: AddFrameType {
             .bind { [unowned self] Void in
                 indicator.isHidden = false
                 indicator.startAnimating()
+                blockView.isHidden = false
                 
                 frameUploadModel.isOpened = profileSwitch.isOn
                 frameUploadModel.isTemp = tempSwitch.isOn
