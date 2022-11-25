@@ -207,7 +207,14 @@ class LayerViewController: UIViewController {
                             .disposed(by: rx.disposeBag)
 
                     }
-                    cell.optionBtn.menu = UIMenu(children: [sendMessage, changeLayer])
+                    
+                    let report = UIAction(title: "신고 및 차단", attributes: .destructive) { [unowned self] _ in
+                        FrameManager.shared.reportUser(userId: frameModel.writerId)
+                        presentAlert(message: "해당 유저가 차단되었습니다.")
+                        viewModel.reload()
+                    }
+                    
+                    cell.optionBtn.menu = UIMenu(children: [sendMessage, changeLayer, report])
                 }
                 cell.optionBtn.showsMenuAsPrimaryAction = true
 

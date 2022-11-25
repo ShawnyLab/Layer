@@ -77,6 +77,7 @@
 		D1F70E8728D9421900873E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8628D9421900873E71 /* UserManager.swift */; };
 		D1F70E8928D9439500873E71 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8828D9439500873E71 /* UserModel.swift */; };
 		D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */; };
+		D1FBF74829309B530077E177 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FBF74729309B530077E177 /* UIViewController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +155,7 @@
 		D1F70E8628D9421900873E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D1F70E8828D9439500873E71 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFrameModel.swift; sourceTree = "<group>"; };
+		D1FBF74729309B530077E177 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		D4C168FDC4F38407D4319660 /* Pods_Layer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Layer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -382,6 +384,7 @@
 				D1C73BA128EE92E600E636F6 /* UIButton.swift */,
 				D1C73BA328EE95A800E636F6 /* Date+.swift */,
 				D13E1883291E3631004F35D0 /* CALayer+.swift */,
+				D1FBF74729309B530077E177 /* UIViewController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				D15626C928F681C200AE7E83 /* LayerManageViewController.swift in Sources */,
 				D1A554E928EBC85C0060226F /* SelectLayerViewController.swift in Sources */,
 				D1C73BA228EE92E600E636F6 /* UIButton.swift in Sources */,
+				D1FBF74829309B530077E177 /* UIViewController+.swift in Sources */,
 				D1A55F4F289182F800D9B645 /* LayerViewController.swift in Sources */,
 				D1D9D59F28F7EBA7004E9EB0 /* MyChatTableViewCell.swift in Sources */,
 				D1C73BA428EE95A800E636F6 /* Date+.swift in Sources */,
