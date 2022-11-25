@@ -114,4 +114,13 @@ final class CurrentUserModel: NSObject {
             
         }
     }
+    
+    func updateInfo(name: String?, id: String, des: String?) {
+        Database.database(url: "https://layer-8e3e6-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("users").child(CurrentUserModel.shared.uid).child("name").setValue(name)
+        Database.database(url: "https://layer-8e3e6-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("users").child(CurrentUserModel.shared.uid).child("layerId").setValue(id)
+        Database.database(url: "https://layer-8e3e6-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("users").child(CurrentUserModel.shared.uid).child("des").setValue(des)
+        self.name = name
+        self.layerId = id
+        self.des = des
+    }
 }

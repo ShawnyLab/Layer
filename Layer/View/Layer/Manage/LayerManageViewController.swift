@@ -23,6 +23,7 @@ class LayerManageViewController: UIViewController {
     @IBOutlet weak var mylayerLabel: UILabel!
     @IBOutlet weak var requestLabel: UILabel!
     
+    @IBOutlet weak var searchBarContainer: UIView!
     
     private var vcList = [UIViewController]()
     let pageVC = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -32,7 +33,8 @@ class LayerManageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        searchBarContainer.layer.cornerRadius = 13
+
         inviteView.layer.cornerRadius = 13
         inviteView.layer.borderWidth = 1
         inviteView.layer.borderColor = UIColor(red: 153, green: 153, blue: 153).cgColor

@@ -109,18 +109,15 @@ final class MessageViewController: UIViewController {
                             cell.backgroundColor = .white
                             cell.profileImageView.backgroundColor = .black
                             cell.idLabel.textColor = .black
-                            cell.messageLabel.textColor = .black
                         case .black:
                             cell.backgroundColor = .black
                             cell.profileImageView.backgroundColor = .white
                             cell.idLabel.textColor = .white
-                            cell.messageLabel.textColor = .white
 
                         case .gray:
                             cell.backgroundColor = .layerGray
                             cell.profileImageView.backgroundColor = .black
                             cell.idLabel.textColor = .black
-                            cell.messageLabel.textColor = .black
 
                         }
                     })
@@ -135,7 +132,7 @@ final class MessageViewController: UIViewController {
                         }
 
                         cell.idLabel.text = userModel.layerId
-                        cell.messageLabel.text = roomModel.lastMessage?.message
+
                         
                     }) { error in
                         print(error)
@@ -233,7 +230,6 @@ final class ChatRoomCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var idLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
     
     override func awakeFromNib() {
         profileImageView.layer.cornerRadius = 20

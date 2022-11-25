@@ -25,6 +25,7 @@ final class UserProfileViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var messageButton: UIButton!
     
     var userModel: UserModel!
     
@@ -47,6 +48,7 @@ final class UserProfileViewController: UIViewController {
         tableView.isHidden = true
         
         addFriendButton.layer.cornerRadius = 13
+        messageButton.layer.cornerRadius = 13
         
         if isFriend() == -4 {
             addFriendButton.isHidden = true
@@ -102,6 +104,15 @@ final class UserProfileViewController: UIViewController {
                 
                 cancelButton.isHidden = true
 
+            }
+            .disposed(by: rx.disposeBag)
+        
+        messageButton.rx.tap
+            .bind { [unowned self] _ in
+                let vc = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+                vc.userModel = userModel
+                
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: rx.disposeBag)
     }

@@ -114,26 +114,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnm-zd-r1i">
-                                                    <rect key="frame" x="71" y="37.5" width="31" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="rnm-zd-r1i" firstAttribute="bottom" secondItem="c0r-wq-DyM" secondAttribute="bottom" constant="-3" id="0qF-xm-P2w"/>
                                                 <constraint firstItem="c0r-wq-DyM" firstAttribute="centerY" secondItem="mGQ-0J-zuu" secondAttribute="centerY" id="BFN-m5-Ez5"/>
                                                 <constraint firstItem="c0r-wq-DyM" firstAttribute="leading" secondItem="mGQ-0J-zuu" secondAttribute="leading" constant="24" id="RmF-Wo-eWN"/>
                                                 <constraint firstItem="BY8-w0-fLJ" firstAttribute="leading" secondItem="c0r-wq-DyM" secondAttribute="trailing" constant="7" id="aBg-yo-b5H"/>
-                                                <constraint firstItem="rnm-zd-r1i" firstAttribute="leading" secondItem="c0r-wq-DyM" secondAttribute="trailing" constant="7" id="bof-gt-weM"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rnm-zd-r1i" secondAttribute="trailing" constant="20" id="hQq-M8-3AH"/>
                                                 <constraint firstItem="BY8-w0-fLJ" firstAttribute="top" secondItem="c0r-wq-DyM" secondAttribute="top" constant="3" id="xgg-jD-tpa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="idLabel" destination="BY8-w0-fLJ" id="1IZ-6w-LJX"/>
-                                            <outlet property="messageLabel" destination="rnm-zd-r1i" id="27e-sO-hfA"/>
                                             <outlet property="profileImageView" destination="c0r-wq-DyM" id="Y06-1W-rKA"/>
                                         </connections>
                                     </tableViewCell>

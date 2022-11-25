@@ -110,7 +110,7 @@ final class ChatManager: CommonBackendType {
         return Observable<ChatRoomModel>.create() { [unowned self] roomObservable in
             
             ref.child("chatRoom").child(roomId).child("lastMessage")
-                .observe(.value) { DataSnapshot in
+                .observeSingleEvent(of: .value) { DataSnapshot in
                     if DataSnapshot.exists() {
                         if let lastMessage = ChatModel(data: DataSnapshot) {
                             let model = ChatRoomModel(lastMessage: lastMessage, uid: roomId)

@@ -17,6 +17,7 @@ class ProfileEditViewController: UIViewController {
     @IBOutlet weak var imageButton: UIButton!
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var doneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,18 @@ class ProfileEditViewController: UIViewController {
         imageButton.rx.tap
             .bind { Void in
                 self.presentAlbum()
+            }
+            .disposed(by: rx.disposeBag)
+        
+        doneButton.rx.tap
+            .bind { [unowned self] _ in
+                guard let id = idTextField.text else {
+                    self.presentAlert(message: "id 를 입력해주세요.")
+                    self.navigationController?.popViewController(animated: true)
+                    return
+                }
+                CurrentUserModel.shared.updateInfo(name: nameTextField.text, id: id, des: desTextView.text)
+                self.navigationController?.popViewController(animated: true)
             }
             .disposed(by: rx.disposeBag)
     }

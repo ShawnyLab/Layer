@@ -23,7 +23,12 @@ final class SettingViewController: UIViewController {
     @IBOutlet weak var profileEditButton: UIButton!
     
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        idLabel.text = CurrentUserModel.shared.layerId
+        nameLabel.text = CurrentUserModel.shared.name
+        profileImageView.setImage(url: CurrentUserModel.shared.profileImageUrl)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +39,7 @@ final class SettingViewController: UIViewController {
         infoContainer.layer.cornerRadius = 13
         logoutBtn.layer.cornerRadius = 13
         
-        idLabel.text = CurrentUserModel.shared.layerId
-        nameLabel.text = CurrentUserModel.shared.name
-        profileImageView.setImage(url: CurrentUserModel.shared.profileImageUrl)
+
         profileImageView.circular()
         
         profileEditButton.rx.tap

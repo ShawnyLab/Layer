@@ -25,6 +25,15 @@ final class ProfileViewController: UIViewController {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     let layerRelay = BehaviorRelay<LayerType>(value: .white)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        profileImageView.setImage(url: CurrentUserModel.shared.profileImageUrl)
+        idLabel.text = CurrentUserModel.shared.layerId
+        desLabel.text = CurrentUserModel.shared.des
+        nameLabel.text = CurrentUserModel.shared.name
+    }
 
     
     override func viewDidLoad() {
@@ -32,11 +41,6 @@ final class ProfileViewController: UIViewController {
         
         indicator.isHidden = true
         profileImageView.layer.cornerRadius = 39.5
-        
-        profileImageView.setImage(url: CurrentUserModel.shared.profileImageUrl)
-        idLabel.text = CurrentUserModel.shared.layerId
-        desLabel.text = CurrentUserModel.shared.des
-        nameLabel.text = CurrentUserModel.shared.name
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
 

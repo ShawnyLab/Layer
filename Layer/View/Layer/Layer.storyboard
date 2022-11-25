@@ -755,6 +755,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="Nle-gW-RA9" firstAttribute="centerY" secondItem="jgC-Fp-8Yk" secondAttribute="centerY" id="aAR-nZ-b4w"/>
                                                                 <constraint firstItem="Nle-gW-RA9" firstAttribute="leading" secondItem="jgC-Fp-8Yk" secondAttribute="leading" constant="24" id="mB2-ak-Z2a"/>
+                                                                <constraint firstAttribute="height" constant="77" id="vPY-Iv-RiY"/>
                                                             </constraints>
                                                         </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ltp-dJ-wWm">
@@ -793,6 +794,19 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAy-Lu-9Rf">
+                                <rect key="frame" x="277" y="235" width="113" height="32"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="Hm2-LO-Cdt"/>
+                                    <constraint firstAttribute="height" constant="32" id="M0E-VW-tvX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="메세지 보내기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HCq-pD-N5W"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -804,6 +818,7 @@
                             <constraint firstAttribute="bottom" secondItem="wht-xz-Lry" secondAttribute="bottom" id="5b5-pP-jnT"/>
                             <constraint firstItem="BS9-S5-22Z" firstAttribute="centerX" secondItem="0ht-uA-5Hz" secondAttribute="centerX" id="7E0-qn-9AR"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fRI-Lv-0fQ" secondAttribute="trailing" constant="50" id="Gkg-1S-YQL"/>
+                            <constraint firstItem="oAy-Lu-9Rf" firstAttribute="centerY" secondItem="cgP-cn-mMD" secondAttribute="centerY" id="IKz-3v-VSQ"/>
                             <constraint firstItem="GAV-Xx-ecI" firstAttribute="centerY" secondItem="edz-we-hbo" secondAttribute="centerY" id="Lpz-xQ-4fX"/>
                             <constraint firstItem="pTV-kw-LfE" firstAttribute="leading" secondItem="0ht-uA-5Hz" secondAttribute="leading" constant="20" id="ORU-Yg-fCe"/>
                             <constraint firstItem="dWX-2x-oBG" firstAttribute="leading" secondItem="0ht-uA-5Hz" secondAttribute="leading" constant="10" id="Qe3-Ht-Ybf"/>
@@ -819,6 +834,7 @@
                             <constraint firstItem="fRI-Lv-0fQ" firstAttribute="leading" secondItem="0ht-uA-5Hz" secondAttribute="leading" constant="24" id="fat-ZW-5cj"/>
                             <constraint firstAttribute="trailing" secondItem="edz-we-hbo" secondAttribute="trailing" constant="24" id="omn-Zn-4w7"/>
                             <constraint firstItem="wht-xz-Lry" firstAttribute="centerX" secondItem="0ht-uA-5Hz" secondAttribute="centerX" id="p6J-mc-hch"/>
+                            <constraint firstItem="HCq-pD-N5W" firstAttribute="trailing" secondItem="oAy-Lu-9Rf" secondAttribute="trailing" constant="24" id="t5j-hg-uPH"/>
                             <constraint firstItem="edz-we-hbo" firstAttribute="leading" secondItem="GAV-Xx-ecI" secondAttribute="trailing" constant="6" id="uIq-TZ-sYE"/>
                             <constraint firstItem="geL-zl-ktk" firstAttribute="centerX" secondItem="0ht-uA-5Hz" secondAttribute="centerX" id="uqE-ri-bHl"/>
                             <constraint firstItem="fRI-Lv-0fQ" firstAttribute="top" secondItem="LGA-DJ-X1I" secondAttribute="bottom" constant="5" id="xOa-FY-PuM"/>
@@ -830,6 +846,7 @@
                         <outlet property="cancelButton" destination="GAV-Xx-ecI" id="z0j-I5-AYd"/>
                         <outlet property="desLabel" destination="fRI-Lv-0fQ" id="JZl-A3-Tnc"/>
                         <outlet property="idLabel" destination="cgP-cn-mMD" id="2oS-XQ-8AC"/>
+                        <outlet property="messageButton" destination="oAy-Lu-9Rf" id="5tB-Mm-3Sq"/>
                         <outlet property="nameLabel" destination="LGA-DJ-X1I" id="tHo-cV-rvw"/>
                         <outlet property="profileImageView" destination="pTV-kw-LfE" id="vUl-No-3Bi"/>
                         <outlet property="tableView" destination="wht-xz-Lry" id="fvv-Sp-m5s"/>

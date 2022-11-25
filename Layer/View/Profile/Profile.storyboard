@@ -572,6 +572,7 @@
                     </view>
                     <connections>
                         <outlet property="desTextView" destination="5DJ-lh-eR0" id="FDq-hu-lBQ"/>
+                        <outlet property="doneButton" destination="jjP-N4-7KF" id="Dtq-WA-xHp"/>
                         <outlet property="idTextField" destination="8YX-74-Y3q" id="hxa-xd-xWP"/>
                         <outlet property="imageButton" destination="jEk-BY-twJ" id="qA6-d1-tRX"/>
                         <outlet property="indicator" destination="Uub-ep-ru1" id="7Qj-eI-Itk"/>
