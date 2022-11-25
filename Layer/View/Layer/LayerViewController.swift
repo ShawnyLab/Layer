@@ -174,47 +174,75 @@ class LayerViewController: UIViewController {
                     
                     cell.optionBtn.menu = UIMenu(children: [changeLayer, delete])
                 } else {
-                    let changeLayer = UIAction(title: "레이어 이동") { _ in
-                        self.indicator.isHidden = false
-                        self.indicator.startAnimating()
+                    if CurrentUserModel.shared.friendsHash[frameModel.writerId] != nil && CurrentUserModel.shared.friendsHash[frameModel.writerId]! >= 0 {
+                        let changeLayer = UIAction(title: "레이어 이동") { _ in
+                            self.indicator.isHidden = false
+                            self.indicator.startAnimating()
+                            
+                            UserManager.shared.fetch(id: frameModel.writerId)
+                                .subscribe { userModel in
+                                    let vc = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: ChangeLayerViewController.storyId) as! ChangeLayerViewController
+                                    vc.userModel = userModel
+                                    
+                                    self.indicator.isHidden = true
+                                    self.indicator.stopAnimating()
+                                    vc.modalPresentationStyle = .fullScreen
+                                    self.present(vc, animated: true)
+                                }
+                                .disposed(by: self.rx.disposeBag)
+                        }
                         
-                        UserManager.shared.fetch(id: frameModel.writerId)
-                            .subscribe { userModel in
-                                let vc = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: ChangeLayerViewController.storyId) as! ChangeLayerViewController
-                                vc.userModel = userModel
-                                
-                                self.indicator.isHidden = true
-                                self.indicator.stopAnimating()
-                                vc.modalPresentationStyle = .fullScreen
-                                self.present(vc, animated: true)
-                            }
-                            .disposed(by: self.rx.disposeBag)
-                    }
-                    
-                    let sendMessage = UIAction(title: "댓글 보내기") { [unowned self] _ in
-                        indicator.isHidden = false
-                        indicator.startAnimating()
-                        
-                        UserManager.shared.fetch(id: frameModel.writerId)
-                            .subscribe { [unowned self] userModel in
-                                let vc = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
-                                vc.userModel = userModel
-                                vc.frameModel = frameModel
-                                indicator.isHidden = true
-                                indicator.stopAnimating()
-                                self.navigationController?.pushViewController(vc, animated: true)
-                            }
-                            .disposed(by: rx.disposeBag)
+                        let sendMessage = UIAction(title: "댓글 보내기") { [unowned self] _ in
+                            indicator.isHidden = false
+                            indicator.startAnimating()
+                            
+                            UserManager.shared.fetch(id: frameModel.writerId)
+                                .subscribe { [unowned self] userModel in
+                                    let vc = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+                                    vc.userModel = userModel
+                                    vc.frameModel = frameModel
+                                    indicator.isHidden = true
+                                    indicator.stopAnimating()
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                }
+                                .disposed(by: rx.disposeBag)
 
+                        }
+                        
+                        let report = UIAction(title: "신고 및 차단", attributes: .destructive) { [unowned self] _ in
+                            FrameManager.shared.reportUser(userId: frameModel.writerId)
+                            presentAlert(message: "해당 유저가 차단되었습니다.")
+                            viewModel.reload()
+                        }
+                        
+                        cell.optionBtn.menu = UIMenu(children: [sendMessage, changeLayer, report])
+                    } else {
+                        let sendMessage = UIAction(title: "댓글 보내기") { [unowned self] _ in
+                            indicator.isHidden = false
+                            indicator.startAnimating()
+                            
+                            UserManager.shared.fetch(id: frameModel.writerId)
+                                .subscribe { [unowned self] userModel in
+                                    let vc = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+                                    vc.userModel = userModel
+                                    vc.frameModel = frameModel
+                                    indicator.isHidden = true
+                                    indicator.stopAnimating()
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                }
+                                .disposed(by: rx.disposeBag)
+
+                        }
+                        
+                        let report = UIAction(title: "신고 및 차단", attributes: .destructive) { [unowned self] _ in
+                            FrameManager.shared.reportUser(userId: frameModel.writerId)
+                            presentAlert(message: "해당 유저가 차단되었습니다.")
+                            viewModel.reload()
+                        }
+                        
+                        cell.optionBtn.menu = UIMenu(children: [sendMessage, report])
                     }
-                    
-                    let report = UIAction(title: "신고 및 차단", attributes: .destructive) { [unowned self] _ in
-                        FrameManager.shared.reportUser(userId: frameModel.writerId)
-                        presentAlert(message: "해당 유저가 차단되었습니다.")
-                        viewModel.reload()
-                    }
-                    
-                    cell.optionBtn.menu = UIMenu(children: [sendMessage, changeLayer, report])
+
                 }
                 cell.optionBtn.showsMenuAsPrimaryAction = true
 

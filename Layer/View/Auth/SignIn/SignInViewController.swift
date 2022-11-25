@@ -155,8 +155,7 @@ final class SignInViewController: UIViewController {
                     nextButton.backgroundColor = .black
                 } else {
                     nextButton.isEnabled = false
-                    next
-                    Button.backgroundColor = UIColor(red: 108, green: 108, blue: 108)
+                    nextButton.backgroundColor = UIColor(red: 108, green: 108, blue: 108)
                 }
             })
             .disposed(by: rx.disposeBag)
