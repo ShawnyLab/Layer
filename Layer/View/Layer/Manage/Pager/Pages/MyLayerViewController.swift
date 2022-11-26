@@ -15,14 +15,29 @@ class MyLayerViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var countLabel: UILabel!
     
+    let keywordRelay = BehaviorRelay<String?>(value: nil)
+
     private let friendArray = BehaviorRelay(value: CurrentUserModel.shared.friends.filter { $0.layer >= 0 })
     private let refresh = UIRefreshControl()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         AuthManager.shared.fetchFriend()
             .subscribe {
-                self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer >= 0 })
+                
+                self.keywordRelay.subscribe(onNext: { [unowned self] str in
+                    if let str {
+                        if str.count > 0 {
+                            self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer >= 0 })
+                        }
+                    } else {
+                        self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer >= 0 })
+                    }
+                    
+                })
+                .disposed(by: self.rx.disposeBag)
+
             }
             .disposed(by: rx.disposeBag)
     }
@@ -120,6 +135,7 @@ final class MyLayerCell: UITableViewCell {
         layerLabel.layer.borderWidth = 1
         
         profileImageView.layer.cornerRadius = 20
+        self.selectionStyle = .none
     }
     
     @IBAction func changeLayer(_ sender: Any) {

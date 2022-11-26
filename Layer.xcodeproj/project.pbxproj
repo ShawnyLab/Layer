@@ -78,6 +78,7 @@
 		D1F70E8928D9439500873E71 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8828D9439500873E71 /* UserModel.swift */; };
 		D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */; };
 		D1FBF74829309B530077E177 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FBF74729309B530077E177 /* UIViewController+.swift */; };
+		D1FBF74A2931C2480077E177 /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FBF7492931C2480077E177 /* UITableViewCell+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +157,7 @@
 		D1F70E8828D9439500873E71 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFrameModel.swift; sourceTree = "<group>"; };
 		D1FBF74729309B530077E177 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		D1FBF7492931C2480077E177 /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
 		D4C168FDC4F38407D4319660 /* Pods_Layer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Layer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -385,6 +387,7 @@
 				D1C73BA328EE95A800E636F6 /* Date+.swift */,
 				D13E1883291E3631004F35D0 /* CALayer+.swift */,
 				D1FBF74729309B530077E177 /* UIViewController+.swift */,
+				D1FBF7492931C2480077E177 /* UITableViewCell+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				D1C98D0728F68C5800D438CF /* RequestViewController.swift in Sources */,
 				D119080428AA84BF009FBF64 /* AuthManager.swift in Sources */,
 				D1C98D0328F68C3C00D438CF /* AddressViewController.swift in Sources */,
+				D1FBF74A2931C2480077E177 /* UITableViewCell+.swift in Sources */,
 				D1D9D5A128F7EBAE004E9EB0 /* YourChatTableViewCell.swift in Sources */,
 				D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */,
 				D1503D6C289527C400C53B81 /* FrameModel.swift in Sources */,

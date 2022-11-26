@@ -16,13 +16,16 @@ class AddressViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // https://myseong.tistory.com/6, https://g-y-e-o-m.tistory.com/19
-    
-    
+    let keywordRelay = BehaviorRelay<String?>(value: nil)
+
     let store = CNContactStore()
+    
+    var original = [CNContact]()
     var contacts = [CNContact]()
     
     var startLoading: (() -> Void)!
     var stopLoading: (() -> Void)!
+    var endEdit: (() -> Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,16 @@ class AddressViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        keywordRelay
+            .subscribe(onNext: { [unowned self] str in
+                if let str {
+                    if str.count > 0 {
+                        contacts = original.filter{ $0.givenName.contains(str) || $0.familyName.contains(str) || $0.middleName.contains(str)}
+                        self.tableView.reloadData()
+                    }
+                }
+            })
+            .disposed(by: rx.disposeBag)
         
         
         let keys = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactPhoneNumbersKey as CNKeyDescriptor]
@@ -52,6 +65,7 @@ class AddressViewController: UIViewController {
                 } catch {
                     print("unable to fetch contacts")
                 }
+                self.original = self.contacts
             }
             // 권한 비 허용 시
             else {
@@ -66,7 +80,9 @@ class AddressViewController: UIViewController {
         })
     }
     
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.endEdit!()
+    }
 
 }
 
@@ -140,6 +156,7 @@ final class AddressCell: UITableViewCell {
         inviteButton.layer.borderWidth = 1
         inviteButton.layer.borderColor = UIColor.black.cgColor
         profileImageView.circular()
+        self.selectionStyle = .none
         
     }
     

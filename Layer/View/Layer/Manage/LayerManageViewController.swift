@@ -12,6 +12,7 @@ import NSObject_Rx
 
 class LayerManageViewController: UIViewController {
 
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var inviteView: UIView!
     
@@ -36,9 +37,16 @@ class LayerManageViewController: UIViewController {
     
     private let pageIndex = BehaviorRelay(value: 0)
     
+    private let keywordRelay = BehaviorRelay<String?>(value: nil)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchTextField.rx.text
+            .bind(to: keywordRelay)
+            .disposed(by: rx.disposeBag)
+        
         searchBarContainer.layer.cornerRadius = 13
 
         inviteView.layer.cornerRadius = 13
@@ -82,6 +90,9 @@ class LayerManageViewController: UIViewController {
         
         
         guard let addressVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "addressVC") as? AddressViewController else { return }
+        keywordRelay.bind(to: addressVC.keywordRelay)
+            .disposed(by: rx.disposeBag)
+        
         addressVC.startLoading = {
             self.indicator.isHidden = false
             self.indicator.startAnimating()
@@ -92,13 +103,21 @@ class LayerManageViewController: UIViewController {
             self.indicator.stopAnimating()
         }
         
+        addressVC.endEdit = {
+            self.view.endEditing(true)
+        }
+        
         vcList.append(addressVC)
         
         guard let layerVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "mylayerVC") as? MyLayerViewController else { return }
         vcList.append(layerVC)
+        keywordRelay.bind(to: layerVC.keywordRelay)
+            .disposed(by: rx.disposeBag)
         
         guard let requestVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "requestVC") as? RequestViewController else { return }
         vcList.append(requestVC)
+        keywordRelay.bind(to: requestVC.keywordRelay)
+            .disposed(by: rx.disposeBag)
         
         pageVC.dataSource = self
         pageVC.delegate = self
@@ -143,6 +162,10 @@ class LayerManageViewController: UIViewController {
     
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 

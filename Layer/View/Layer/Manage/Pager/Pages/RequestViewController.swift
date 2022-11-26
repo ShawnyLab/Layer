@@ -16,6 +16,7 @@ class RequestViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private let refresh = UIRefreshControl()
 
+    let keywordRelay = BehaviorRelay<String?>(value: nil)
     private let friendArray = BehaviorRelay(value: CurrentUserModel.shared.friends.filter { $0.layer == -2 })
     
     override func viewDidLoad() {
@@ -98,6 +99,7 @@ final class RequestCell: UITableViewCell {
         acceptButton.layer.cornerRadius = 13
         
         profileImageView.layer.cornerRadius = 20
+        self.selectionStyle = .none
     }
     
     @IBAction func deny(_ sender: Any) {
