@@ -14,4 +14,15 @@ extension UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func openUserProfile(userModel: UserModel) {
+        let vc = UIStoryboard(name: "Layer", bundle: nil).instantiateViewController(withIdentifier: UserProfileViewController.storyId) as! UserProfileViewController
+        vc.userModel = userModel
+        if let nav = self.navigationController {
+            nav.pushViewController(vc, animated: true)
+        } else {
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+    }
 }

@@ -66,7 +66,7 @@ final class CurrentUserModel: NSObject {
             if frameData.exists() {
                 for frames in frameData.children.allObjects as! [DataSnapshot] {
                     if let frameModel = SimpleFrameModel(data: frames) {
-                        frameModels.append(frameModel)
+                        frameModels.insert(frameModel, at: 0)
                     }
                 }
             }

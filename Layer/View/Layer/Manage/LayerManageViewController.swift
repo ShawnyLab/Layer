@@ -24,6 +24,7 @@ class LayerManageViewController: UIViewController {
     @IBOutlet weak var requestLabel: UILabel!
     
     @IBOutlet weak var searchBarContainer: UIView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     private var vcList = [UIViewController]()
     let pageVC = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -38,6 +39,7 @@ class LayerManageViewController: UIViewController {
         inviteView.layer.cornerRadius = 13
         inviteView.layer.borderWidth = 1
         inviteView.layer.borderColor = UIColor(red: 153, green: 153, blue: 153).cgColor
+        indicator.isHidden = true
 
         pageIndex
             .subscribe(onNext: { [unowned self] idx in
@@ -74,8 +76,18 @@ class LayerManageViewController: UIViewController {
         
         
         
-        guard let layerVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "addressVC") as? AddressViewController else { return }
-        vcList.append(layerVC)
+        guard let addressVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "addressVC") as? AddressViewController else { return }
+        addressVC.startLoading = {
+            self.indicator.isHidden = false
+            self.indicator.startAnimating()
+        }
+        
+        addressVC.stopLoading = {
+            self.indicator.isHidden = true
+            self.indicator.stopAnimating()
+        }
+        
+        vcList.append(addressVC)
         
         guard let messageVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "mylayerVC") as? MyLayerViewController else { return }
         vcList.append(messageVC)

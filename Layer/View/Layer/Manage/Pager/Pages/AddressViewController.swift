@@ -7,6 +7,9 @@
 
 import UIKit
 import Contacts
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class AddressViewController: UIViewController {
 
@@ -15,6 +18,9 @@ class AddressViewController: UIViewController {
     // https://myseong.tistory.com/6, https://g-y-e-o-m.tistory.com/19
     let store = CNContactStore()
     var contacts = [CNContact]()
+    
+    var startLoading: (() -> Void)!
+    var stopLoading: (() -> Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,9 +81,21 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource {
             
             UserManager.shared.checkNumber(number: "\(number)")
                 .subscribe(onSuccess: { [unowned self] uid in
-                    if uid != nil {
+                    if let uid {
                         cell.inviteButton.isHidden = true
                         cell.requestButton.isHidden = false
+                        
+                        cell.buttonHandler = {
+                            self.startLoading!()
+                            
+                            UserManager.shared.fetch(id: uid)
+                                .subscribe(onSuccess: { [unowned self] userModel in
+                                    self.stopLoading!()
+                                    self.openUserProfile(userModel: userModel)
+                                })
+                                .disposed(by: self.rx.disposeBag)
+                        }
+                        
                     } else {
                         cell.requestButton.isHidden = true
                         cell.inviteButton.isHidden = false
@@ -86,6 +104,8 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource {
                 .disposed(by: rx.disposeBag)
 
         }
+        
+
         
         return cell
     }
@@ -109,6 +129,8 @@ final class AddressCell: UITableViewCell {
     @IBOutlet weak var requestButton: UIButton!
 
     @IBOutlet weak var profileImageView: UIImageView!
+    
+    var buttonHandler: (() -> Void)!
     override func awakeFromNib() {
         inviteButton.layer.cornerRadius = 13
         requestButton.layer.cornerRadius = 13
@@ -117,5 +139,9 @@ final class AddressCell: UITableViewCell {
         inviteButton.layer.borderColor = UIColor.black.cgColor
         profileImageView.circular()
         
+    }
+    
+    @IBAction func request(_ sender: Any) {
+        buttonHandler!()
     }
 }

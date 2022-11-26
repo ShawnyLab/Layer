@@ -63,9 +63,10 @@ final class AuthManager: CommonBackendType {
     func createUser(id: String, phoneNumber: String) {
         let currentUser = Auth.auth().currentUser!
         ref.child("users").child(currentUser.uid)
-            .setValue(["name": id, "phoneNumber": phoneNumber])
+            .setValue(["layerId": id, "phoneNumber": phoneNumber])
+        ref.child("numbers").child(phoneNumber).setValue(currentUser.uid)
         
-        CurrentUserModel.shared.name = id
+        CurrentUserModel.shared.layerId = id
         CurrentUserModel.shared.phoneNumber = phoneNumber
         CurrentUserModel.shared.uid = currentUser.uid
     }
