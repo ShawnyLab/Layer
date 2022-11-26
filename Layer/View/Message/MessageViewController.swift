@@ -17,6 +17,7 @@ final class MessageViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var availableLabel: UILabel!
+    @IBOutlet weak var searchTextfield: UITextField!
     
     static let storyId = "messageVC"
     
@@ -24,11 +25,42 @@ final class MessageViewController: UIViewController {
     
     private let friendModelArray = BehaviorRelay<[FriendModel]>(value: CurrentUserModel.shared.friends.filter{$0.layer >= 0 && $0.uid != CurrentUserModel.shared.uid})
     
+    private let keywordRelay = BehaviorRelay<String?>(value: nil)
+    
     private let chatRoomArray = BehaviorRelay<[ChatRoomModel]>(value: [])
+    private var wholeChatRooms = [ChatRoomModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchTextfield.rx.text
+            .bind(to: keywordRelay)
+            .disposed(by: rx.disposeBag)
+        
+        keywordRelay
+            .subscribe(onNext: { [unowned self] str in
+                if let str {
+                    if str.count > 0 {
+                        var temp = [FriendModel]()
+                        for friend in CurrentUserModel.shared.friends.filter({$0.layer >= 0 && $0.uid != CurrentUserModel.shared.uid}) {
+                            UserManager.shared.fetch(id: friend.uid)
+                                .subscribe(onSuccess: { [unowned self] userModel in
+                                    if userModel.layerId.contains(str) {
+                                        temp.append(friend)
+                                        friendModelArray.accept(temp)
+                                    }
+                                })
+                                .disposed(by: rx.disposeBag)
+                        }
+                    } else {
+                        friendModelArray.accept(CurrentUserModel.shared.friends.filter{$0.layer >= 0 && $0.uid != CurrentUserModel.shared.uid})
+                    }
+                } else {
+                    friendModelArray.accept(CurrentUserModel.shared.friends.filter{$0.layer >= 0 && $0.uid != CurrentUserModel.shared.uid})
+                }
+            })
+            .disposed(by: rx.disposeBag)
+        
         indicator.isHidden = true
         friendModelArray
             .bind(to: friendCollectionView.rx.items(cellIdentifier: FriendCell.reuseId, cellType: FriendCell.self)) { [unowned self] idx, friendModel, cell in
@@ -79,8 +111,6 @@ final class MessageViewController: UIViewController {
                 
                 UserManager.shared.fetch(id: friendModelArray.value[idx.row].uid)
                     .subscribe(onSuccess: { [unowned self] userModel in
-                        
-                        
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
                         vc.userModel = userModel
                         
@@ -95,7 +125,10 @@ final class MessageViewController: UIViewController {
             .disposed(by: rx.disposeBag)
         
         ChatManager.shared.fetchRooms()
-            .bind(to: chatRoomArray)
+            .subscribe(onNext: { rooms in
+                self.wholeChatRooms = rooms
+                self.chatRoomArray.accept(rooms)
+            })
             .disposed(by: rx.disposeBag)
         
         chatRoomArray

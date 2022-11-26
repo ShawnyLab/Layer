@@ -39,7 +39,14 @@ class AddressViewController: UIViewController {
                     if str.count > 0 {
                         contacts = original.filter{ $0.givenName.contains(str) || $0.familyName.contains(str) || $0.middleName.contains(str)}
                         self.tableView.reloadData()
+                    } else {
+                        contacts = original
+                        self.tableView.reloadData()
                     }
+                } else {
+                    contacts = original
+                    self.tableView.reloadData()
+
                 }
             })
             .disposed(by: rx.disposeBag)
