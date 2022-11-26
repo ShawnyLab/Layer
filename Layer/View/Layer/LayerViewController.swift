@@ -37,7 +37,7 @@ class LayerViewController: UIViewController {
         layerRelay.subscribe(onNext: { [unowned self] layer in
             switch layer {
             case .white:
-                UIView.animate(withDuration: 1.0, delay: 0.3, animations: {
+                UIView.animate(withDuration: 0.4, animations: {
                     self.view.backgroundColor = .white
                     self.tableView.backgroundColor = .white
                 })
@@ -49,7 +49,7 @@ class LayerViewController: UIViewController {
                 })
 
             case .gray:
-                UIView.animate(withDuration: 1.0, delay: 0.3, animations: {
+                UIView.animate(withDuration: 0.4, animations: {
                     self.view.backgroundColor = .layerGray
                     self.tableView.backgroundColor = .layerGray
                 })
@@ -133,7 +133,7 @@ class LayerViewController: UIViewController {
                             })
 
                         case .gray:
-                            UIView.animate(withDuration: 1.0, animations: {
+                            UIView.animate(withDuration: 1.0, delay: 0.3, animations: {
                                 cell.profileImageView.backgroundColor = .black
                                 cell.dueLabel.textColor = .black
                                 cell.contentLabel.textColor = .black

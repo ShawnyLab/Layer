@@ -22,7 +22,7 @@ final class MessageViewController: UIViewController {
     
     let layerRelay = BehaviorRelay<LayerType>(value: .white)
     
-    private let friendModelArray = BehaviorRelay<[FriendModel]>(value: CurrentUserModel.shared.friends.filter{$0.layer >= 0})
+    private let friendModelArray = BehaviorRelay<[FriendModel]>(value: CurrentUserModel.shared.friends.filter{$0.layer >= 0 && $0.uid != CurrentUserModel.shared.uid})
     
     private let chatRoomArray = BehaviorRelay<[ChatRoomModel]>(value: [])
 

@@ -325,7 +325,7 @@ class MainViewController: UIViewController {
 
         self.floatingButtonTrailing.constant = 30
         self.floatingButtonBottom.constant = -30
-        UIView.animate(withDuration: 0.6, animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
             
@@ -344,7 +344,7 @@ class MainViewController: UIViewController {
         self.blackWidth.constant = 0
         self.whiteWidth.constant = UIScreen.main.bounds.height*2
 
-        UIView.animate(withDuration: 0.4, delay: 0.2, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
             self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
@@ -361,7 +361,7 @@ class MainViewController: UIViewController {
 
         self.floatingButtonTrailing.constant = 30
         self.floatingButtonBottom.constant = -30
-        UIView.animate(withDuration: 0.6, animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
             self.layerRelay.accept(.gray)
@@ -379,7 +379,7 @@ class MainViewController: UIViewController {
         self.blackWidth.constant = 0
         self.whiteWidth.constant = UIScreen.main.bounds.height*2
 
-        UIView.animate(withDuration: 0.4, delay: 0.2, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.whiteLayer.layer.cornerRadius = self.whiteLayer.frame.width/2
             self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
