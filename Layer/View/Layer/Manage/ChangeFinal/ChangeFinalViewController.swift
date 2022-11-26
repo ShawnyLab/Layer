@@ -15,7 +15,7 @@ final class ChangeFinalViewController: UIViewController {
     
     var layerStatus: LayerType!
     var userModel: UserModel!
-    var topVC: UIViewController!
+    var topVC: ChangeLayerViewController!
 
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var subLabel: UILabel!
@@ -64,6 +64,7 @@ final class ChangeFinalViewController: UIViewController {
                 UserManager.shared.changeLayer(userModel: userModel, layer: layerStatus)
                 self.dismiss(animated: true) {
                     self.topVC.dismiss(animated: true)
+                    self.topVC.reload!()
                 }
             }
             .disposed(by: rx.disposeBag)

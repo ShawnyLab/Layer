@@ -125,6 +125,7 @@ final class SignInViewController: UIViewController {
                     indicator.stopAnimating()
                     indicator.isHidden = true
                     AuthManager.shared.createUser(id: nameTextfield.text!, phoneNumber: self.phoneNumber!)
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
 
             })

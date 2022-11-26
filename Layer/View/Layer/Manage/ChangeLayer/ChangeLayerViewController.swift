@@ -27,6 +27,7 @@ final class ChangeLayerViewController: UIViewController {
     var userModel: UserModel!
     
     var defaultImagePoint: CGPoint!
+    var reload: (() -> Void)!
     
     private let layerStatus = BehaviorRelay<LayerType?>(value: nil)
     private let toShowRelay = BehaviorRelay<[FriendModel]>(value: [])

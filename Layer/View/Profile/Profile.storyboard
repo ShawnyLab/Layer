@@ -448,13 +448,14 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2b-gJ-HrE">
-                                <rect key="frame" x="179.5" y="65.5" width="55" height="15"/>
+                                <rect key="frame" x="179.5" y="65.5" width="55.5" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v8X-tt-HZk">
                                 <rect key="frame" x="140" y="102.5" width="134" height="134"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="134" id="Lhb-A3-aAA"/>
                                     <constraint firstAttribute="height" constant="134" id="V2l-Io-ZNL"/>
@@ -531,6 +532,9 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Uub-ep-ru1">
                                 <rect key="frame" x="197" y="445" width="20" height="20"/>
                             </activityIndicatorView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="lG9-hM-p8Y">
+                                <rect key="frame" x="240" y="202.5" width="34" height="34"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DfB-2Q-X0F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -544,6 +548,7 @@
                             <constraint firstItem="WcK-HV-ed2" firstAttribute="centerX" secondItem="DfB-2Q-X0F" secondAttribute="centerX" id="Jq5-Ce-vZ9"/>
                             <constraint firstItem="DfB-2Q-X0F" firstAttribute="trailing" secondItem="jjP-N4-7KF" secondAttribute="trailing" constant="10" id="KBr-dZ-JWQ"/>
                             <constraint firstItem="lR7-oh-bbw" firstAttribute="leading" secondItem="DfB-2Q-X0F" secondAttribute="leading" constant="15" id="LLN-jY-fUf"/>
+                            <constraint firstItem="lG9-hM-p8Y" firstAttribute="trailing" secondItem="v8X-tt-HZk" secondAttribute="trailing" id="MST-I0-2zK"/>
                             <constraint firstItem="WcK-HV-ed2" firstAttribute="leading" secondItem="DfB-2Q-X0F" secondAttribute="leading" constant="24" id="Ri4-2J-tF4"/>
                             <constraint firstItem="8YX-74-Y3q" firstAttribute="leading" secondItem="WcK-HV-ed2" secondAttribute="leading" id="SUq-si-Dpu"/>
                             <constraint firstItem="OO2-Cx-dIq" firstAttribute="top" secondItem="JbC-U4-BuA" secondAttribute="bottom" id="T2G-CR-Rwy"/>
@@ -570,6 +575,7 @@
                             <constraint firstItem="jEk-BY-twJ" firstAttribute="leading" secondItem="v8X-tt-HZk" secondAttribute="leading" id="xea-5G-G5z"/>
                             <constraint firstItem="WcK-HV-ed2" firstAttribute="top" secondItem="8YX-74-Y3q" secondAttribute="bottom" id="xs0-o0-zj2"/>
                             <constraint firstItem="PoB-PH-e3X" firstAttribute="top" secondItem="v8X-tt-HZk" secondAttribute="bottom" constant="35" id="yMx-NH-M4h"/>
+                            <constraint firstItem="lG9-hM-p8Y" firstAttribute="bottom" secondItem="v8X-tt-HZk" secondAttribute="bottom" id="ygq-bH-yEV"/>
                         </constraints>
                     </view>
                     <connections>
@@ -588,6 +594,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="34" height="34"/>
         <image name="chevron_left" width="14.666666984558105" height="22.666666030883789"/>
         <image name="chevron_right_small" width="6.6666665077209473" height="10"/>
         <systemColor name="labelColor">

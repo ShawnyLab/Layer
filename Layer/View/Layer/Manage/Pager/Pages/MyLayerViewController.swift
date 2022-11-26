@@ -85,6 +85,9 @@ class MyLayerViewController: UIViewController {
                         
                         cell.changeButtonHandler = {
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: ChangeLayerViewController.storyId) as! ChangeLayerViewController
+                            vc.reload = {
+                                self.reload()
+                            }
                             let nav = UINavigationController(rootViewController: vc)
                             nav.modalPresentationStyle = .fullScreen
                             nav.navigationBar.isHidden = true
@@ -103,6 +106,15 @@ class MyLayerViewController: UIViewController {
             .subscribe {
                 print("completed")
                 self.refresh.endRefreshing()
+                self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer >= 0 })
+            }
+            .disposed(by: rx.disposeBag)
+    }
+    
+    func reload() {
+        AuthManager.shared.fetchFriend()
+            .subscribe {
+                print("completed")
                 self.friendArray.accept(CurrentUserModel.shared.friends.filter { $0.layer >= 0 })
             }
             .disposed(by: rx.disposeBag)
