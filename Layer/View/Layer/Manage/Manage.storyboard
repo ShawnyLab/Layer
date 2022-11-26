@@ -260,13 +260,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressButton" destination="Rhx-Zi-QQU" id="E4q-g0-w1G"/>
                         <outlet property="addressLabel" destination="SxS-tP-5Q2" id="OCJ-WQ-o5Q"/>
                         <outlet property="addressView" destination="bLQ-GO-G4v" id="Dab-xQ-mBL"/>
                         <outlet property="containerView" destination="Ace-b5-6DE" id="26K-Mn-qpf"/>
                         <outlet property="indicator" destination="vFQ-Ou-OsG" id="mvG-VC-S2V"/>
                         <outlet property="inviteView" destination="XOq-C2-Dnf" id="VFe-Yy-ATJ"/>
+                        <outlet property="layerButton" destination="tkO-Oc-orD" id="ZGe-d9-jby"/>
                         <outlet property="mylayerLabel" destination="zGN-I0-RMR" id="LhN-fc-pyF"/>
                         <outlet property="mylayerView" destination="8Me-WQ-8xq" id="xs1-fj-mll"/>
+                        <outlet property="requestButton" destination="59a-XG-kBn" id="LKY-Mt-me7"/>
                         <outlet property="requestLabel" destination="jn1-eR-Mn0" id="gaA-qf-qEK"/>
                         <outlet property="requestView" destination="vLa-4Z-byq" id="xYk-Sa-9hF"/>
                         <outlet property="searchBarContainer" destination="Sgu-Kb-i1V" id="coE-UA-Naa"/>

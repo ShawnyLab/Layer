@@ -16,6 +16,8 @@ class AddressViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // https://myseong.tistory.com/6, https://g-y-e-o-m.tistory.com/19
+    
+    
     let store = CNContactStore()
     var contacts = [CNContact]()
     

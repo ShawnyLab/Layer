@@ -26,6 +26,11 @@ class LayerManageViewController: UIViewController {
     @IBOutlet weak var searchBarContainer: UIView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var addressButton: UIButton!
+    @IBOutlet weak var layerButton: UIButton!
+    @IBOutlet weak var requestButton: UIButton!
+    
+    
     private var vcList = [UIViewController]()
     let pageVC = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
@@ -89,8 +94,8 @@ class LayerManageViewController: UIViewController {
         
         vcList.append(addressVC)
         
-        guard let messageVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "mylayerVC") as? MyLayerViewController else { return }
-        vcList.append(messageVC)
+        guard let layerVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "mylayerVC") as? MyLayerViewController else { return }
+        vcList.append(layerVC)
         
         guard let requestVC = UIStoryboard(name: "Manage", bundle: nil).instantiateViewController(withIdentifier: "requestVC") as? RequestViewController else { return }
         vcList.append(requestVC)
@@ -107,6 +112,33 @@ class LayerManageViewController: UIViewController {
         addChild(pageVC)
         pageVC.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(pageVC.view)
+        
+        addressButton.rx.tap
+            .bind { [unowned self] _ in
+                containerView.addSubview(addressVC.view)
+                addressVC.didMove(toParent: self)
+                pageIndex.accept(0)
+                
+            }
+            .disposed(by: rx.disposeBag)
+        
+        layerButton.rx.tap
+            .bind { [unowned self] _ in
+                containerView.addSubview(layerVC.view)
+                layerVC.didMove(toParent: self)
+                pageIndex.accept(1)
+                
+            }
+            .disposed(by: rx.disposeBag)
+        
+        requestButton.rx.tap
+            .bind { [unowned self] _ in
+                containerView.addSubview(requestVC.view)
+                requestVC.didMove(toParent: self)
+                pageIndex.accept(2)
+                
+            }
+            .disposed(by: rx.disposeBag)
     }
     
     @IBAction func back(_ sender: Any) {
