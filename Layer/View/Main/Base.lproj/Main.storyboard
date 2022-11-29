@@ -116,8 +116,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="CT4-fE-Jph"/>
                                     <constraint firstAttribute="width" constant="60" id="Gzi-1U-qaS"/>
-                                    <constraint firstAttribute="width" secondItem="emI-lm-7VV" secondAttribute="height" multiplier="1:1" id="fwj-0q-5tY"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             </button>
@@ -171,6 +171,7 @@
                         <outlet property="firstDot" destination="LpG-Du-1Q5" id="QUr-gn-rIX"/>
                         <outlet property="floatingButton" destination="emI-lm-7VV" id="512-c7-eo3"/>
                         <outlet property="floatingButtonBottom" destination="GMG-TK-psG" id="775-KW-1KW"/>
+                        <outlet property="floatingButtonHeight" destination="CT4-fE-Jph" id="kIv-6v-aVc"/>
                         <outlet property="floatingButtonTrailing" destination="Im3-ES-m9k" id="4Nm-vR-gNM"/>
                         <outlet property="floatingButtonWidth" destination="Gzi-1U-qaS" id="pY3-Nx-0JE"/>
                         <outlet property="greyLayer" destination="LHd-t9-C7T" id="Je9-zl-UuQ"/>

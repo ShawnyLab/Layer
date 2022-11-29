@@ -11,6 +11,7 @@ import RxCocoa
 import NSObject_Rx
 import FirebaseAuth
 
+
 final class SignInViewController: UIViewController {
 
     @IBOutlet var viewModel: SignInViewModel!
@@ -21,6 +22,7 @@ final class SignInViewController: UIViewController {
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var helpView: UIView!
     
     var phoneNumber: String!
     var verifId: String!
@@ -89,7 +91,9 @@ final class SignInViewController: UIViewController {
                                 print(error)
                             }
                         }
+                    self.helpView.isHidden = true
                 } else if codeTextfield.isHidden == false {
+                    self.helpView.isHidden = true
                     let credential = PhoneAuthProvider.provider().credential(
                       withVerificationID: verifId,
                       verificationCode: codeTextfield.text!
@@ -122,10 +126,13 @@ final class SignInViewController: UIViewController {
                         }
                     }
                 } else if nameTextfield.isHidden == false {
+                    self.helpView.isHidden = true
                     indicator.stopAnimating()
                     indicator.isHidden = true
                     AuthManager.shared.createUser(id: nameTextfield.text!, phoneNumber: self.phoneNumber!)
-                    self.navigationController?.popToRootViewController(animated: true)
+//                    self.navigationController?.popToRootViewController(animated: true)
+                    let nav = self.storyboard?.instantiateViewController(withIdentifier: "authfinalVC") as! AuthFinalViewController
+                    self.navigationController?.pushViewController(nav, animated: true)
                 }
 
             })
@@ -173,6 +180,15 @@ final class SignInViewController: UIViewController {
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
         }
+    }
+    
+    @IBAction func license(_ sender: Any) {
+        //https://tom7930.tistory.com/54
+        if let url = URL(string: "https://github.com/ShawnyLab/collhumanart") {
+            UIApplication.shared.open(url, options: [:])
+        }
+
+        
     }
     
     @objc func keyboardWillHideNotification(_ notification: Notification) {

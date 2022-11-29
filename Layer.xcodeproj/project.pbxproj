@@ -45,6 +45,7 @@
 		D1B8E8A328816D3D003B2C48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1B8E8A228816D3D003B2C48 /* GoogleService-Info.plist */; };
 		D1B8E8A928817007003B2C48 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B8E8A828817007003B2C48 /* UIView+.swift */; };
 		D1B8E8AB28817080003B2C48 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B8E8AA28817080003B2C48 /* UIColor+.swift */; };
+		D1B988862931D87600473249 /* AuthFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B988852931D87600473249 /* AuthFinalViewController.swift */; };
 		D1C73BA228EE92E600E636F6 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C73BA128EE92E600E636F6 /* UIButton.swift */; };
 		D1C73BA428EE95A800E636F6 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C73BA328EE95A800E636F6 /* Date+.swift */; };
 		D1C98D0028F6871600D438CF /* ManagePagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C98CFF28F6871600D438CF /* ManagePagerViewController.swift */; };
@@ -124,6 +125,7 @@
 		D1B8E8A228816D3D003B2C48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1B8E8A828817007003B2C48 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		D1B8E8AA28817080003B2C48 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		D1B988852931D87600473249 /* AuthFinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFinalViewController.swift; sourceTree = "<group>"; };
 		D1C73BA128EE92E600E636F6 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		D1C73BA328EE95A800E636F6 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		D1C98CFF28F6871600D438CF /* ManagePagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePagerViewController.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				D119080028AA8443009FBF64 /* Default */,
 				D1E06DFA28915A4D001F12FD /* SignIn */,
 				D1E06DF82891540D001F12FD /* Auth.storyboard */,
+				D1B988852931D87600473249 /* AuthFinalViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */,
 				D1503D6C289527C400C53B81 /* FrameModel.swift in Sources */,
 				D1B8E8A928817007003B2C48 /* UIView+.swift in Sources */,
+				D1B988862931D87600473249 /* AuthFinalViewController.swift in Sources */,
 				D13E1884291E3631004F35D0 /* CALayer+.swift in Sources */,
 				D1D9D5A328F7EEF0004E9EB0 /* ChatManager.swift in Sources */,
 				D1D9D5A628F7F00A004E9EB0 /* ChatModel.swift in Sources */,
@@ -866,7 +870,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Layer/Layer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = H32HN8A88T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Layer/Info.plist;
@@ -882,7 +886,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = shawnApp.Layer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -899,7 +903,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Layer/Layer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = H32HN8A88T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Layer/Info.plist;
@@ -915,7 +919,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = shawnApp.Layer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

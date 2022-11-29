@@ -27,6 +27,8 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var floatingButton: FloatingButton!
     @IBOutlet weak var floatingButtonWidth: NSLayoutConstraint!
+    @IBOutlet weak var floatingButtonHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var floatingButtonTrailing: NSLayoutConstraint!
     @IBOutlet weak var floatingButtonBottom: NSLayoutConstraint!
     
@@ -143,6 +145,12 @@ class MainViewController: UIViewController {
                 }
             })
             .disposed(by: rx.disposeBag)
+        
+        floatingButton.rx.tap
+            .bind { [unowned self] _ in
+                print("tap")
+            }
+            .disposed(by: rx.disposeBag)
     }
 
     private func whiteDot() {
@@ -208,6 +216,7 @@ class MainViewController: UIViewController {
         if !isAnimating {
             self.blackWidth.constant += 96
             self.floatingButtonWidth.constant = 0
+            self.floatingButtonHeight.constant = 0
             self.floatingButtonTrailing.constant += 30
             self.floatingButtonBottom.constant -= 30
             self.whiteLayer.addGrayShadow()
@@ -248,6 +257,7 @@ class MainViewController: UIViewController {
     private func hideLayers() {
         self.whiteWidth.constant = 0
         self.floatingButtonWidth.constant = 60
+        self.floatingButtonHeight.constant = 60
 
         self.floatingButtonTrailing.constant = 30
         self.floatingButtonBottom.constant = -30
@@ -289,7 +299,7 @@ class MainViewController: UIViewController {
     private func changeToBlackLayer() {
         self.whiteWidth.constant = 0
         self.floatingButtonWidth.constant = 60
-
+        self.floatingButtonHeight.constant = 60
         self.floatingButtonTrailing.constant = 30
         self.floatingButtonBottom.constant = -30
         UIView.animate(withDuration: 0.6, delay: 0.3, animations: {
@@ -322,7 +332,7 @@ class MainViewController: UIViewController {
     
     private func changeToWhiteLayer() {
         self.floatingButtonWidth.constant = 60
-
+        self.floatingButtonHeight.constant = 60
         self.floatingButtonTrailing.constant = 30
         self.floatingButtonBottom.constant = -30
         UIView.animate(withDuration: 0.6, delay: 0.3, animations: {
@@ -358,7 +368,7 @@ class MainViewController: UIViewController {
     
     private func changeToGrayLayer() {
         self.floatingButtonWidth.constant = 60
-
+        self.floatingButtonHeight.constant = 60
         self.floatingButtonTrailing.constant = 30
         self.floatingButtonBottom.constant = -30
         UIView.animate(withDuration: 0.6, delay: 0.3, animations: {

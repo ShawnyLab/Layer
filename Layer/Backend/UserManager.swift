@@ -109,4 +109,7 @@ class UserManager: CommonBackendType {
         CurrentUserModel.shared.friendsHash[userModel.uid] = preLayer%10 + layer.rawValue*10
     }
 
+    func deleteUser() {
+        ref.child("users").child(CurrentUserModel.shared.uid).removeValue()
+    }
 }

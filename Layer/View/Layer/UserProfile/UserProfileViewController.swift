@@ -176,7 +176,7 @@ final class UserProfileViewController: UIViewController {
         
         
         if let friendModel = CurrentUserModel.shared.friends.first(where: {$0.uid == userModel.uid}) {
-            return friendModel.layer / 10
+            return friendModel.layer < 0 ? friendModel.layer : friendModel.layer / 10
         } else if userModel.uid == CurrentUserModel.shared.uid {
             return -4
         }

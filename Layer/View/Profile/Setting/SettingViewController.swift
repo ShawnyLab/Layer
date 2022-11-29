@@ -24,6 +24,7 @@ final class SettingViewController: UIViewController {
     @IBOutlet weak var manageButton: UIButton!
     
     @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var signoutButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,6 +66,15 @@ final class SettingViewController: UIViewController {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
+        
+        signoutButton.rx.tap
+            .bind { [unowned self] _ in
+                presentAlert(message: "회원 탈퇴하시겠습니까?") {
+                    UserManager.shared.deleteUser()
+                    self.navigationController?.dismiss(animated: true)
+                }
+            }
+            .disposed(by: rx.disposeBag)
     }
     
     @IBAction func manage(_ sender: Any) {
@@ -80,4 +90,5 @@ final class SettingViewController: UIViewController {
         try! Auth.auth().signOut()
         self.dismiss(animated: true)
     }
+    
 }

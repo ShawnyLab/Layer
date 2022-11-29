@@ -400,18 +400,25 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zb-dO-bSZ">
-                                <rect key="frame" x="27" y="791" width="360" height="46"/>
+                                <rect key="frame" x="27" y="766" width="360" height="46"/>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="0tl-Rt-J1n"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="로그아웃">
+                                <state key="normal" title="로그 아웃">
                                     <color key="titleColor" red="0.97254901960784312" green="0.59607843137254901" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="logout:" destination="Lj8-m2-BmH" eventType="touchUpInside" id="hsF-nk-GHf"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xba-RD-hxV">
+                                <rect key="frame" x="179" y="827" width="56" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="회원 탈퇴">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Abe-Ui-N3m"/>
@@ -423,8 +430,10 @@
                             <constraint firstItem="FPp-FT-bdO" firstAttribute="centerX" secondItem="Abe-Ui-N3m" secondAttribute="centerX" id="7BT-oD-r54"/>
                             <constraint firstItem="dSJ-rJ-0NA" firstAttribute="leading" secondItem="Abe-Ui-N3m" secondAttribute="leading" constant="27" id="7w3-4R-WZV"/>
                             <constraint firstItem="9kg-c9-2nL" firstAttribute="centerX" secondItem="Abe-Ui-N3m" secondAttribute="centerX" id="9CF-ki-I3z"/>
+                            <constraint firstItem="Abe-Ui-N3m" firstAttribute="bottom" secondItem="xba-RD-hxV" secondAttribute="bottom" constant="5" id="CJq-rA-QUr"/>
                             <constraint firstItem="5dI-ah-vZ0" firstAttribute="centerX" secondItem="Abe-Ui-N3m" secondAttribute="centerX" id="Fvh-QB-W9U"/>
                             <constraint firstItem="Zee-of-MpU" firstAttribute="leading" secondItem="Abe-Ui-N3m" secondAttribute="leading" constant="27" id="HCg-ak-mWR"/>
+                            <constraint firstItem="xba-RD-hxV" firstAttribute="centerX" secondItem="Abe-Ui-N3m" secondAttribute="centerX" id="HMS-bF-eqV"/>
                             <constraint firstItem="9kg-c9-2nL" firstAttribute="top" secondItem="xe2-Ay-Tff" secondAttribute="bottom" constant="6" id="Kqk-LE-G42"/>
                             <constraint firstItem="JRq-js-GFo" firstAttribute="centerY" secondItem="xe2-Ay-Tff" secondAttribute="centerY" id="Mtn-Fh-V0S"/>
                             <constraint firstItem="xe2-Ay-Tff" firstAttribute="leading" secondItem="JRq-js-GFo" secondAttribute="trailing" id="Nq1-vM-aLp"/>
@@ -436,7 +445,7 @@
                             <constraint firstItem="Gif-qs-FGr" firstAttribute="centerX" secondItem="Abe-Ui-N3m" secondAttribute="centerX" id="bWI-ki-P5g"/>
                             <constraint firstItem="Zee-of-MpU" firstAttribute="top" secondItem="FPp-FT-bdO" secondAttribute="bottom" constant="33" id="ely-WJ-udC"/>
                             <constraint firstItem="Gif-qs-FGr" firstAttribute="top" secondItem="4Mg-qS-maP" secondAttribute="bottom" constant="5" id="hxc-Bz-aYA"/>
-                            <constraint firstItem="Abe-Ui-N3m" firstAttribute="bottom" secondItem="6zb-dO-bSZ" secondAttribute="bottom" constant="25" id="ipu-JP-RvG"/>
+                            <constraint firstItem="Abe-Ui-N3m" firstAttribute="bottom" secondItem="6zb-dO-bSZ" secondAttribute="bottom" constant="50" id="ipu-JP-RvG"/>
                             <constraint firstItem="5dI-ah-vZ0" firstAttribute="leading" secondItem="Abe-Ui-N3m" secondAttribute="leading" constant="27" id="jCa-ch-rm6"/>
                             <constraint firstItem="xe2-Ay-Tff" firstAttribute="top" secondItem="Abe-Ui-N3m" secondAttribute="top" constant="42" id="vB2-5g-VDj"/>
                             <constraint firstItem="FPp-FT-bdO" firstAttribute="leading" secondItem="Abe-Ui-N3m" secondAttribute="leading" constant="27" id="wjH-NO-Lzt"/>
@@ -455,6 +464,7 @@
                         <outlet property="profileEditButton" destination="AlZ-8F-Ykf" id="nB5-BV-EmB"/>
                         <outlet property="profileImageView" destination="AKG-Wo-eOV" id="fzn-uR-yrv"/>
                         <outlet property="settingContainer" destination="FPp-FT-bdO" id="n1S-nG-9VE"/>
+                        <outlet property="signoutButton" destination="xba-RD-hxV" id="5iC-43-aYf"/>
                         <outlet property="versionLabel" destination="EL0-8i-3Br" id="CY8-Zy-bX3"/>
                     </connections>
                 </viewController>
