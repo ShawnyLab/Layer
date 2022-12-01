@@ -183,9 +183,15 @@ class MainViewController: UIViewController {
             })
             .disposed(by: rx.disposeBag)
         
-        floatingButton.rx.tap
+
+        
+        searchButton.rx.tap
             .bind { [unowned self] _ in
-                print("tap")
+                let vc = storyboard?.instantiateViewController(withIdentifier: SearchUserViewController.storyId) as! SearchUserViewController
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.modalTransitionStyle = .crossDissolve
+                vc.topVC = self
+                self.present(vc, animated: true)
             }
             .disposed(by: rx.disposeBag)
     }

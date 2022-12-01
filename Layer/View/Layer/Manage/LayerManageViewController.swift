@@ -30,6 +30,7 @@ class LayerManageViewController: UIViewController {
     @IBOutlet weak var addressButton: UIButton!
     @IBOutlet weak var layerButton: UIButton!
     @IBOutlet weak var requestButton: UIButton!
+    @IBOutlet weak var inviteButton: UIButton!
     
     
     private var vcList = [UIViewController]()
@@ -156,6 +157,18 @@ class LayerManageViewController: UIViewController {
                 requestVC.didMove(toParent: self)
                 pageIndex.accept(2)
                 
+            }
+            .disposed(by: rx.disposeBag)
+        
+        inviteButton.rx.tap
+            .bind { [unowned self] _ in
+                //https://maivve.tistory.com/175
+                let items: [Any] = [UIImage(named: "LayerIcon")!]
+                
+                let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                activityVC.popoverPresentationController?.sourceView = self.view
+                
+                self.present(activityVC, animated: true, completion: nil)
             }
             .disposed(by: rx.disposeBag)
     }

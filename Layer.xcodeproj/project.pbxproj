@@ -75,6 +75,7 @@
 		D1E06E1728917FBC001F12FD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E06E1628917FBC001F12FD /* ProfileViewController.swift */; };
 		D1E06E1928917FC3001F12FD /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E06E1828917FC3001F12FD /* MessageViewController.swift */; };
 		D1F1581B29264C6C00A20D0E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1581A29264C6C00A20D0E /* SettingViewController.swift */; };
+		D1F1AF9A29387DD70030DE7C /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1AF9929387DD70030DE7C /* SearchUserViewController.swift */; };
 		D1F70E8728D9421900873E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8628D9421900873E71 /* UserManager.swift */; };
 		D1F70E8928D9439500873E71 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8828D9439500873E71 /* UserModel.swift */; };
 		D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */; };
@@ -155,6 +156,7 @@
 		D1E06E1628917FBC001F12FD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D1E06E1828917FC3001F12FD /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		D1F1581A29264C6C00A20D0E /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		D1F1AF9929387DD70030DE7C /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
 		D1F70E8628D9421900873E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D1F70E8828D9439500873E71 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFrameModel.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				D1E06E0D28917E76001F12FD /* MainPageViewController.swift */,
 				D1A55F502891841300D9B645 /* MainViewController.swift */,
 				D16D99F02881695200D7C57E /* Main.storyboard */,
+				D1F1AF9929387DD70030DE7C /* SearchUserViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				D15D766D291F901400FD5EBC /* ChangeFinalViewController.swift in Sources */,
 				D1E06E0C2891608E001F12FD /* SignInViewModel.swift in Sources */,
 				D16D99EB2881695200D7C57E /* AppDelegate.swift in Sources */,
+				D1F1AF9A29387DD70030DE7C /* SearchUserViewController.swift in Sources */,
 				D1503D6E2895280300C53B81 /* WriterModel.swift in Sources */,
 				D1C98D0528F68C4800D438CF /* MyLayerViewController.swift in Sources */,
 				D1E06E1928917FC3001F12FD /* MessageViewController.swift in Sources */,

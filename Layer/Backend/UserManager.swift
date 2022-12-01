@@ -8,6 +8,7 @@
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import Firebase
 
 class UserManager: CommonBackendType {
     static let shared = UserManager()
@@ -26,6 +27,29 @@ class UserManager: CommonBackendType {
                     } else {
                         single(.error(DataFetchingError.noData))
                     }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func search(id: String) -> Single<[UserModel]> {
+        return Single.create() { [unowned self] single in
+            
+            ref.child("users").queryOrdered(byChild: "layerId").queryEqual(toValue: id).observeSingleEvent(of: .value) { DataSnapshot in
+                if !DataSnapshot.exists() {
+                    single(.error(DataFetchingError.noData))
+                } else {
+                    var temp = [UserModel]()
+                    for userData in DataSnapshot.children.allObjects as! [DataSnapshot] {
+                        if let userModel = UserModel(data: userData) {
+                            temp.append(userModel)
+                        } else {
+                            single(.error(DataFetchingError.noData))
+                        }
+                        single(.success(temp))
+                    }
+
                 }
             }
             return Disposables.create()

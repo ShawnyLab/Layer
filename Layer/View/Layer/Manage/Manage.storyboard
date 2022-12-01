@@ -70,13 +70,21 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNo-TN-Q2R">
+                                        <rect key="frame" x="0.0" y="0.0" width="342" height="54"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="wNo-TN-Q2R" secondAttribute="trailing" id="0Fi-vy-gXi"/>
                                     <constraint firstItem="x0J-GM-d8z" firstAttribute="leading" secondItem="oaA-1y-sSL" secondAttribute="trailing" constant="10" id="1q7-3q-RY9"/>
+                                    <constraint firstAttribute="bottom" secondItem="wNo-TN-Q2R" secondAttribute="bottom" id="3qz-2W-HGD"/>
                                     <constraint firstItem="oaA-1y-sSL" firstAttribute="centerY" secondItem="XOq-C2-Dnf" secondAttribute="centerY" id="6Lx-DP-KCl"/>
                                     <constraint firstItem="kJd-WL-xhA" firstAttribute="top" secondItem="XOq-C2-Dnf" secondAttribute="top" constant="10" id="Bjp-rh-sjh"/>
                                     <constraint firstAttribute="height" constant="54" id="J7O-MC-XtM"/>
+                                    <constraint firstItem="wNo-TN-Q2R" firstAttribute="top" secondItem="XOq-C2-Dnf" secondAttribute="top" id="LhF-9o-y4t"/>
+                                    <constraint firstItem="wNo-TN-Q2R" firstAttribute="leading" secondItem="XOq-C2-Dnf" secondAttribute="leading" id="MJ8-Gj-Yya"/>
                                     <constraint firstItem="oaA-1y-sSL" firstAttribute="leading" secondItem="XOq-C2-Dnf" secondAttribute="leading" constant="12" id="V3F-Co-QJK"/>
                                     <constraint firstItem="x0J-GM-d8z" firstAttribute="top" secondItem="kJd-WL-xhA" secondAttribute="bottom" constant="3" id="cBD-NS-Y0N"/>
                                     <constraint firstItem="kJd-WL-xhA" firstAttribute="leading" secondItem="oaA-1y-sSL" secondAttribute="trailing" constant="10" id="t31-hj-sdH"/>
@@ -265,6 +273,7 @@
                         <outlet property="addressView" destination="bLQ-GO-G4v" id="Dab-xQ-mBL"/>
                         <outlet property="containerView" destination="Ace-b5-6DE" id="26K-Mn-qpf"/>
                         <outlet property="indicator" destination="vFQ-Ou-OsG" id="mvG-VC-S2V"/>
+                        <outlet property="inviteButton" destination="wNo-TN-Q2R" id="xvv-AX-YyQ"/>
                         <outlet property="inviteView" destination="XOq-C2-Dnf" id="VFe-Yy-ATJ"/>
                         <outlet property="layerButton" destination="tkO-Oc-orD" id="ZGe-d9-jby"/>
                         <outlet property="mylayerLabel" destination="zGN-I0-RMR" id="LhN-fc-pyF"/>
