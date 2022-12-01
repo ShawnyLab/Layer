@@ -133,15 +133,27 @@ class MainViewController: UIViewController {
         floatingButton.simplePress = { [unowned self] in
             var count = 0
             var increasing = true
-            let animationTimer = Timer.scheduledTimer(withTimeInterval: 0.002, repeats: true) { timer in
+            let animationTimer = Timer.scheduledTimer(withTimeInterval: 0.002, repeats: true) { [unowned self] timer in
 
-                floatingButton.setTitle("Layer White", for: .normal)
-                floatingButton.setTitleColor(.black, for: .normal)
+                switch layerRelay.value {
+                case .white:
+                    floatingButton.setTitle("Layer White", for: .normal)
+                    floatingButton.setTitleColor(.black, for: .normal)
+                case .gray:
+                    floatingButton.setTitle("Layer Gray", for: .normal)
+                    floatingButton.setTitleColor(.black, for: .normal)
+                    
+                case .black:
+                    floatingButton.setTitle("Layer Black", for: .normal)
+                    floatingButton.setTitleColor(.white, for: .normal)
+                }
+
+
                 if count <= 120 {
                     self.floatingButtonWidth.constant = CGFloat(60 + count)
                 }
 
-                if count == 180 {
+                if count == 240 {
                     increasing = false
                 }
                 
@@ -264,11 +276,21 @@ class MainViewController: UIViewController {
             self.floatingButtonBottom.constant -= 30
             self.whiteLayer.addGrayShadow()
             AudioServicesPlaySystemSound(1519)
+
+            var count = 0
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
+                count += 1
+                AudioServicesPlaySystemSound(1519)
+                if count == 2 {
+                    timer.invalidate()
+                }
+            }
             
             UIView.animate(withDuration: 0.4, animations: {
                 self.view.layoutIfNeeded()
                 self.blackLayer.layer.cornerRadius = 48
                 self.floatingButton.layer.cornerRadius = self.floatingButton.frame.width/2
+                
             })
             
             animateGrayLayer()
@@ -284,14 +306,17 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.4, delay: 0.2, animations: {
             self.view.layoutIfNeeded()
             self.greyLayer.layer.cornerRadius = 96
+
         })
     }
     
     private func animateWhiteLayer() {
         self.whiteWidth.constant += 300
         UIView.animate(withDuration: 0.4, delay: 0.4, animations: {
+            
             self.view.layoutIfNeeded()
             self.whiteLayer.layer.cornerRadius = 150
+
         }) { _ in
             self.isAnimating = true
         }
@@ -366,7 +391,7 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.4, delay: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.blackLayer.alpha = 0
-            self.blackLayer.layer.cornerRadius = self.greyLayer.frame.width/2
+            self.blackLayer.layer.cornerRadius = self.blackLayer.frame.width/2
         }) { _ in
             self.blackWidth.constant = 0
             self.blackLayer.alpha = 1

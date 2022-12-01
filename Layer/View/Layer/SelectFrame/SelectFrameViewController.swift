@@ -70,9 +70,9 @@ extension SelectFrameViewController: PHPickerViewControllerDelegate {
 
                     let cropVC = Mantis.cropViewController(image: selectedImage)
                     cropVC.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 375 / 275)
-                
+                    
                     cropVC.delegate = self
-                    self.present(cropVC, animated: true)
+                    self.navigationController?.pushViewController(cropVC, animated: true)
                 }
             }
         }
@@ -84,18 +84,16 @@ extension SelectFrameViewController: PHPickerViewControllerDelegate {
 extension SelectFrameViewController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
         
-        cropViewController
-            .dismiss(animated: true) {
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "addtextframeVC") as! AddTextFrameViewController
-                self.frameUploadModel = FrameUploadModel()
-                vc.frameUploadModel = self.frameUploadModel
-                vc.image = cropped
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+        self.navigationController?.popViewController(animated: true)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "addtextframeVC") as! AddTextFrameViewController
+        self.frameUploadModel = FrameUploadModel()
+        vc.frameUploadModel = self.frameUploadModel
+        vc.image = cropped
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func cropViewControllerDidCancel(_ cropViewController: Mantis.CropViewController, original: UIImage) {
-        cropViewController.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
