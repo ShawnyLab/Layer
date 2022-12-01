@@ -58,10 +58,9 @@ final class DefaultViewController: UIViewController {
         vc.player = player
         vc.videoGravity = .resizeAspectFill
         
-        self.present(vc, animated: true){
+        self.present(vc, animated: true) {
             player.play() // 비디오 재생
-        }
-        
+        }        
     }
     
     
