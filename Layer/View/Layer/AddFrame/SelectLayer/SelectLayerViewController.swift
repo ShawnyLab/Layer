@@ -129,9 +129,11 @@ class SelectLayerViewController: AddFrameType {
         whiteOn
             .subscribe { [unowned self] isOn in
                 if isOn {
-                    layerWhiteButton.addGrayShadow()
+                    layerWhiteButton.layer.borderWidth = 0
+                    layerWhiteButton.layer.applySketchShadow(color: UIColor(red: 0, green: 0, blue: 0), alpha: 0.25, x: 0, y: 0, blur: 10, spread: 0)
                 } else {
-                    layerWhiteButton.addGrayShadow(color: .lightGray)
+                    layerWhiteButton.layer.borderWidth = 1
+                    layerWhiteButton.layer.borderColor = UIColor(red: 222, green: 222, blue: 222).cgColor
                 }
             }
             .disposed(by: rx.disposeBag)
@@ -206,7 +208,7 @@ class SelectLayerViewController: AddFrameType {
         layerGrayButton.backgroundColor = .layerGray
         layerBlackButton.backgroundColor = .black
         
-        layerWhiteButton.addGrayShadow()
+        layerWhiteButton.layer.applySketchShadow(color: UIColor(red: 0, green: 0, blue: 0), alpha: 0.25, x: 0, y: 0, blur: 10, spread: 0)
 
     }
     

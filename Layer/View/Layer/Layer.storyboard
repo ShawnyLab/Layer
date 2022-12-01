@@ -522,7 +522,7 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70z-AD-hy2">
                                 <rect key="frame" x="30" y="739" width="354" height="24"/>
-                                <string key="text">내 친구 모두가 내 프로필에서 프레임을 확인할 수 있습니다.
+                                <string key="text">모두가 내 프로필과 검색 탭에서 프레임을 확인할 수 있습니다.
 해당 옵션을 활성화하려면 게시물 공개 범위를 ‘모든 레이어’로 선택해주세요.</string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                                 <color key="textColor" name="LayerGray"/>

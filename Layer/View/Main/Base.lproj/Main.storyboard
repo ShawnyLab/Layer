@@ -128,6 +128,15 @@
                                     <constraint firstAttribute="width" constant="65" id="fSl-g5-kdj"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLm-Gg-7rK">
+                                <rect key="frame" x="299" y="64.5" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="LVY-Y6-kLc"/>
+                                    <constraint firstAttribute="width" constant="50" id="oPh-Eo-wec"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="searchBlack"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FFT-zn-lh8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -139,6 +148,7 @@
                             <constraint firstAttribute="bottom" secondItem="dia-Mj-8me" secondAttribute="bottom" id="Ak1-Pv-ZMd"/>
                             <constraint firstAttribute="trailing" secondItem="PZ1-Ab-aqV" secondAttribute="trailing" constant="15" id="Bog-KR-DqX"/>
                             <constraint firstItem="emI-lm-7VV" firstAttribute="bottom" secondItem="ktb-7P-dee" secondAttribute="bottom" constant="-30" id="GMG-TK-psG"/>
+                            <constraint firstItem="rBe-a1-V4B" firstAttribute="leading" secondItem="GLm-Gg-7rK" secondAttribute="trailing" id="Hj8-cS-vf6"/>
                             <constraint firstItem="uH0-6T-WKI" firstAttribute="centerY" secondItem="YZM-vZ-0iP" secondAttribute="centerY" id="IBH-lW-Lal"/>
                             <constraint firstItem="C2k-ge-UPr" firstAttribute="centerY" secondItem="emI-lm-7VV" secondAttribute="centerY" id="Ibw-0D-3NK"/>
                             <constraint firstAttribute="trailing" secondItem="emI-lm-7VV" secondAttribute="trailing" constant="30" id="Im3-ES-m9k"/>
@@ -158,6 +168,7 @@
                             <constraint firstItem="dia-Mj-8me" firstAttribute="leading" secondItem="ktb-7P-dee" secondAttribute="leading" id="tqo-Cd-rmb"/>
                             <constraint firstItem="eox-36-Emm" firstAttribute="centerX" secondItem="emI-lm-7VV" secondAttribute="centerX" id="uYG-7P-jRS"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aH7-gq-8ur" secondAttribute="trailing" constant="30" id="wrr-8I-MZT"/>
+                            <constraint firstItem="GLm-Gg-7rK" firstAttribute="centerY" secondItem="aH7-gq-8ur" secondAttribute="centerY" id="yEy-Up-UTd"/>
                             <constraint firstItem="rBe-a1-V4B" firstAttribute="centerY" secondItem="aH7-gq-8ur" secondAttribute="centerY" id="ynr-gV-cB0"/>
                             <constraint firstItem="uH0-6T-WKI" firstAttribute="leading" secondItem="YZM-vZ-0iP" secondAttribute="trailing" constant="5" id="zHC-o2-5dq"/>
                             <constraint firstItem="LHd-t9-C7T" firstAttribute="centerX" secondItem="emI-lm-7VV" secondAttribute="centerX" id="zSc-ir-R95"/>
@@ -179,6 +190,7 @@
                         <outlet property="hamburgerButton" destination="rBe-a1-V4B" id="VWD-ZF-bFL"/>
                         <outlet property="logoImage" destination="6XD-BK-siX" id="6sX-XS-Ur6"/>
                         <outlet property="plusButton" destination="PZ1-Ab-aqV" id="Hzo-HI-qUG"/>
+                        <outlet property="searchButton" destination="GLm-Gg-7rK" id="SYP-OK-SkZ"/>
                         <outlet property="secondDot" destination="YZM-vZ-0iP" id="pv3-gI-eCG"/>
                         <outlet property="thirdDot" destination="uH0-6T-WKI" id="M9k-lU-nKL"/>
                         <outlet property="titleLabel" destination="aH7-gq-8ur" id="ZqB-bA-cZn"/>
@@ -207,6 +219,7 @@
         <image name="hamburgerBlack" width="24" height="21"/>
         <image name="logoBlack" width="197.33332824707031" height="77.333335876464844"/>
         <image name="plusBlack" width="23" height="23"/>
+        <image name="searchBlack" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

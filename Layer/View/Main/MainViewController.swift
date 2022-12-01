@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import AVFoundation
+import SnapKit
 
 class MainViewController: UIViewController {
     static let storyId = "mainVC"
@@ -24,6 +25,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var circleButton: UIButton!
     @IBOutlet weak var hamburgerButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     @IBOutlet weak var floatingButton: FloatingButton!
     @IBOutlet weak var floatingButtonWidth: NSLayoutConstraint!
@@ -85,6 +87,7 @@ class MainViewController: UIViewController {
                     plusButton.isHidden = false
                     circleButton.isHidden = true
                     hamburgerButton.isHidden = true
+                    searchButton.isHidden = false
                 } else if index == 1 {
                     titleLabel.text = "Message"
                     titleLabel.isHidden = false
@@ -92,6 +95,8 @@ class MainViewController: UIViewController {
                     plusButton.isHidden = true
                     circleButton.isHidden = true
                     hamburgerButton.isHidden = true
+                    searchButton.isHidden = true
+
                 } else if index == 2 {
                     titleLabel.text = "Profile"
                     titleLabel.isHidden = false
@@ -99,6 +104,8 @@ class MainViewController: UIViewController {
                     plusButton.isHidden = true
                     circleButton.isHidden = false
                     hamburgerButton.isHidden = false
+                    searchButton.isHidden = true
+
                 }
             })
             .disposed(by: rx.disposeBag)
@@ -121,6 +128,36 @@ class MainViewController: UIViewController {
         
         floatingButton.changeLayer = { layer in
             self.changeLayer(layer)
+        }
+        
+        floatingButton.simplePress = { [unowned self] in
+            var count = 0
+            var increasing = true
+            let animationTimer = Timer.scheduledTimer(withTimeInterval: 0.002, repeats: true) { timer in
+
+                floatingButton.setTitle("Layer White", for: .normal)
+                floatingButton.setTitleColor(.black, for: .normal)
+                if count <= 120 {
+                    self.floatingButtonWidth.constant = CGFloat(60 + count)
+                }
+
+                if count == 180 {
+                    increasing = false
+                }
+                
+                if increasing {
+                    count += 1
+                } else {
+                    count -= 1
+                }
+                
+                if count == 0 {
+                    floatingButton.setTitle("", for: .normal)
+                    timer.invalidate()
+                }
+            }
+
+            
         }
 
         circleButton.rx.tap
@@ -413,6 +450,7 @@ class MainViewController: UIViewController {
             titleLabel.textColor = .white
             hamburgerButton.setImage(UIImage(named: "hamburgerWhite"), for: .normal)
             circleButton.setImage(UIImage(named: "doubleCircleWhite"), for: .normal)
+            searchButton.setImage(UIImage(named: "searchWhite"), for: .normal)
         })
 
     }
@@ -426,7 +464,7 @@ class MainViewController: UIViewController {
         titleLabel.textColor = .black
         hamburgerButton.setImage(UIImage(named: "hamburgerBlack"), for: .normal)
         circleButton.setImage(UIImage(named: "doubleCircleBlack"), for: .normal)
-        
+        searchButton.setImage(UIImage(named: "searchBlack"), for: .normal)
     }
     
     private func showGray() {
@@ -438,7 +476,7 @@ class MainViewController: UIViewController {
         titleLabel.textColor = .black
         hamburgerButton.setImage(UIImage(named: "hamburgerBlack"), for: .normal)
         circleButton.setImage(UIImage(named: "doubleCircleBlack"), for: .normal)
-
+        searchButton.setImage(UIImage(named: "searchBlack"), for: .normal)
     }
     
     private func bind() {
@@ -458,51 +496,90 @@ class MainViewController: UIViewController {
 final class FloatingButton: UIButton {
     private var pressTimer: Timer?
     private var isPressing = false
+    private var longPress = false
     private var cnt = 0
     
     var openLayer: (() -> Void)!
     var hideLayer: (() -> Void)!
     var changeLayer: ((LayerType) -> Void)!
     var mainView: UIView!
+    var simplePress: (() -> Void)!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         if pressTimer == nil {
-            pressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
-                self.cnt += 1
-                if self.cnt == 2 {
+            self.isPressing = true
+            
+            pressTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { timer in
+                if self.cnt == 0 {
                     self.isPressing = true
-                    self.openLayer()
+                    self.cnt += 1
+                }
+                
+                if !self.isPressing {
+                    print(self.isPressing)
+                    self.simplePress()
                     timer.invalidate()
                     self.pressTimer = nil
+                    self.cnt = 0
+                } else {
+                    self.cnt += 1
                 }
+                
+                if self.cnt == 20 {
+                    print("long press")
+                    timer.invalidate()
+                    self.pressTimer = nil
+                    self.isPressing = false
+                    self.longPress = true
+                    self.cnt = 0
+                    self.openLayer()
+                }
+                
+//                if self.cnt == 20 && !self.isPressing {
+//                    print("simple touch")
+//                } else if self.cnt == 20 {
+//                    print("longpress")
+//
+//                    self.isPressing = true
+//                    self.openLayer()
+//                    timer.invalidate()
+//                    self.pressTimer = nil
+//                }
+
             })
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        cnt = 0
-        print("touches ended")
-        let location = touches.first!.location(in: self.mainView)
-        
-        print(self.frame.origin.x, self.frame.origin.y)
-        
-        
-        let xGap = self.frame.origin.x - location.x
-        let yGap = self.frame.origin.y - location.y
-        
-        if xGap*xGap + yGap*yGap <= 49*49 {
-            changeLayer(.black)
-        } else if xGap*xGap + yGap*yGap <= 98*98 {
-            changeLayer(.gray)
-        } else if xGap*xGap + yGap*yGap <= 150*150 {
-            changeLayer(.white)
-        } else {
-            hideLayer()
+        print("touch end")
+        self.isPressing = false
+        if longPress {
+            let location = touches.first!.location(in: self.mainView)
+
+            let xGap = self.frame.origin.x - location.x
+            let yGap = self.frame.origin.y - location.y
+            
+            if xGap*xGap + yGap*yGap <= 49*49 {
+                changeLayer(.black)
+            } else if xGap*xGap + yGap*yGap <= 98*98 {
+                changeLayer(.gray)
+            } else if xGap*xGap + yGap*yGap <= 150*150 {
+                changeLayer(.white)
+            } else {
+                hideLayer()
+            }
+            longPress = false
         }
         
-        self.pressTimer?.invalidate()
-        self.pressTimer = nil
+//        if self.isPressing {
+//            cnt = 0
+//            print("touches ended")
+
+//        } else {
+//            print("simple press")
+//            self.isPressing = false
+//        }
+
     }
 
 }

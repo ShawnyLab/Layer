@@ -74,7 +74,7 @@ final class FrameManager: CommonBackendType, FrameManagerType {
                                 
                                 switch layer {
                                 case .white:
-                                    if (writerLayer >= 0 && canShow) || frameModel.isOpened || frameModel.writerId == CurrentUserModel.shared.uid {
+                                    if (writerLayer >= 0 && canShow) || frameModel.writerId == CurrentUserModel.shared.uid {
                                         temp.insert(frameModel, at: 0)
                                     }
                                 case .gray:

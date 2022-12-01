@@ -56,6 +56,15 @@ final class SettingViewController: UIViewController {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
            let bundleVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
         self.versionLabel.text = version
+        
+        signoutButton.rx.tap
+            .bind { [unowned self] _ in
+                presentAlert(message: "회원 탈퇴하시겠습니까?") {
+                    UserManager.shared.deleteUser()
+                    self.navigationController?.dismiss(animated: true)
+                }
+            }
+            .disposed(by: rx.disposeBag)
     }
     
     @IBAction func openSetting(_ sender: Any) {
@@ -67,14 +76,6 @@ final class SettingViewController: UIViewController {
             UIApplication.shared.open(url)
         }
         
-        signoutButton.rx.tap
-            .bind { [unowned self] _ in
-                presentAlert(message: "회원 탈퇴하시겠습니까?") {
-                    UserManager.shared.deleteUser()
-                    self.navigationController?.dismiss(animated: true)
-                }
-            }
-            .disposed(by: rx.disposeBag)
     }
     
     @IBAction func manage(_ sender: Any) {
