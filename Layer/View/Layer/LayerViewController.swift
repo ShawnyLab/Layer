@@ -50,8 +50,8 @@ class LayerViewController: UIViewController {
 
             case .gray:
                 UIView.animate(withDuration: 0.4, animations: {
-                    self.view.backgroundColor = .layerGray
-                    self.tableView.backgroundColor = .layerGray
+                    self.view.backgroundColor = .white
+                    self.tableView.backgroundColor = .white
                 })
 
                 
@@ -139,7 +139,7 @@ class LayerViewController: UIViewController {
                                 cell.contentLabel.textColor = .black
                                 cell.nameLabel.textColor = .black
                                 cell.titleLabel.textColor = .black
-                                cell.backgroundColor = .layerGray
+                                cell.backgroundColor = .white
                                 cell.optionBtn.setImage(UIImage(named: "elipsisBlack"), for: .normal)
                             })
 

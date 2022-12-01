@@ -317,6 +317,20 @@
             </objects>
             <point key="canvasLocation" x="511.59420289855075" y="817.63392857142856"/>
         </scene>
+        <!--Player View Controller-->
+        <scene sceneID="CJN-a4-17f">
+            <objects>
+                <viewController storyboardIdentifier="playerVC" id="Ugb-wH-SxA" customClass="PlayerViewController" customModule="Layer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9R5-7b-F0X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kwh-Dn-9iN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1589" y="821"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Layer3" width="170" height="170"/>

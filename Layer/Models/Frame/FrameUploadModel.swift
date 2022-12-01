@@ -111,7 +111,8 @@ extension FrameUploadModel {
             }
         }
         
-
+        CurrentUserModel.shared.frames[frameModel.uid] = true
+        CurrentUserModel.shared.frameModels.append(SimpleFrameModel(title: frameModel.title, imageUrl: frameModel.imageUrl, dueDate: frameModel.dueDate, content: frameModel.content, uid: frameModel.uid, createdAt: frameModel.createdAt, isOpened: frameModel.isOpened, layer: frameModel.layer))
 
 
     }

@@ -148,7 +148,7 @@ final class MessageViewController: UIViewController {
                             cell.idLabel.textColor = .white
 
                         case .gray:
-                            cell.backgroundColor = .layerGray
+                            cell.backgroundColor = .white
                             cell.profileImageView.backgroundColor = .black
                             cell.idLabel.textColor = .black
 
@@ -225,10 +225,10 @@ final class MessageViewController: UIViewController {
                     tableView.backgroundColor = .black
                     break
                 case .gray:
-                    self.view.backgroundColor = .layerGray
-                    friendCollectionView.backgroundColor = .layerGray
+                    self.view.backgroundColor = .white
+                    friendCollectionView.backgroundColor = .white
                     availableLabel.textColor = .black
-                    tableView.backgroundColor = .layerGray
+                    tableView.backgroundColor = .white
                     break
                 }
             })

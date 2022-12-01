@@ -25,6 +25,8 @@ final class ProfileViewController: UIViewController {
     
     let layerRelay = BehaviorRelay<LayerType>(value: .white)
     
+    private let frameRelay = BehaviorRelay<[SimpleFrameModel]>(value: CurrentUserModel.shared.frameModels)
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -32,6 +34,8 @@ final class ProfileViewController: UIViewController {
         idLabel.text = CurrentUserModel.shared.layerId
         desLabel.text = CurrentUserModel.shared.des
         nameLabel.text = CurrentUserModel.shared.name
+        
+        frameRelay.accept(CurrentUserModel.shared.frameModels)
     }
 
     
@@ -44,7 +48,7 @@ final class ProfileViewController: UIViewController {
         tableView.estimatedRowHeight = 80
 
         
-        Observable.just(CurrentUserModel.shared.frameModels)
+       frameRelay
             .bind(to: tableView.rx.items(cellIdentifier: MyFrameCell.reuseId, cellType: MyFrameCell.self)) { [unowned self] idx, simpleFrameModel, cell in
                 if idx == CurrentUserModel.shared.frameModels.count-1 {
                     cell.barView.isHidden = true
@@ -66,6 +70,8 @@ final class ProfileViewController: UIViewController {
                 }
                 
                 cell.greydot.layer.cornerRadius = 4
+                var splited = simpleFrameModel.createdAt.split(separator: "T").map{String($0)}
+                cell.dateLabel.text = splited[0]
                 
                 layerRelay
                     .subscribe(onNext: { [unowned self] layer in
@@ -78,7 +84,7 @@ final class ProfileViewController: UIViewController {
                             cell.titleLabel.textColor = .white
 
                         case .gray:
-                            cell.backgroundColor = .layerGray
+                            cell.backgroundColor = .white
                             cell.titleLabel.textColor = .black
 
                         }
@@ -108,8 +114,8 @@ final class ProfileViewController: UIViewController {
 
                     break
                 case .gray:
-                    self.view.backgroundColor = .layerGray
-                    tableView.backgroundColor = .layerGray
+                    self.view.backgroundColor = .white
+                    tableView.backgroundColor = .white
                     idLabel.textColor = .black
                     nameLabel.textColor = .black
                     desLabel.textColor = .black
@@ -127,6 +133,7 @@ final class ProfileViewController: UIViewController {
 final class MyFrameCell: UITableViewCell {
     static let reuseId = "myframeCell"
     
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var greydot: UIView!
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

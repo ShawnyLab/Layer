@@ -499,7 +499,7 @@ class MainViewController: UIViewController {
     }
     
     private func showGray() {
-        view.backgroundColor = .layerGray
+        view.backgroundColor = .white
         logoImage.image = UIImage(named: "logoBlack")
         plusButton.setImage(UIImage(named: "plusBlack"), for: .normal)
         floatingButton.backgroundColor = .gray

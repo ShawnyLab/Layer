@@ -96,6 +96,12 @@
                                                         <constraint firstAttribute="width" constant="2" id="xHL-ah-W19"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ow-3l-cSn">
+                                                    <rect key="frame" x="44" y="92" width="26" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                                    <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Vhy-64-O0g" firstAttribute="top" secondItem="5aX-GM-b6g" secondAttribute="bottom" constant="5" id="10G-AB-FPK"/>
@@ -104,11 +110,13 @@
                                                 <constraint firstItem="5aX-GM-b6g" firstAttribute="centerY" secondItem="xPm-Yl-4jM" secondAttribute="centerY" id="FHO-IL-0nb"/>
                                                 <constraint firstAttribute="bottom" secondItem="JgI-XG-1vp" secondAttribute="bottom" id="FhO-MG-A3W"/>
                                                 <constraint firstItem="JgI-XG-1vp" firstAttribute="top" secondItem="xPm-Yl-4jM" secondAttribute="bottom" id="H8f-Kb-vkH"/>
+                                                <constraint firstItem="0ow-3l-cSn" firstAttribute="top" secondItem="Vhy-64-O0g" secondAttribute="bottom" constant="1" id="Jbt-TX-l1r"/>
                                                 <constraint firstItem="VQf-K9-Mbq" firstAttribute="bottom" secondItem="xPm-Yl-4jM" secondAttribute="bottom" id="LGN-Kd-Tku"/>
                                                 <constraint firstItem="xPm-Yl-4jM" firstAttribute="top" secondItem="XRZ-E2-NoA" secondAttribute="top" constant="10" id="Qvq-nx-gI1"/>
                                                 <constraint firstItem="JgI-XG-1vp" firstAttribute="centerX" secondItem="xPm-Yl-4jM" secondAttribute="centerX" id="mAS-X0-WJ6"/>
                                                 <constraint firstItem="VQf-K9-Mbq" firstAttribute="top" secondItem="XRZ-E2-NoA" secondAttribute="top" id="mVD-td-MQC"/>
                                                 <constraint firstItem="Vhy-64-O0g" firstAttribute="leading" secondItem="5aX-GM-b6g" secondAttribute="leading" id="mVn-oG-LVi"/>
+                                                <constraint firstItem="0ow-3l-cSn" firstAttribute="leading" secondItem="5aX-GM-b6g" secondAttribute="leading" id="mm0-4q-qDo"/>
                                                 <constraint firstItem="5aX-GM-b6g" firstAttribute="leading" secondItem="xPm-Yl-4jM" secondAttribute="trailing" constant="16" id="tro-0r-kob"/>
                                                 <constraint firstItem="VQf-K9-Mbq" firstAttribute="centerX" secondItem="xPm-Yl-4jM" secondAttribute="centerX" id="vaA-8H-Fi1"/>
                                             </constraints>
@@ -116,6 +124,7 @@
                                         <connections>
                                             <outlet property="barView" destination="JgI-XG-1vp" id="Hbf-qs-bDw"/>
                                             <outlet property="contentImageView" destination="Vhy-64-O0g" id="Tjj-mO-Wd7"/>
+                                            <outlet property="dateLabel" destination="0ow-3l-cSn" id="r9n-k3-KzP"/>
                                             <outlet property="greydot" destination="xPm-Yl-4jM" id="bMp-4x-2Gh"/>
                                             <outlet property="titleLabel" destination="5aX-GM-b6g" id="Vwa-I3-A2G"/>
                                             <outlet property="topBarView" destination="VQf-K9-Mbq" id="laO-GX-OIw"/>

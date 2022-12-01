@@ -15,6 +15,7 @@
 		D119080428AA84BF009FBF64 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119080328AA84BF009FBF64 /* AuthManager.swift */; };
 		D119080628AA8751009FBF64 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119080528AA8751009FBF64 /* Error.swift */; };
 		D119080A28AA9BBD009FBF64 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119080928AA9BBD009FBF64 /* FriendModel.swift */; };
+		D1191BED2938BE78006FE6B6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1191BEC2938BE78006FE6B6 /* PlayerViewController.swift */; };
 		D11DB5A62921C4C3005B3B08 /* ChangeDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11DB5A52921C4C3005B3B08 /* ChangeDoneViewController.swift */; };
 		D122BB0128B12DEA00104170 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122BB0028B12DEA00104170 /* UserProfileViewController.swift */; };
 		D12D4AD428EEA5F400923303 /* CommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12D4AD328EEA5F400923303 /* CommonModel.swift */; };
@@ -76,6 +77,7 @@
 		D1E06E1928917FC3001F12FD /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E06E1828917FC3001F12FD /* MessageViewController.swift */; };
 		D1F1581B29264C6C00A20D0E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1581A29264C6C00A20D0E /* SettingViewController.swift */; };
 		D1F1AF9A29387DD70030DE7C /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1AF9929387DD70030DE7C /* SearchUserViewController.swift */; };
+		D1F1AF9C293890020030DE7C /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D1F1AF9B293890020030DE7C /* video.mp4 */; };
 		D1F70E8728D9421900873E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8628D9421900873E71 /* UserManager.swift */; };
 		D1F70E8928D9439500873E71 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8828D9439500873E71 /* UserModel.swift */; };
 		D1F70E8B28D95EB900873E71 /* SimpleFrameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */; };
@@ -93,6 +95,7 @@
 		D119080328AA84BF009FBF64 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		D119080528AA8751009FBF64 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		D119080928AA9BBD009FBF64 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
+		D1191BEC2938BE78006FE6B6 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		D11DB5A52921C4C3005B3B08 /* ChangeDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDoneViewController.swift; sourceTree = "<group>"; };
 		D122BB0028B12DEA00104170 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		D12D4AD328EEA5F400923303 /* CommonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModel.swift; sourceTree = "<group>"; };
@@ -157,6 +160,7 @@
 		D1E06E1828917FC3001F12FD /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		D1F1581A29264C6C00A20D0E /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D1F1AF9929387DD70030DE7C /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
+		D1F1AF9B293890020030DE7C /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		D1F70E8628D9421900873E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D1F70E8828D9439500873E71 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D1F70E8A28D95EB900873E71 /* SimpleFrameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFrameModel.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 		D16D99E92881695200D7C57E /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				D1F1AF9D2938905D0030DE7C /* Resources */,
 				D148248228B0FD68005FF425 /* Layer.entitlements */,
 				D1503D7128952BC500C53B81 /* Backend */,
 				D1503D6A289527A500C53B81 /* Models */,
@@ -460,6 +465,7 @@
 				D1E06DFA28915A4D001F12FD /* SignIn */,
 				D1E06DF82891540D001F12FD /* Auth.storyboard */,
 				D1B988852931D87600473249 /* AuthFinalViewController.swift */,
+				D1191BEC2938BE78006FE6B6 /* PlayerViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -533,6 +539,14 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		D1F1AF9D2938905D0030DE7C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D1F1AF9B293890020030DE7C /* video.mp4 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		EE1ACEF6AEB37D58409B0A83 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D16D99F72881695300D7C57E /* LaunchScreen.storyboard in Resources */,
+				D1F1AF9C293890020030DE7C /* video.mp4 in Resources */,
 				D15626CB28F681CD00AE7E83 /* Manage.storyboard in Resources */,
 				D1E06E1328917FA5001F12FD /* Profile.storyboard in Resources */,
 				D1A55F4D289182EF00D9B645 /* Layer.storyboard in Resources */,
@@ -697,6 +712,7 @@
 				D1F1581B29264C6C00A20D0E /* SettingViewController.swift in Sources */,
 				D13E1882291E34A4004F35D0 /* ChangeLayerViewController.swift in Sources */,
 				D1E06E0A28915D64001F12FD /* UIFont+.swift in Sources */,
+				D1191BED2938BE78006FE6B6 /* PlayerViewController.swift in Sources */,
 				D15D766D291F901400FD5EBC /* ChangeFinalViewController.swift in Sources */,
 				D1E06E0C2891608E001F12FD /* SignInViewModel.swift in Sources */,
 				D16D99EB2881695200D7C57E /* AppDelegate.swift in Sources */,
