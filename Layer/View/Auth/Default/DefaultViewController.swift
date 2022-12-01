@@ -60,7 +60,7 @@ final class DefaultViewController: UIViewController {
         
         self.present(vc, animated: true) {
             player.play() // 비디오 재생
-        }        
+        } 
     }
     
     
